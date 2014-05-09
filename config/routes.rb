@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  resources :purchases
 
-  resources :listings
 
-  resources :users
+resources :purchases, only: [:show]
 
+  resources :users do
+    resources :listings
+end
+
+root 'listings#site_listings'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
