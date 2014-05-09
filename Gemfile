@@ -32,7 +32,7 @@ end
 
 gem 'capybara'
 
-gem 'paperclip'
+gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk'
 
 # Use ActiveModel has_secure_password
