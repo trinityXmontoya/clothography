@@ -11,5 +11,8 @@ class User < ActiveRecord::Base
   has_many :purchases, foreign_key: 'buyer_id'
   has_many :sales, class_name: 'purchase', foreign_key: 'seller_id', table_name: 'purchases'
 
+  has_many :listings
+
+  has_many :sizes, through: :size_users
 
 end

@@ -5,6 +5,8 @@ class Listing < ActiveRecord::Base
   belongs_to :size
   belongs_to :gender
 
+  has_many :tags, through: :listing_tags, foreign_key: 'listing_id'
+
 
   has_attached_file :photo,
   :styles => { :thumbnail => "100x100>" },
