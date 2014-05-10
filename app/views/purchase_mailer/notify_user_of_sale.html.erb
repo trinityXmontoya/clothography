@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1>Hey <%= @user.name %>!</h1>
+  <p>
+    Your item <%  @listings.each do |listing| %>
+      <%= listing.title %>
+      <%= listing.price %>
+      <% end %>
+     Congrats!
+  </p>
+</body>
+</html>
