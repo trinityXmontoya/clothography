@@ -7,7 +7,11 @@ resources :purchases, only: [:show]
     resources :listings
 end
 
-root 'listings#site_listings'
+get '/login' => 'sessions#new'
+post '/login/:username/:auth_token' => 'sessions#create'
+get '/logout' => 'sessions#destroy'
+
+root 'welcome#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

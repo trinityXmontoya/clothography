@@ -6,4 +6,7 @@ class WelcomeController < ApplicationController
   def faq
   end
 
+  def home
+  end
+
 end

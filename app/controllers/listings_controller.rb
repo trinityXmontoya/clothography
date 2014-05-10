@@ -1,9 +1,5 @@
 class ListingsController < ApplicationController
 
-  def site_listings
-    @listings = Listing.all
-  end
-
   def index
     @user = User.find(params[:user_id])
     @listings = @user.listings
@@ -61,4 +57,5 @@ class ListingsController < ApplicationController
     def listing_params
       params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :sale_price, :original_price, :price, :status, :condition)
     end
+
 end

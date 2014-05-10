@@ -14,10 +14,16 @@ class UsersController < ApplicationController
   end
 
   def create
+    if User.find_by(username: user_params[:username]).exists?
+      redirect_to new, notice: "Sorry this username is taken."
+    elsif User.find_by(email: user_params[:email]).exists?
+      redirect_to new, notice: "Sorry this email is already signed up."
+    else
     @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
+        @user.send_login_link
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.js{}
       else

@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  Hey <%= @user.username %>, here's your login link: <%= @link %>
+  Requested on <%= @user.auth_token_created_at %>. If not used it will expire in 48 hours.
+</body>
+</html>
