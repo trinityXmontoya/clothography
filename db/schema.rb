@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140509213004) do
 
   create_table "categories", force: true do |t|
     t.string  "name"
+    t.string  "icon"
     t.integer "gender_id"
   end
 
@@ -91,7 +92,7 @@ ActiveRecord::Schema.define(version: 20140509213004) do
   create_table "sizes", force: true do |t|
     t.integer "gender_id"
     t.integer "category_id"
-    t.string  "type"
+    t.string  "label"
     t.string  "name"
   end
 
