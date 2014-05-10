@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20140509213004) do
     t.string   "password"
     t.string   "auth_token"
     t.string   "oauth_token"
+    t.string   "provider"
     t.integer  "uid"
     t.datetime "auth_token_created_at"
     t.string   "profile_photo"

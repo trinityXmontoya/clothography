@@ -1,7 +1,12 @@
 class ListingsController < ApplicationController
 
+
   before_action :authenticate, only: [:new, :create, :edit, :update, :destroy]
 
+  def all_site_listings
+    @listings = Listing.all
+  end
+  
   def index
     @user = User.find(params[:user_id])
     @listings = @user.listings

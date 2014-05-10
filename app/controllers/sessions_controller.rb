@@ -23,6 +23,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  def twitter_failure
+    redirect_to root_path, notice: "There was an error."
+  end
+
   def destroy
     session[:user_id] = nil
     redirect_to root_path, notice: "Logged out"

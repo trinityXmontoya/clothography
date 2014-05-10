@@ -1,19 +1,24 @@
 Rails.application.routes.draw do
 
 
-resources :purchases, only: [:show]
 
-  resources :users do
-    resources :listings
-end
+root 'welcome#home'
+
+get "/auth/:provider/callback" => "sessions#twitter_create"
+get '/auth/failure', :to => 'sessions#failure'
 
 get '/login' => 'sessions#new'
 post '/login/:username/:auth_token' => 'sessions#create'
 get '/logout' => 'sessions#destroy'
 
-root 'welcome#home'
+get '/listings' => 'listings#all_site_listings'
 
-get '/auth/:provider/callback', to: 'sessions#twitter_create'
+  resources :users do
+    resources :listings
+end
+
+  resources :purchases, only: [:show]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

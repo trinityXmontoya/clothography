@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_from_auth_hash(auth_hash)
-     where("uid = ? ", auth_hash.uid).first_or_initialize.tap do |user|
+     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      user.provider = auth_hash.provider
       user.uid = auth_hash.uid
       user.oauth_token = auth_hash.credentials.token
       user.name = auth_hash.info.name
@@ -55,6 +56,44 @@ class User < ActiveRecord::Base
     token = SecureRandom.base64(23)
     User.where("auth_token = ?", token).exists? ? generate_token : token
   end
+
+
+  def send_login_link
+    self.reset_auth_token
+    link = "/login/" + self.username + "/" + self.auth_token
+    UserMailer.send_user_token(self,link).deliver
+    self.update_attribute(link_sent: Time.now)
+  end
+
+  def reset_auth_token
+    self.update_attribute(auth_token: self.generate_token)
+    self.update_attribute(auth_token_created_at: Time.now)
+    self.save
+  end
+
+  def validate_token(token)
+    ((token == self.auth_token) && (token.is_not_expired)) ? true : false
+  end
+
+  def is_not_expired
+    ((self.link_sent - Time.now) / 1.hour).round < 48
+  end
+
+  def generate_token
+    token = SecureRandom.base64(23)
+    if User.where("auth_token = ?", token).exists?
+      generate_token
+    else
+      return token
+    end
+  end
+
+  #
+  # def validates(validation_code)
+  #   return false if validation_code.blank?
+  #   ROTP::TOTP.new(self.shared_secret).verify(validation_code)
+  # end
+
 
 
 end
