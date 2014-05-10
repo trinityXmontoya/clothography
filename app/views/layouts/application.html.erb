@@ -10,9 +10,9 @@
 
 <nav id='main-navbar'>
   <a href=" <%= listings_path %> "><li class='main-navbar-item'>Buy</li></a>
-  <a href=" <#%= new_user_listing_path(current_user) %> "><li class='main-navbar-item'>Sell</li></a>
-  <a href=" <#%= user_path(current_user) %> "><li class='main-navbar-item'>Profile</li></a>
-  <a href=" <#%= message_path(current_user) %> "><li class='main-navbar-item'>Messages</li></a>
+  <a href=" <%= new_user_listing_path(current_user) %> "><li class='main-navbar-item'>Sell</li></a>
+  <a href=" <%= user_path(current_user) %> "><li class='main-navbar-item'>Profile</li></a>
+  <a href=" <%= user_messages_path(current_user) %> "><li class='main-navbar-item'>Messages</li></a>
 
   <% unless current_user %>
   <li class='main-navbar-item'><%= link_to "Twitter", '/auth/twitter' %></li>

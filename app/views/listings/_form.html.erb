@@ -1,7 +1,10 @@
-<%= form_for(@listing) do |f| %>
+<%= javascript_include_tag "listing_form" %>
+
+<%= form_for [current_user, @listing] do |f| %>
+
   <% if @listing.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+      <h2>Please correct the following <%= pluralize(@listing.errors.count, "error") %>:</h2>
 
       <ul>
       <% @listing.errors.full_messages.each do |message| %>
@@ -11,55 +14,65 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+
+
+  <% Gender.all.each do |gender| %>
+    <div class="gender-select" id="gender-<%= gender.id %>">
+    <a href=""><%= gender.name %></a>
+    </div>
+  <% end %>
+
+  <div id="listing-form-category">
+    <% Category.all.each do |category| %>
+    <div class="category-select" id="<%= category.name %>-category">
+      <a href=""><%= category.name %></a>
+    </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :brand_id %><br>
-    <%= f.text_field :brand_id %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.text_field :category_id %>
-  </div>
-  <div class="field">
-    <%= f.label :size_id %><br>
-    <%= f.text_field :size_id %>
-  </div>
-  <div class="field">
-    <%= f.label :gender_id %><br>
-    <%= f.text_field :gender_id %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :sale_price %><br>
-    <%= f.number_field :sale_price %>
-  </div>
-  <div class="field">
-    <%= f.label :original_price %><br>
-    <%= f.number_field :original_price %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
-  </div>
-  <div class="field">
-    <%= f.label :condition %><br>
-    <%= f.text_field :condition %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <div id="listing-form-product-info">
+
+    <p> UPLOAD ME BABY </p>
+
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= f.label :brand_id %><br>
+      <%= select_tag :brand_id, options_from_collection_for_select(Brand.all, :id, :name)%><br>
+      <%= f.label :add_your_own_brand %>
+      <%= f.text_field :brand_id %>
+    </div>
+
+    <div class="field">
+      <%= f.label :size_id %><br>
+      <%= select_tag :size_id, options_from_collection_for_select(Size.all, :id, :full_size) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :original_price %><br>
+      <%= f.number_field :original_price %>
+    </div>
+
+    <div class="field">
+      <%= f.label :price %><br>
+      <%= f.number_field :price %>
+    </div>
+
+    <div class="field">
+      <%= f.label :condition %><br>
+      <%= select_tag :condition, options_for_select([["New With Tags", "NWT"],["New Without Tags", "NWOT"], ["Like New","Like New"],["Gently Used","Gently Used"]]) %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  </div> <!-- end listing-form-product-info   -->
 <% end %>

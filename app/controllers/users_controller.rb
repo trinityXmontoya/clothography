@@ -33,6 +33,7 @@ class UsersController < ApplicationController
       end
     end
   end
+  end
 
   def edit
     @user = User.find(params[:id])
@@ -43,10 +44,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.js{}
+        format.js {}
       else
         format.html { render :edit }
-        format.js{
+        format.js {}
       end
     end
   end

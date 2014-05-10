@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
   def all_site_listings
     @listings = Listing.all
   end
-  
+
   def index
     @user = User.find(params[:user_id])
     @listings = @user.listings
@@ -22,7 +22,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
-
+    @listing.update_attributes(status: "unsold")
     respond_to do |format|
       if @listing.save
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
@@ -62,7 +62,7 @@ class ListingsController < ApplicationController
 
   private
     def listing_params
-      params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :sale_price, :original_price, :price, :status, :condition)
+      params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition)
     end
 
 end

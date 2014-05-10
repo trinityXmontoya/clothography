@@ -14,8 +14,10 @@ get '/logout' => 'sessions#destroy'
 get '/listings' => 'listings#all_site_listings'
 
   resources :users do
+      resources :messages
     resources :listings
 end
+
 
   resources :purchases, only: [:show]
 

@@ -35,12 +35,12 @@ class User < ActiveRecord::Base
     self.reset_auth_token
     link = "/login/" + self.username + "/" + self.auth_token
     UserMailer.send_user_token(self,link).deliver
-    self.update_attribute(link_sent: Time.now)
+    self.update_attributes(link_sent: Time.now)
   end
 
   def reset_auth_token
-    self.update_attribute(auth_token: self.generate_token)
-    self.update_attribute(auth_token_created_at: Time.now)
+    self.update_attributes(auth_token: self.generate_token)
+    self.update_attributes(auth_token_created_at: Time.now)
     self.save
   end
 
