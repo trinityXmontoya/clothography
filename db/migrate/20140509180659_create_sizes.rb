@@ -4,7 +4,7 @@ class CreateSizes < ActiveRecord::Migration
       t.references :gender, index: true
       t.references :category, index: true
       t.string :type
-      t.string :full_size
+      t.string :name
     end
   end
 end

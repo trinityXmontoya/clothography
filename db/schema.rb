@@ -92,9 +92,7 @@ ActiveRecord::Schema.define(version: 20140509213004) do
     t.integer "gender_id"
     t.integer "category_id"
     t.string  "type"
-    t.string  "us_number"
-    t.string  "waist"
-    t.string  "basic_name"
+    t.string  "name"
   end
 
   add_index "sizes", ["category_id"], name: "index_sizes_on_category_id", using: :btree

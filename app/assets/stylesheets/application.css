@@ -40,10 +40,17 @@
   padding: 25px
 }
 
-.selected-gender, .selected-category {
+.selected-gender, .selected-category, .selected-condition {
   opacity: .7;
 }
 
 #listing-form-category, #listing-form-product-info  {
   display: none;
+}
+
+.condition-select {
+  display: inline-block;
+  background-color: black;
+  padding: 15px;
+  height: 20px;
 }
