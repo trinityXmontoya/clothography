@@ -6,6 +6,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :password
       t.string :auth_token
+      t.string :oauth_token
+      t.integer :uid
       t.datetime :auth_token_created_at
       t.string :profile_photo
       t.string :bg_photo

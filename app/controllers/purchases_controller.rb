@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, only: [:index, :show, :new, :edit, :update, :destroy]
 
   def index
     @user = current_user

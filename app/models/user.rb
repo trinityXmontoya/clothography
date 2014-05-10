@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
 
+  before_create :set_dummy_email
+
   belongs_to :gender
+  has_many :listings
+  has_many :sizes, through: :size_users
 
   has_many :followings, foreign_key: "followed_user_id"
   has_many :followers, through: :followings, foreign_key: "follower_id"
@@ -11,9 +15,20 @@ class User < ActiveRecord::Base
   has_many :purchases, foreign_key: 'buyer_id'
   has_many :sales, class_name: 'purchase', foreign_key: 'seller_id', table_name: 'purchases'
 
-  has_many :listings
+  def set_dummy_email
+    self.email ||= ""
+  end
 
-  has_many :sizes, through: :size_users
+  def self.find_or_create_from_auth_hash(auth_hash)
+     where("uid = ? ", auth_hash.uid).first_or_initialize.tap do |user|
+      user.uid = auth_hash.uid
+      user.oauth_token = auth_hash.credentials.token
+      user.name = auth_hash.info.name
+      user.profile_photo = auth_hash.info.image
+      user.bg_photo = auth_hash.extra.profile_background_image_url
+      user.save!
+    end
+  end
 
   def send_login_link
     self.reset_auth_token
@@ -38,11 +53,7 @@ class User < ActiveRecord::Base
 
   def generate_token
     token = SecureRandom.base64(23)
-    if User.where("auth_token = ?", token).exists?
-      generate_token
-    else
-      return token
-    end
+    User.where("auth_token = ?", token).exists? ? generate_token : token
   end
 
 

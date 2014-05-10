@@ -1,5 +1,7 @@
 class ListingsController < ApplicationController
 
+  before_action :authenticate, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @user = User.find(params[:user_id])
     @listings = @user.listings

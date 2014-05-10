@@ -35,6 +35,8 @@ gem 'capybara'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk'
 
+gem 'omniauth-twitter'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

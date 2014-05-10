@@ -12,6 +12,9 @@ post '/login/:username/:auth_token' => 'sessions#create'
 get '/logout' => 'sessions#destroy'
 
 root 'welcome#home'
+
+get '/auth/:provider/callback', to: 'sessions#twitter_create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
