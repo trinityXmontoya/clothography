@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+
+.main-navbar-item {
+  display: inline-block;
+  float: right;
+  background-color: cornflowerblue;
+  color: white;
+  padding: 15px;
+  font-size: 23px
+}

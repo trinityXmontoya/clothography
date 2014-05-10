@@ -9,10 +9,13 @@
 <body>
 
 <nav id='main-navbar'>
-  <a href="/"><li class='main-navbar-item'>Listings</li></a>
+  <a href=" <#%= user_path(current_user)%> "><li class='main-navbar-item'>Buy</li></a>
+  <a href=" <#%= user_path(current_user)%> "><li class='main-navbar-item'>Sell</li></a>
   <a href=" <#%= user_path(current_user)%> "><li class='main-navbar-item'>Profile</li></a>
-  <a href=" <#%= purchase_path(current_user)%> "><li class='main-navbar-item'>Purchases</li></a>
   <a href=" <#%= message_path(current_user)%> "><li class='main-navbar-item'>Messages</li></a>
+  <#% unless current_user %>
+  
+  <#% end %>
 </nav>
 <%= yield %>
 

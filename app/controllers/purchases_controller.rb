@@ -20,7 +20,7 @@ class PurchasesController < ApplicationController
     @user = Purchase.seller
     respond_to do |format|
       if @purchase.save
-        UserMailer.notify_user_of_sale(@purchase,@user).deliver
+        PurchaseMailer.notify_user_of_sale(@purchase,@user).deliver
         format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
         format.js {}
       else
