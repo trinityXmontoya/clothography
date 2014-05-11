@@ -7,7 +7,7 @@
 # # #   Mayor.create(name: 'Emanuel', city: cities.first)
 # #
 # #
-user1 = User.create(email: "trinityxmontoya@gmail.com", username: "nahsonchilll", password: "jo", profile_photo: "https://dtpmhvbsmffsz.cloudfront.net/users/2013/08/26/521bd70cc3c915438505b211/s_523e4831c3c9153598028324.jpg", bg_photo: "https://c2.staticflickr.com/4/3657/3655415120_fea787fe34.jpg", gender_id: 2)
+user1 = User.create(email: "trinityxmontoya@gmail.com", username: "nahsonchilll", profile_photo: "https://dtpmhvbsmffsz.cloudfront.net/users/2013/08/26/521bd70cc3c915438505b211/s_523e4831c3c9153598028324.jpg", bg_photo: "https://c2.staticflickr.com/4/3657/3655415120_fea787fe34.jpg", gender_id: 2)
 #
 gender1 = Gender.create(name: "Women's")
 gender2 = Gender.create(name: "Men's")

@@ -40,6 +40,7 @@
       <% categories.each do |category| %>
           <div class="category-select" id="<%= category.name %>-category" data-id="<%= category.id %> " >
             <%= category.name %>
+            <%= image_tag category.icon %>
           </div>
       <% end %>
   </div>
