@@ -42,12 +42,13 @@
       <%= f.text_field :title %>
     </div>
 
-    <div class="field">
-      <%= f.label :brand_id %><br>
-      <%= select_tag :brand_id, options_from_collection_for_select(Brand.all, :id, :name)%><br>
-      <%= f.label :add_your_own_brand %>
-      <%= f.text_field :brand_id %>
+      <div id="brands">
+        <div class="field">
+        <%= f.label :brand_id %><br>
+        <%= select_tag :brand_id, options_from_collection_for_select(Brand.all, :id, :name)%>
+      </div>
     </div>
+
 
 
     <%= f.hidden_field :size_id %>

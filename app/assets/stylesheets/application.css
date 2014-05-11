@@ -10,8 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+
  *= require_tree .
  *= require_self
+ *= require chosen
  */
 
  /*BODY*/
@@ -71,4 +73,12 @@
 
 .size-select {
   display: inline-block;
+}
+
+#brands {
+  margin:0 0 50px 0;
+}
+
+.chosen_container {
+  width: 300px;
 }

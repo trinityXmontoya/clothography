@@ -59,4 +59,6 @@ $(document).ready( function() {
   // $(".condition-select").on("click", function(
   //
   // ))
+
+  $("#brand_id").chosen({width: "300px"}); 
 });
