@@ -41,10 +41,13 @@
 #search {
   margin: 10px 0;
   padding: 30px;
-  background-color: blue
+  /*background-color: blue*/
 }
 
-
+#search-bar {
+  height: 30px;
+  width: 400px;
+}
 
 /*USER PROFILE*/
 

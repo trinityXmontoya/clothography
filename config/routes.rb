@@ -18,7 +18,7 @@ get '/listings' => 'listings#all_site_listings'
     resources :listings
   end
 
-
+  resources :searches, only: [:create]
   resources :purchases, only: [:show]
 
 

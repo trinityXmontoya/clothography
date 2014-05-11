@@ -1,16 +1,31 @@
+
 <h1>All Listings</h1>
 
 
 <div id="search">
-  <%= render 'search' %>
+  <%= render 'searches/search' %>
 </div>
 
-<% @listings.each do |listing| %>
-  <%= link_to user_listing_path(listing.user, listing) do %>
-    <div class="listing">
-      <%= listing.title %>
-      <%= listing.original_price %>
-      <%= listing.price %>
-    </div>
+<% unless @results %>
+  <% @listings.each do |listing| %>
+    <%= link_to user_listing_path(listing.user, listing) do %>
+      <div class="listing">
+        <%= listing.title %>
+        <%= listing.original_price %>
+        <%= listing.price %>
+      </div>
+    <% end %>
+    <% end %>
+<% else %>
+  <% @results.each do |result| %>
+    <%= result.title %>
   <% end %>
+<% end %>
+
+<% if @results %>
+<h1>Results</h1>
+<%= @results %>
+<#% @results.each do |result| %>
+  <#%= result.title %>
+<#% end %>
 <% end %>

@@ -5,6 +5,7 @@ class ListingsController < ApplicationController
 
   def all_site_listings
     @listings = Listing.all
+    @results = session[:search_results]
   end
 
   def index
