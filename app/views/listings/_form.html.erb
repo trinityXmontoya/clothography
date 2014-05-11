@@ -51,13 +51,35 @@
 
 
     <%= f.hidden_field :size_id %>
-    <div id="listing-form-size">
-      <% Size.all.each do |size| %>
-        <div class="size-select" id="size-<%= size.name %>" data-id="<%= size.id %> " >
-          <%= size.name %>
-        </div>
-      <% end %>
+    <div id="size-box">
+      Sizes:
+      <div id="standard-sizes" class="size-display">
+        <% @standard_sizes.each  do |size| %>
+          <p class="size-select" data-id="<%= size.id %>">
+            <%= size.label %>
+          </p>
+        <% end %>
+      </div>
+
+      <div id="jean-sizes" class="size-display">
+        <% @jean_sizes.each  do |size| %>
+          <p class="size-select" data-id="<%= size.id %>">
+            <%= size.label %>
+          </p>
+        <% end %>
+      </div>
+
+      <div id="bottom-sizes" class="size-display">
+        <% @bottoms_sizes.each  do |size| %>
+          <p class="size-select" data-id="<%= size.id %>">
+            <%= size.label %>
+          </p>
+        <% end %>
+      </div>
     </div>
+
+
+
 
 
     <div class="field">

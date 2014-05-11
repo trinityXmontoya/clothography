@@ -17,6 +17,9 @@ class ListingsController < ApplicationController
   end
 
   def new
+    @standard_sizes = Size.retrieve_standard_sizes
+    @jean_sizes = Size.retrieve_jean_sizes
+    @bottoms_sizes = Size.retrieve_bottom_sizes
     @listing = Listing.new
   end
 
