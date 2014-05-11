@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 
   has_many :purchases, foreign_key: 'buyer_id'
   has_many :sales, class_name: 'purchase', foreign_key: 'seller_id', table_name: 'purchases'
+  
+  def to_param
+    username
+  end
 
   def set_dummy_email
     self.email ||= ""

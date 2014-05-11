@@ -18,11 +18,11 @@ class Listing < ActiveRecord::Base
     :convert_options => { :all => "-auto-orient" }
 
   # VALIDATIONS
-  validates_attachment :photo,
-  :presence => true,
-  :content_type => {
-    :content_type => ["image/jpeg","image/jpg", "image/gif", "image/png"] },
-  :size => { :in => 0..10.kilobytes }
+  # validates_attachment :photo,
+  # :presence => true,
+  # :content_type => {
+  #   :content_type => ["image/jpeg","image/jpg", "image/gif", "image/png"] },
+  # :size => { :in => 0..10.kilobytes }
 
   def s3_credentials
     {:bucket => ENV['S3_BUCKET_NAME'], :access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']}

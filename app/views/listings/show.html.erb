@@ -1,28 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @listing.user %>
+  <%= link_to @listing.user.username, user_path(@listing.user)%>
 </p>
 
 <p>
   <strong>Brand:</strong>
-  <%= @listing.brand %>
+  <%= @listing.brand.name %>
 </p>
 
 <p>
   <strong>Category:</strong>
-  <%= @listing.category %>
+  <%= @listing.category.name %>
 </p>
 
 <p>
   <strong>Size:</strong>
-  <%= @listing.size %>
+  <%= @listing.size.label %>
 </p>
 
 <p>
   <strong>Gender:</strong>
-  <%= @listing.gender %>
+  <%= @listing.gender.name %>
 </p>
 
 <p>
@@ -62,5 +61,5 @@
   <%= @listing.condition %>
 </p>
 
-<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Edit', edit_user_listing_path(@listing.user,@listing) %> |
 <%= link_to 'Back', listings_path %>

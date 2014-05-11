@@ -1,1 +1,16 @@
 <h1>All Listings</h1>
+
+
+<div id="search">
+  <%= render 'search' %>
+</div>
+
+<% @listings.each do |listing| %>
+  <%= link_to user_listing_path(listing.user, listing) do %>
+    <div class="listing">
+      <%= listing.title %>
+      <%= listing.original_price %>
+      <%= listing.price %>
+    </div>
+  <% end %>
+<% end %>

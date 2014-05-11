@@ -36,6 +36,34 @@
 
 /**= require s3_direct_upload_progress_bars*/
 
+/*LISTINGS SEARCH DISPLAY*/
+
+#search {
+  margin: 10px 0;
+  padding: 30px;
+  background-color: blue
+}
+
+
+
+/*USER PROFILE*/
+
+#user-info {
+  display:inline-block;
+}
+#user_closet {
+  float: right;
+  display: inline-block;
+  background-color: orange;
+  height: 500px;
+  width: 500px;
+}
+
+.user-profile-photo {
+  width: 150px;
+  border-radius: 30px;
+}
+
 /*PRODUCT SELECT*/
 
 .gender-select {

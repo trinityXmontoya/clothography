@@ -1,39 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div id="user-info">
+  <h1>
+    <%= @user.username %>
+  </h1>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
 
-<p>
-  <strong>Profile photo:</strong>
-  <%= @user.profile_photo %>
-</p>
+  <p>
+    <img class="user-profile-photo" src="<%= @user.profile_photo %>">
+  </p>
 
-<p>
-  <strong>Bg photo:</strong>
-  <%= @user.bg_photo %>
-</p>
+  <p>
+    <img class="user-bg-photo" src="<%= @user.bg_photo %>">
+  </p>
 
-<p>
-  <strong>Gender:</strong>
-  <%= @user.gender %>
-</p>
+  <%= link_to "Message",  user_messages_path(current_user) %>
+</div>
+
+<div id="user_closet">
+  <h1>Closet</h1>
+    <% @user.listings.limit(5).each do |listing| %>
+      <%= link_to user_listing_path(@user,listing) do %>
+        <img src="<%= listing.photo %>">
+        <%= listing.title %>
+        $<%= listing.price %>
+      <% end %>
+    <% end %>
+</div>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
