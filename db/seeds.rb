@@ -1,17 +1,17 @@
-# # This file should contain all the record creation needed to seed the database with its default values.
-# # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# # # This file should contain all the record creation needed to seed the database with its default values.
+# # # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# # #
+# # # Examples:
+# # #
+# # #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+# # #   Mayor.create(name: 'Emanuel', city: cities.first)
 # #
-# # Examples:
 # #
-# #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-# #   Mayor.create(name: 'Emanuel', city: cities.first)
-#
-#
 # User.create(email: "trinityxmontoya@gmail.com", username: "nahsonchilll", password: "jo", profile_photo: "https://dtpmhvbsmffsz.cloudfront.net/users/2013/08/26/521bd70cc3c915438505b211/s_523e4831c3c9153598028324.jpg", bg_photo: "https://c2.staticflickr.com/4/3657/3655415120_fea787fe34.jpg", gender_id: 2)
-#
+# #
 # gender1 = Gender.create(name: "Women's")
 # gender2 = Gender.create(name: "Men's")
-#
+# #
 # Brand.create(name: "American Apparel")
 # Brand.create(name: "Patagonia")
 # Brand.create(name: "Levi's")
@@ -20,23 +20,23 @@
 #
 # category10 = Category.create(name: "Tops", gender_id: gender2.id)
 # category11 = Category.create(name: "Shorts", gender_id: gender2.id)
+# #
+# category1 = Category.create(name: "Tops", gender_id: gender1.id, icon: "size-icons/tops.png")
 #
-# category1 = Category.create(name: "Tops", gender_id: gender1.id, icon: "/size-icons/tops.png")
+# category3 = Category.create(name: "Dresses", gender_id: gender1.id, icon: "size-icons/dress.png")
 #
-# category3 = Category.create(name: "Dresses", gender_id: gender1.id, icon: "/size-icons/dress.png")
+# category4 = Category.create(name: "Swim" , gender_id: gender1.id, icon: "size-icons/swim.png")
 #
-# category4 = Category.create(name: "Swim" , gender_id: gender1.id, icon: "/size-icons/swim.png")
+# category5 = Category.create(name: "Outerwear" , gender_id: gender1.id, icon: "size-icons/outerwear.png")
 #
-# category5 = Category.create(name: "Outerwear" , gender_id: gender1.id, icon: "/size-icons/outerwear.png")
+# category6 = Category.create(name: "Professional" , gender_id: gender1.id, icon: "size-icons/prof.png")
 #
-# category6 = Category.create(name: "Professional" , gender_id: gender1.id, icon: "/size-icons/prof.png")
+# category7 = Category.create(name: "Bottoms" , gender_id: gender1.id, icon: "size-icons/bottom.png")
 #
-# category7 = Category.create(name: "Bottoms" , gender_id: gender1.id, icon: "/size-icons/bottom.png")
+# category8 = Category.create(name: "Activewear" , gender_id: gender1.id, icon: "size-icons/activewear.png")
 #
-# category8 = Category.create(name: "Activewear" , gender_id: gender1.id, icon: "/size-icons/activewear.png")
-#
-# category9 = Category.create(name: "Jeans", gender_id: gender1.id, icon: "/size-icons/jeans.png")
-#
+# category9 = Category.create(name: "Jeans", gender_id: gender1.id, icon: "size-icons/jeans.png")
+# #
 # Size.create(
 # gender_id: gender1.id,
 # name: 'Standard',

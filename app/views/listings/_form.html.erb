@@ -23,27 +23,49 @@
   <% end %>
 
   <%= f.hidden_field :category_id %>
-  <% categories = Category.where(gender_id: 2) %>
-  <div id="listing-form-category">
-    <% categories.each do |category| %>
-        <div class="category-select" id="<%= category.name %>-category" data-id="<%= category.id %> " >
-          <%= category.name %>
-        </div>
-    <% end %>
+
+
+  <div id="womens-categories">
+    <% categories = Category.where(gender_id: 1) %>
+      <% categories.each do |category| %>
+          <div class="category-select" id="<%= category.name %>-category" data-id="<%= category.id %> " >
+            <%= category.name %>
+            <%= image_tag category.icon %>
+          </div>
+      <% end %>
+  </div>
+
+  <div id="mens-categories">
+    <% categories = Category.where(gender_id: 2) %>
+      <% categories.each do |category| %>
+          <div class="category-select" id="<%= category.name %>-category" data-id="<%= category.id %> " >
+            <%= category.name %>
+          </div>
+      <% end %>
+  </div>
+
+
+
+
   </div>
 
 
   <div id="listing-form-product-info">
 
-  <%= s3_uploader_form callback_param: "model[image_url]", id: "s3-uploader", max_file_size: 40.megabytes do %>
-  <%= file_field_tag :file, multiple: false %>
-<% end %>
+  <!-- callback_url: model_url, callback_param: "model[image_url]", id: "s3-uploader", max_file_size: 40.megabytes  --> -->
 
+  <#%= s3_uploader_form id: "s3_uploader" do %>
+  <#%= file_field_tag :file, multiple: true %>
+  <#% end %>
+
+  <div id="uploads_container">
+
+  </div>
   <br/>
 
 
 
-  <%= f.hidden_field :direct_upload_url %>
+  <#%= f.hidden_field :direct_upload_url %>
 
     <%= f.hidden_field :photo_file_name %>
     <%= f.hidden_field :photo_file_size %>

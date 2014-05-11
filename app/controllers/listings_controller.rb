@@ -40,7 +40,10 @@ class ListingsController < ApplicationController
           format.js {}
         end
       end
-    end
+    else
+        format.html { render :new }
+        format.js {}
+      end
   end
 
   def edit

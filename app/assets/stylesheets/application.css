@@ -13,13 +13,14 @@
 
  *= require_tree .
  *= require_self
- *= require s3_direct_upload_progress_bars
  *= require chosen
  */
+
 
  /*BODY*/
  body { font-family: Helvetica;
          color:green }
+
 
  a { color:pink; }
 
@@ -33,6 +34,8 @@
   font-size: 23px;
 }
 
+/**= require s3_direct_upload_progress_bars*/
+
 /*PRODUCT SELECT*/
 
 .gender-select {
@@ -43,6 +46,9 @@
   padding: 25px
 }
 
+#womens-categories, #mens-categories {
+  display:none;
+}
 .selected-gender, .selected-category, .selected-condition, .selected-size {
   opacity: .7;
 }
@@ -54,7 +60,6 @@
 .category-select {
   width: 50px;
   height: 50px;
-  background-color: black;
   display: inline-block;
   margin: 10px;
   padding: 15px;

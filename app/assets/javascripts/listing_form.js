@@ -6,7 +6,17 @@ $(document).ready( function() {
     }
 
     $(this).toggleClass("selected-gender");
-    $("#listing-form-category").css("display", "block");
+
+    if ($(this).data("id")==1){
+      $("#mens-categories").css("display","none");
+      $("#womens-categories").css("display", "block");
+    }
+    else if ($(this).data("id")==2){
+      $("#womens-categories").css("display","none");
+      $("#mens-categories").css("display", "block");
+    }
+
+
     $("#listing-form-product-info").css("display", "block");
 
     $("input#listing_gender_id").val($(this).data("id"));
@@ -60,5 +70,5 @@ $(document).ready( function() {
   //
   // ))
 
-  $("#brand_id").chosen({width: "300px"}); 
+  $("#brand_id").chosen({width: "300px"});
 });
