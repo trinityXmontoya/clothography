@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140509213004) do
     t.integer  "price"
     t.string   "status"
     t.string   "condition"
+    t.string   "photo_file_path"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"

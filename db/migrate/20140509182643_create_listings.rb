@@ -13,6 +13,7 @@ class CreateListings < ActiveRecord::Migration
       t.integer :price
       t.string :status
       t.string :condition
+      t.string :photo_file_path
 
       t.timestamps
     end

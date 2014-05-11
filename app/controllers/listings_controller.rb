@@ -24,15 +24,21 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new(listing_params)
-    @listing.update_attributes(status: "unsold")
-    respond_to do |format|
-      if @listing.save
-        format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
-        format.js {}
-      else
-        format.html { render :new }
-        format.js {}
+    if (params[:listing][:photo_file_path])
+      @listing = Listing.new(listing_params)
+      @listing.update_attributes(status: "unsold")
+      respond_to do |format|
+        if @listing.save
+          paperclip_file_path = "#{:rails_root}/assets/listings/#{@listing.user_id}/attached_files/#{@listing.id}/#{params[:listing][:photo_file_name]}"
+          raw_source = params[:listing][:photo_file_path]
+          Listing.copy_and_delete(paperclip_file_path, raw_source)
+
+          format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
+          format.js {}
+        else
+          format.html { render :new }
+          format.js {}
+        end
       end
     end
   end

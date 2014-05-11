@@ -34,6 +34,7 @@ gem 'capybara'
 
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk'
+gem 's3_direct_upload'
 
 gem 'omniauth-twitter'
 

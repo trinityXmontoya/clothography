@@ -35,7 +35,23 @@
 
   <div id="listing-form-product-info">
 
-    <div> UPLOAD ME BABY </div>
+  <%= s3_uploader_form callback_param: "model[image_url]", id: "s3-uploader", max_file_size: 40.megabytes do %>
+  <%= file_field_tag :file, multiple: false %>
+<% end %>
+
+  <br/>
+
+
+
+  <%= f.hidden_field :direct_upload_url %>
+
+    <%= f.hidden_field :photo_file_name %>
+    <%= f.hidden_field :photo_file_size %>
+    <%= f.hidden_field :photo_content_type %>
+
+    <%= f.hidden_field :photo_file_path %>
+
+  <br/>
 
     <div class="field">
       <%= f.label :title %><br>
