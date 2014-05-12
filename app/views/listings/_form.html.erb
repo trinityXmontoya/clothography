@@ -1,5 +1,4 @@
 
-
 <%= form_for [current_user, @listing], :html => { :multipart => true } do |f| %>
 
   <% if @listing.errors.any? %>
@@ -15,10 +14,10 @@
   <% end %>
 
     <% if params[:action] == 'new' || params[:action] == 'create' %>
-      <%= javascript_include_tag "new_listing_form" %>
+      <%= javascript_include_tag "listing/new_listing_form.js" %>
       <%= render 'new_listing_top' , :f => f %>
     <% else %>
-      <%= javascript_include_tag "edit_listing_form"%>
+      <%= javascript_include_tag "listing/edit_listing_form"%>
         <%  if @listing.asset.photo1.exists? %>
           <%= image_tag @listing.asset.photo1 %>
         <% end %>

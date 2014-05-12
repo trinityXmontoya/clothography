@@ -1,5 +1,7 @@
 $(document).ready( function() {
 
+  console.log("i'm alive!")
+
   $("#listing-form-product-info").css("display", "block");
 
   // CONDITION SELECTION

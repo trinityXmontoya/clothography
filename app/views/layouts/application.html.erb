@@ -20,6 +20,8 @@
   <a href=" <%= login_path %> "><li class='main-navbar-item'>Login</li></a>
   <% end %>
 </nav>
+
+<%= content_for :header %>
 <%= yield %>
 
 </body>

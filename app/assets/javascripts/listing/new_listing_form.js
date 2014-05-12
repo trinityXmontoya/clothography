@@ -1,5 +1,6 @@
 $(document).ready( function() {
 
+  console.log("new here baby!")
   // GENDER SELECTION
   $(".gender-select").on("click",function(){
   // When a gender is selected, add the selected-gender class and remove that class from any previously selected gender
