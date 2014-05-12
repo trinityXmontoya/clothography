@@ -3,9 +3,9 @@ class CreatePurchases < ActiveRecord::Migration
     create_table :purchases do |t|
       t.integer :seller_id
       t.integer :buyer_id
-      t.string :listings, array: true, default: '{}'
+      t.references :listing
 
-      t.timestamps 
+      t.timestamps
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512083503) do
+ActiveRecord::Schema.define(version: 20140512150532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,11 @@ ActiveRecord::Schema.define(version: 20140512083503) do
   add_index "listings", ["size_id"], name: "index_listings_on_size_id", using: :btree
   add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
 
+  create_table "listings_purchases", id: false, force: true do |t|
+    t.integer "listing_id",  null: false
+    t.integer "purchase_id", null: false
+  end
+
   create_table "listings_tags", id: false, force: true do |t|
     t.integer "tag_id",     null: false
     t.integer "listing_id", null: false
@@ -100,7 +105,7 @@ ActiveRecord::Schema.define(version: 20140512083503) do
   create_table "purchases", force: true do |t|
     t.integer  "seller_id"
     t.integer  "buyer_id"
-    t.string   "listings",   default: [], array: true
+    t.integer  "listing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"

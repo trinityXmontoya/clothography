@@ -15,11 +15,10 @@ get '/listings' => 'listings#all_site_listings'
 
   resources :users do
       get '/closet' => 'listings#user_closet'
-      resources :listings do
-        post '/add_to_cart' => 'purchases#add_to_cart', as: :add_to_cart
-        patch '/add_to_cart' => 'purchases#add_to_cart'
-      end
+      resources :listings
 
+      post '/add_to_cart' => 'purchases#add_to_cart', as: :add_to_cart
+      patch '/add_to_cart' => 'purchases#add_to_cart'
       get '/cart' => 'purchases#cart'
       resources :purchases
 

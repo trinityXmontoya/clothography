@@ -13,16 +13,15 @@ class PurchasesController < ApplicationController
 
   def add_to_cart
     seller = User.find_by(username: params[:user_id])
-    listing = Listing.find(params[:listing_id])
     purchase = Purchase.new(purchase_params)
     purchase.mark_as_in_cart
     if purchase.save
       respond_to do |format|
-        format.html {redirect_to [seller,listing], notice: "Hello"}
+        format.html {redirect_to user_listing_path(seller,purchase.listing), notice: "Hello"}
         format.js {}
       end
     else
-      redirect_to [seller,listing], notice: "Error saving to cart"
+      redirect_to user_listing_path(seller,purchase.listing), notice: "Error saving to cart"
     end
   end
 
