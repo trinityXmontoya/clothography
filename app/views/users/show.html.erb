@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-
+<% if current_user == @user %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 
 <div id="user-info">
   <h1>
@@ -23,12 +25,9 @@
   <h1>Closet</h1>
     <% @user.listings.limit(5).each do |listing| %>
       <%= link_to user_listing_path(@user,listing) do %>
-        <img src="<%= listing.asset.photo1.url %>">
+        <%= image_tag listing.asset.photo1 %>
         <%= listing.title %>
         $<%= listing.price %>
       <% end %>
     <% end %>
 </div>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

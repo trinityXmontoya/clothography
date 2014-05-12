@@ -1,0 +1,23 @@
+<h1><%= @user.username %>'s Closet</h1>
+
+    <% @listings.each do |listing| %>
+      <tr>
+        <%= link_to [@user,listing] do %>
+          <td><%= listing.title %></td>
+          <td><%= listing.description %></td>
+          <td><%= listing.brand.name %></td>
+          <td><%= listing.category.name %></td>
+          <td><%= listing.original_price %></td>
+          <td><%= listing.price %></td>
+          <td><%= listing.status %></td>
+          <td><%= listing.condition %></td>
+          <td><%= listing.sale_price %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Listing', new_user_listing_path(@user) %>

@@ -14,7 +14,7 @@
     </div>
   <% end %>
 
-    <% if action_name == 'new' %>
+    <% if params[:action] == 'new' || params[:action] == 'create' %>
       <%= javascript_include_tag "new_listing_form" %>
       <%= render 'new_listing_top' , :f => f %>
     <% else %>

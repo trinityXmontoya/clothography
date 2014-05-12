@@ -14,6 +14,7 @@ class CreateListings < ActiveRecord::Migration
       t.integer :price
       t.string :status
       t.string :condition
+      t.integer :discount
 
       t.timestamps
     end

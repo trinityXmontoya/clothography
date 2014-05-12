@@ -13,6 +13,11 @@ class ListingsController < ApplicationController
     @listings = @user.listings
   end
 
+  def user_closet
+    @user = User.find_by_username(params[:user_id])
+    @listings = @user.listings
+  end
+
   def show
     @listing = Listing.find(params[:id])
   end
@@ -24,8 +29,9 @@ class ListingsController < ApplicationController
 
   def create
       @listing = Listing.new(listing_params)
+      @listing.calculate_discount
+      @listing.mark_as_available
       @listing.user = User.find_by_username(params[:user_id])
-      @listing.status = "unsold"
       respond_to do |format|
         if @listing.save
           format.html { redirect_to user_listing_path(@listing.user, @listing), notice: 'Listing was successfully created.' }
@@ -61,7 +67,7 @@ class ListingsController < ApplicationController
     @user = @listing.user
     @listing.destroy
     respond_to do |format|
-      format.html { redirect_to @user.listings, notice: 'Listing was successfully destroyed.' }
+      format.html { redirect_to  user_listings_path(@user), notice: 'Listing was successfully destroyed.' }
       format.js {}
     end
   end

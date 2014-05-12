@@ -15,7 +15,8 @@ get '/listings' => 'listings#all_site_listings'
 
   resources :users do
       resources :messages
-    resources :listings 
+    resources :listings
+    get '/closet' => 'listings#user_closet', as: :closet
   end
 
   resources :searches, only: [:create]

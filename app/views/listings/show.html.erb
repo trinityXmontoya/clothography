@@ -1,13 +1,26 @@
 <p id="notice"><%= notice %></p>
 
+  <% if current_user == @listing.user %>
+    <%= link_to 'Edit', edit_user_listing_path(@listing.user,@listing) %> |
+    <%= button_to 'Delete', [@listing.user,@listing], method: :delete %>
+  <% end %>
+
+
 <p>
-  <%= link_to @listing.user.username, user_path(@listing.user)%>
+  <%= link_to @listing.user.username + "'s closet", user_closet_path(@listing.user)%>
 </p>
 
 <p>
   <strong>Brand:</strong>
   <%= @listing.brand.name %>
 </p>
+
+  <% if @listing.discount %>
+  <p>
+    <strong>Discount:</strong>
+    <%= @listing.discount %>
+  </p>
+  <% end %>
 
 <p>
   <strong>Category:</strong>
@@ -70,6 +83,3 @@
   <strong>Condition:</strong>
   <%= @listing.condition %>
 </p>
-
-<%= link_to 'Edit', edit_user_listing_path(@listing.user,@listing) %> |
-<%= link_to 'Back', listings_path %>
