@@ -26,7 +26,7 @@ describe Listing do
     it { should validate_presence_of :price }
     it { should validate_presence_of :condition }
 
-    it { should ensure_inclusion_of(:condition).in_array(%w(New with Tags, New without tags, Like new, Gently used)) }
+    it { should ensure_inclusion_of(:condition).in_array(%w(New with tags, New without tags, Like new, Gently used)) }
 
     it{ should validate_numericality_of(:price).only_integer }
     it{ should validate_numericality_of(:original_price).only_integer }

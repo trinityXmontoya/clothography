@@ -14,7 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require chosen-jquery
-//= require listing_form
+//= require new_listing_form
+//= require edit_listing_form
 //= require_tree .
 
 $(document).ready( function(){

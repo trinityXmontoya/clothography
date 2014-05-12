@@ -84,8 +84,17 @@
   opacity: .7;
 }
 
-#listing-form-category, #listing-form-product-info, .size-display  {
+
+#listing-form-category, #listing-form-product-info,
+#jean-sizes, #bottom-sizes, #standard-sizes {
   display: none;
+}
+
+.displayed-category{
+  display: block !important;
+}
+.displayed-sizes {
+  display: block !important;
 }
 
 .category-select {

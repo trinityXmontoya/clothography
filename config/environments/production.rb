@@ -2,7 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
 
-  config.assets.precompile += %w( listing_form.js )
+  config.assets.precompile += %w( new_listing_form.js edit_listing_form.js )
 
   config.paperclip_defaults = {
     :storage => :s3,

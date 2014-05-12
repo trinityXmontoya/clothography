@@ -1,0 +1,29 @@
+<%= f.hidden_field :gender_id %>
+<% Gender.all.each do |gender| %>
+  <div class="gender-select" id="gender-<%= gender.id %>" data-id="<%= gender.id %>">
+  <%= gender.name %>
+  </div>
+<% end %>
+
+<%= f.hidden_field :category_id %>
+
+
+<div id="womens-categories">
+  <% categories = Category.where(gender_id: 1) %>
+    <% categories.each do |category| %>
+        <div class="category-select" id="<%= category.name %>-category" data-id="<%= category.id %> " >
+          <%= category.name %>
+          <%= image_tag category.icon %>
+        </div>
+    <% end %>
+</div>
+
+<div id="mens-categories">
+  <% categories = Category.where(gender_id: 2) %>
+    <% categories.each do |category| %>
+        <div class="category-select" id="<%= category.name %>-category" data-id="<%= category.id %> " >
+          <%= category.name %>
+          <%= image_tag category.icon %>
+        </div>
+    <% end %>
+</div>
