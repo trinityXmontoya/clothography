@@ -19,21 +19,23 @@
 
   <tbody>
     <% @purchases.each do |purchase| %>
+      <% purchase.listings.each do |listing| %>
       <tr>
 
-          <td><%= link_to purchase.listing.user.username, purchase.listing.user %> </td>
-          <%= link_to [purchase.listing.user,purchase.listing] do %>
-          <td><%= purchase.listing.title %></td>
-          <td><%= purchase.listing.description %></td>
-          <td><%= purchase.listing.brand.name %></td>
-          <td><%= purchase.listing.category.name %></td>
-          <td><%= purchase.listing.original_price %></td>
-          <td><%= purchase.listing.price %></td>
-          <td><%= purchase.listing.status %></td>
-          <td><%= purchase.listing.condition %></td>
-          <td><%= purchase.listing.sale_price %></td>
+          <td><%= link_to listing.user.username, listing.user %> </td>
+          <%= link_to [listing.user,listing] do %>
+          <td><%= listing.title %></td>
+          <td><%= listing.description %></td>
+          <td><%= listing.brand.name %></td>
+          <td><%= listing.category.name %></td>
+          <td><%= listing.original_price %></td>
+          <td><%= listing.price %></td>
+          <td><%= listing.status %></td>
+          <td><%= listing.condition %></td>
+          <td><%= listing.sale_price %></td>
         <% end %>
         </tr>
+        <% end %>
     <% end %>
   </tbody>
 </table>

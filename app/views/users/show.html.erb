@@ -7,6 +7,7 @@
 <div id="user-info">
   <h1>
     <%= @user.username %>
+    # of Sales: <%= @sales_count %>
   </h1>
 
 
@@ -21,8 +22,10 @@
   <%= link_to "Message",  user_messages_path(current_user) %>
 </div>
 
+
+
 <div id="user_closet">
-  <h1>Closet</h1>
+  <%= link_to @user.username + "'s closet", user_closet_path(@user) %>
     <% @user.listings.limit(5).each do |listing| %>
       <%= link_to user_listing_path(@user,listing) do %>
         <%= image_tag listing.asset.photo1 %>

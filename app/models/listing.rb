@@ -17,8 +17,15 @@ class Listing < ActiveRecord::Base
   def self.conditions
     return ["New with tags", "New without tags", "Like new", "Gently used"]
   end
-
   validates :condition, inclusion: { in: self.conditions}
+
+  def self.retrieve_user_sales(user)
+    where(user_id: user.id).where(status: "sold")
+  end
+
+  def self.retrieve_user_available_listings(user)
+    where(user_id: user.id).where(status: "available")
+  end
 
   def calculate_discount
     if original_price && original_price > price
@@ -30,6 +37,5 @@ class Listing < ActiveRecord::Base
   def mark_as_available
     self.update(status: "available")
   end
-
 
 end

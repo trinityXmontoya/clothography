@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_username(params[:id])
+    @sales_count = Listing.retrieve_user_sales(@user).count
   end
 
   def new

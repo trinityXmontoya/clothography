@@ -4,10 +4,10 @@ class Purchase < ActiveRecord::Base
   belongs_to :buyer, foreign_key: 'buyer_id', class_name: "User"
   has_many :listings
 
+  validates_uniqueness_of :listing_id
+
   def mark_as_in_cart
     self.update(status: "in cart")
   end
-
-  validates_uniqueness_of :listing_id
 
 end

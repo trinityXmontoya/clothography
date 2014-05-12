@@ -15,7 +15,8 @@ class ListingsController < ApplicationController
 
   def user_closet
     @user = User.find_by_username(params[:user_id])
-    @listings = @user.listings
+    @listings = Listing.retrieve_user_available_listings(@user)
+    @sales = Listing.retrieve_user_sales(@user)
   end
 
   def show

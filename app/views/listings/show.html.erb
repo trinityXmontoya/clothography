@@ -8,9 +8,9 @@
   <%#= button_to "Add to cart", user_listing_add_to_cart_path(@listing.user, @listing), remote: true %>
 
   <%= form_for [@listing.user, @purchase], multipart: true, url: {controller: 'purchases', action: 'add_to_cart'} do |f| %>
-    <%= f.hidden_field :listing_id, value: @listing %>
-    <%= f.hidden_field :seller_id, value: @listing.user %>
-    <%= f.hidden_field :buyer_id, value: current_user %>
+    <%= f.hidden_field :listing_id, value: @listing.id %>
+    <%= f.hidden_field :seller_id, value: @listing.user.id %>
+    <%= f.hidden_field :buyer_id, value: current_user.id %>
     <%= f.submit "Add to cart" %>
   <% end %>
 <p>
