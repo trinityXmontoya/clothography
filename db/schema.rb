@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20140512083503) do
     t.integer  "category_id"
     t.integer  "size_id"
     t.integer  "gender_id"
-    t.integer  "purchase_id"
     t.string   "title"
     t.string   "description"
     t.integer  "main_photo"

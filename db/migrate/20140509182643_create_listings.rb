@@ -6,7 +6,6 @@ class CreateListings < ActiveRecord::Migration
       t.references :category, index: true
       t.references :size, index: true
       t.references :gender, index: true
-      t.references :purchase
       t.string :title
       t.string :description
       t.integer :main_photo

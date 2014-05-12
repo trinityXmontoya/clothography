@@ -8,7 +8,7 @@ class PurchasesController < ApplicationController
 
   def cart
     @user = current_user
-    @purchases = @user.purchases
+    @future_purchases = Purchase.retrieve_user_cart_listings(@user)
   end
 
   def add_to_cart
@@ -66,13 +66,13 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.find(params[:id])
     @purchase.destroy
     respond_to do |format|
-      format.html { redirect_to purchases_url, notice: 'Purchase was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Purchase was successfully destroyed.' }
       format.js {}
     end
   end
 
   private
     def purchase_params
-      params.require(:purchase).permit(:seller_id, :buyer_id, :listing_id)
+      params.require(:purchase).permit(:id,:seller_id, :buyer_id, :listing_id)
     end
 end
