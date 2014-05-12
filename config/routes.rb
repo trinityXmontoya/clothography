@@ -17,6 +17,7 @@ get '/listings' => 'listings#all_site_listings'
       get '/closet' => 'listings#user_closet'
       resources :listings do
         post '/add_to_cart' => 'purchases#add_to_cart', as: :add_to_cart
+        patch '/add_to_cart' => 'purchases#add_to_cart'
       end
 
       get '/cart' => 'purchases#cart'
