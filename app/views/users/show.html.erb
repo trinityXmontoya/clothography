@@ -23,7 +23,7 @@
   <h1>Closet</h1>
     <% @user.listings.limit(5).each do |listing| %>
       <%= link_to user_listing_path(@user,listing) do %>
-        <img src="<%= listing.photo %>">
+        <img src="<%= listing.asset.photo1.url %>">
         <%= listing.title %>
         $<%= listing.price %>
       <% end %>

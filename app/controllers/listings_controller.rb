@@ -19,12 +19,13 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+    @listing.build_asset
   end
 
   def create
       @listing = Listing.new(listing_params)
       @listing.user = User.find_by_username(params[:user_id])
-      @listing.status= "unsold"
+      @listing.status = "unsold"
       respond_to do |format|
         if @listing.save
           format.html { redirect_to user_listing_path(@listing.user, @listing), notice: 'Listing was successfully created.' }
@@ -43,6 +44,11 @@ class ListingsController < ApplicationController
 
   def update
     @listing = Listing.find(params[:id])
+    if listing_params[:photo]
+      @listing.photo = nil
+    else
+      @listing.photo = @listing.photo
+    end
     @user = @listing.user
     respond_to do |format|
       if @listing.update(listing_params)
@@ -67,7 +73,7 @@ class ListingsController < ApplicationController
 
   private
     def listing_params
-      params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition, :photo)
+      params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition, asset_attributes: [:photo1, :photo2, :photo3])
     end
 
 end

@@ -1,0 +1,10 @@
+<div id="uploads_container">
+
+  <h3>This will be your display photo</h3>
+    <%= f.fields_for :asset do |asset_photo| %>
+      <%= asset_photo.file_field :photo1 %>
+      <%= asset_photo.file_field :photo2 %>
+      <%= asset_photo.file_field :photo3 %>
+    <% end %>
+
+</div>

@@ -8,12 +8,12 @@ class CreateListings < ActiveRecord::Migration
       t.references :gender, index: true
       t.string :title
       t.string :description
+      t.integer :main_photo
       t.integer :sale_price
       t.integer :original_price
       t.integer :price
       t.string :status
       t.string :condition
-      t.string :photo_file_path
 
       t.timestamps
     end

@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140511230628) do
+ActiveRecord::Schema.define(version: 20140512043105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assets", force: true do |t|
+    t.integer  "listing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo1_file_name"
+    t.string   "photo1_content_type"
+    t.integer  "photo1_file_size"
+    t.datetime "photo1_updated_at"
+    t.string   "photo2_file_name"
+    t.string   "photo2_content_type"
+    t.integer  "photo2_file_size"
+    t.datetime "photo2_updated_at"
+    t.string   "photo3_file_name"
+    t.string   "photo3_content_type"
+    t.integer  "photo3_file_size"
+    t.datetime "photo3_updated_at"
+  end
 
   create_table "brands", force: true do |t|
     t.string "name"
@@ -47,6 +65,7 @@ ActiveRecord::Schema.define(version: 20140511230628) do
     t.integer  "gender_id"
     t.string   "title"
     t.string   "description"
+    t.integer  "main_photo"
     t.integer  "sale_price"
     t.integer  "original_price"
     t.integer  "price"
@@ -55,10 +74,6 @@ ActiveRecord::Schema.define(version: 20140511230628) do
     t.string   "photo_file_path"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
   end
 
   add_index "listings", ["brand_id"], name: "index_listings_on_brand_id", using: :btree

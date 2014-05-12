@@ -14,7 +14,7 @@ describe Listing do
     it {should belong_to :size }
     it {should belong_to :gender }
     it {should have_many(:tags).with_foreign_key('listing_id')}
-    it {should have_attached_file :photo }
+    it {should have_attached_file :photo1 }
 
     it { should validate_presence_of :user_id }
     it { should validate_presence_of :brand_id }

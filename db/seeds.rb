@@ -269,44 +269,44 @@ name: 'Standard-Jeans',
 label: " 36 (14, L) "
 )
 
-Listing.create(
-  user_id: user1.id ,
-  brand_id: brand1.id ,
-  category_id: category1.id ,
-  size_id: size1.id,
-  gender_id: gender1.id,
-  title: "short shorts" ,
-  description: "buy em" ,
-  original_price: 80,
-  price: 65,
-  status: "unsold" ,
-  condition: "New with Tags"
-)
-
-Listing.create(
-  user_id: user1.id ,
-  brand_id: brand1.id ,
-  category_id: category3.id ,
-  size_id: size3.id,
-  gender_id: gender1.id,
-  title: "short shorts" ,
-  description: "buy em" ,
-  original_price: 100,
-  price: 35,
-  status: "unsold" ,
-  condition: "New without tags"
-)
-
-Listing.create(
-  user_id: user1.id ,
-  brand_id: brand2.id ,
-  category_id: category4.id ,
-  size_id: size6.id,
-  gender_id: gender1.id,
-  title: "short shorts" ,
-  description: "buy em" ,
-  original_price: 40,
-  price: 15,
-  status: "unsold" ,
-  condition: "Like new"
-)
+# Listing.create(
+#   user_id: user1.id ,
+#   brand_id: brand1.id ,
+#   category_id: category1.id ,
+#   size_id: size1.id,
+#   gender_id: gender1.id,
+#   title: "short shorts" ,
+#   description: "buy em" ,
+#   original_price: 80,
+#   price: 65,
+#   status: "unsold" ,
+#   condition: "New with Tags"
+# )
+#
+# Listing.create(
+#   user_id: user1.id ,
+#   brand_id: brand1.id ,
+#   category_id: category3.id ,
+#   size_id: size3.id,
+#   gender_id: gender1.id,
+#   title: "short shorts" ,
+#   description: "buy em" ,
+#   original_price: 100,
+#   price: 35,
+#   status: "unsold" ,
+#   condition: "New without tags"
+# )
+#
+# Listing.create(
+#   user_id: user1.id ,
+#   brand_id: brand2.id ,
+#   category_id: category4.id ,
+#   size_id: size6.id,
+#   gender_id: gender1.id,
+#   title: "short shorts" ,
+#   description: "buy em" ,
+#   original_price: 40,
+#   price: 15,
+#   status: "unsold" ,
+#   condition: "Like new"
+# )

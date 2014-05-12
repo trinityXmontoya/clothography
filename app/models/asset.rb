@@ -1,0 +1,39 @@
+class Asset < ActiveRecord::Base
+
+  belongs_to :listing, inverse_of: :asset
+
+  validates_presence_of :listing
+
+  has_attached_file :photo1,
+    path: "/users/:class/:username/:attachment/:id/:filename",
+    styles: { large: "700x400#", medium: "490x368#",  thumbnail: "75x75#" },
+    convert_options: { all: "-auto-orient" }
+
+  has_attached_file :photo2,
+  path: "/users/:class/:username/:attachment/:id/:filename",
+  styles: { large: "700x400#", medium: "490x368#",  thumbnail: "75x75#" },
+  convert_options: { all: "-auto-orient" }
+
+  has_attached_file :photo3,
+    path: "/users/:class/:username/:attachment/:id/:filename",
+    styles: { large: "700x400#", medium: "490x368#",  thumbnail: "75x75#" },
+    convert_options: { all: "-auto-orient" }
+
+
+    validates_attachment :photo1,
+    content_type: {
+      content_type:  /^image\/(png|jpeg)/ },
+    size: { in: 0..100.kilobytes }
+
+    validates_attachment :photo2,
+    content_type: {
+      content_type:  /^image\/(png|jpeg)/ },
+    size: { in: 0..100.kilobytes }
+
+    validates_attachment :photo3,
+    content_type: {
+      content_type:  /^image\/(png|jpeg)/ },
+    size: { in: 0..100.kilobytes }
+
+    validates :photo1, presence: true
+end

@@ -1,6 +1,6 @@
 
 
-<%= form_for [current_user, @listing] do |f| %>
+<%= form_for [current_user, @listing], :html => { :multipart => true } do |f| %>
 
   <% if @listing.errors.any? %>
     <div id="error_explanation">
@@ -15,12 +15,12 @@
   <% end %>
 
     <% if action_name == 'new' %>
-    <%= javascript_include_tag "new_listing_form" %>
-    <%= render 'new_listing_top' , :f => f %>
+      <%= javascript_include_tag "new_listing_form" %>
+      <%= render 'new_listing_top' , :f => f %>
     <% else %>
-    <%= javascript_include_tag "edit_listing_form"%>
-    <%= image_tag @listing.photo %>
-    <h3>Current photo, replace?</h3>
+      <%= javascript_include_tag "edit_listing_form"%>
+      <%= image_tag @listing.asset %>
+      <h3>Current photo, replace?</h3>
     <% end %>
 
   </div>
@@ -28,14 +28,8 @@
 
   <div id="listing-form-product-info">
 
+  <%= render 'assets/upload_photos', :f => f %>
 
-  <div id="uploads_container">
-    <%= f.file_field :photo %>
-  </div>
-  <br/>
-
-
-  <br/>
 
     <div class="field">
       <%= f.label :title %><br>

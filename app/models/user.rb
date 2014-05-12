@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   before_create :set_dummy_email
 
   belongs_to :gender
-  has_many :listings
+  has_many :listings, dependent: :destroy
   has_many :sizes, through: :size_users
 
   has_many :followings, foreign_key: "followed_user_id"
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :purchases, foreign_key: 'buyer_id'
   has_many :sales, class_name: 'purchase', foreign_key: 'seller_id', table_name: 'purchases'
-  
+
   def to_param
     username
   end
