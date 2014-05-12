@@ -74,6 +74,9 @@ GEM
       compass (>= 0.12.2)
       sprockets (<= 2.11.0)
     diff-lcs (1.2.5)
+    dotenv (0.10.0)
+    dotenv-rails (0.10.0)
+      dotenv (= 0.10.0)
     erubis (2.7.0)
     execjs (2.0.2)
     fssm (0.2.10)
@@ -200,6 +203,7 @@ DEPENDENCIES
   capybara
   chosen-rails
   coffee-rails (~> 4.0.0)
+  dotenv-rails
   jbuilder (~> 2.0)
   jquery-rails
   omniauth-twitter
