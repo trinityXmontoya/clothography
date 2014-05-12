@@ -19,6 +19,7 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @purchase = Purchase.new
     @listing = Listing.find(params[:id])
   end
 

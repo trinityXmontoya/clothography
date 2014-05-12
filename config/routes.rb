@@ -14,13 +14,20 @@ get '/logout' => 'sessions#destroy'
 get '/listings' => 'listings#all_site_listings'
 
   resources :users do
+      get '/closet' => 'listings#user_closet'
+      resources :listings do
+        post '/add_to_cart' => 'purchases#add_to_cart', as: :add_to_cart
+      end
+
+      get '/cart' => 'purchases#cart'
+      resources :purchases
+
       resources :messages
-    resources :listings
-    get '/closet' => 'listings#user_closet', as: :closet
   end
 
   resources :searches, only: [:create]
-  resources :purchases, only: [:show]
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

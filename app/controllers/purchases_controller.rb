@@ -6,6 +6,25 @@ class PurchasesController < ApplicationController
     @purchases = @user.purchases
   end
 
+  def cart
+    @user = current_user
+    @purchases = @user.purchases
+  end
+
+  def add_to_cart
+    seller = User.find_by(username: params[:user_id])
+    listing = Listing.find(params[:listing_id])
+    purchase = Purchase.new(purchase_params)
+    purchase.mark_as_in_cart
+    if purchase.save
+      respond_to do |format|
+        format.html {redirect_to [seller,listing], notice: "Hello"}
+        format.js {}
+      end
+    else
+      redirect_to [seller,listing], notice: "Error saving to cart"
+    end
+  end
 
   def show
     @purchase = Purchase.find(params[:purchase_id])
@@ -54,6 +73,6 @@ class PurchasesController < ApplicationController
 
   private
     def purchase_params
-      params.require(:purchase).permit(:seller_id, :buyer_id, :listings)
+      params.require(:purchase).permit(:seller_id, :buyer_id, :listing_id)
     end
 end
