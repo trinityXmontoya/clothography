@@ -28,23 +28,21 @@ gem 'spring',        group: :development
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'minitest'
+  gem 'shoulda-matchers'
 end
 
 gem 'capybara'
+
 
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk'
 
 gem 'omniauth-twitter'
-
 gem 'chosen-rails'
 
 gem 'pry-rails', :group => :development
-
 gem 'dotenv-rails', :groups => [:development, :test]
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 # gem 'unicorn'

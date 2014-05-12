@@ -5,8 +5,7 @@ class Listing < ActiveRecord::Base
   belongs_to :size
   belongs_to :gender
 
-  has_many :tags, through: :listing_tags, foreign_key: 'listing_id'
-
+  has_many :tags, foreign_key: 'listing_id', table_name: 'listing_tags'
 
   has_attached_file :photo,
     path: "/users/:class/:username/:attachment/:id/:filename",
@@ -20,6 +19,12 @@ class Listing < ActiveRecord::Base
     content_type:  /^image\/(png|jpeg)/ },
   size: { in: 0..100.kilobytes }
 
-  validates :user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition, presence: true
+  validates :user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :price, :condition, presence: true
+
+
+  validates :condition, inclusion: { in: %w(New with Tags, New without tags, Like new, Gently used)}
+
+  validates :price, :original_price, numericality: { only_integer: true }
+
 
 end
