@@ -44,11 +44,6 @@ class ListingsController < ApplicationController
 
   def update
     @listing = Listing.find(params[:id])
-    if listing_params[:photo]
-      @listing.photo = nil
-    else
-      @listing.photo = @listing.photo
-    end
     @user = @listing.user
     respond_to do |format|
       if @listing.update(listing_params)
@@ -73,7 +68,7 @@ class ListingsController < ApplicationController
 
   private
     def listing_params
-      params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition, asset_attributes: [:photo1, :photo2, :photo3])
+      params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition, asset_attributes: [:id, :photo1, :photo2, :photo3])
     end
 
 end

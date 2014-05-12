@@ -14,9 +14,15 @@
   <%= @listing.category.name %>
 </p>
 
-  <%= image_tag @listing.asset.photo1 %>
-  <%= image_tag @listing.asset.photo2 %>
-  <%= image_tag @listing.asset.photo3 %>
+  <%  if @listing.asset.photo1.exists? %>
+    <%= image_tag @listing.asset.photo1 %>
+  <% end %>
+  <%  if @listing.asset.photo2.exists? %>
+    <%= image_tag @listing.asset.photo2 %>
+  <% end %>
+  <%  if @listing.asset.photo3.exists? %>
+    <%= image_tag @listing.asset.photo3 %>
+   <% end %>
 
 <p>
   <strong>Size:</strong>

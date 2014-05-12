@@ -2,8 +2,6 @@ class Asset < ActiveRecord::Base
 
   belongs_to :listing, inverse_of: :asset
 
-  validates_presence_of :listing
-
   has_attached_file :photo1,
     path: "/users/:class/:username/:attachment/:id/:filename",
     styles: { large: "700x400#", medium: "490x368#",  thumbnail: "75x75#" },
@@ -35,5 +33,10 @@ class Asset < ActiveRecord::Base
       content_type:  /^image\/(png|jpeg)/ },
     size: { in: 0..100.kilobytes }
 
-    validates :photo1, presence: true
+    validates :photo1, presence: true, unless: :photo2
+    validates :photo2, presence: true, unless: :photo3
+    validates :photo3, presence: true, unless: :photo1
+
+
+
 end
