@@ -60,7 +60,7 @@
   <#% end %>
 
   <div id="uploads_container">
-
+    <%= f.file_field :photo %>
   </div>
   <br/>
 
@@ -68,11 +68,12 @@
 
   <#%= f.hidden_field :direct_upload_url %>
 
-    <%= f.hidden_field :photo_file_name %>
-    <%= f.hidden_field :photo_file_size %>
-    <%= f.hidden_field :photo_content_type %>
 
-    <%= f.hidden_field :photo_file_path %>
+    <#%= f.hidden_field :photo_file_name %>
+    <#%= f.hidden_field :photo_file_size %>
+    <#%= f.hidden_field :photo_content_type %>
+
+    <#%= f.hidden_field :photo_file_path %>
 
   <br/>
 
@@ -84,11 +85,15 @@
       <div id="brands">
         <div class="field">
         <%= f.label :brand_id %><br>
-        <%= select_tag :brand_id, options_from_collection_for_select(Brand.all, :id, :name)%>
+        <%= f.select :brand_id, options_from_collection_for_select(Brand.all, :id, :name) %>
       </div>
     </div>
 
 
+
+    <% @standard_sizes = Size.retrieve_standard_sizes %>
+    <% @jean_sizes = Size.retrieve_jean_sizes %>
+    <% @bottoms_sizes = Size.retrieve_bottom_sizes %>
 
     <%= f.hidden_field :size_id %>
     <div id="size-box">

@@ -21,21 +21,21 @@ brand5=Brand.create(name: "Dr.Marten's")
 category10 = Category.create(name: "Tops", gender_id: gender2.id)
 category11 = Category.create(name: "Shorts", gender_id: gender2.id)
 #
-category1 = Category.create(name: "Tops", gender_id: gender1.id, icon: "size-icons/tops.png")
+category1 = Category.create(name: "Tops", gender_id: gender1.id, icon: "size-icons/tops.svg")
 
-category3 = Category.create(name: "Dresses", gender_id: gender1.id, icon: "size-icons/dress.png")
+category3 = Category.create(name: "Dresses", gender_id: gender1.id, icon: "size-icons/dress.svg")
 
-category4 = Category.create(name: "Swim" , gender_id: gender1.id, icon: "size-icons/swim.png")
+category4 = Category.create(name: "Swim" , gender_id: gender1.id, icon: "size-icons/swim.svg")
 
-category5 = Category.create(name: "Outerwear" , gender_id: gender1.id, icon: "size-icons/outerwear.png")
+category5 = Category.create(name: "Outerwear" , gender_id: gender1.id, icon: "size-icons/outerwear.svg")
 
-category6 = Category.create(name: "Professional" , gender_id: gender1.id, icon: "size-icons/prof.png")
+category6 = Category.create(name: "Professional" , gender_id: gender1.id, icon: "size-icons/prof.svg")
 
-category7 = Category.create(name: "Bottoms" , gender_id: gender1.id, icon: "size-icons/bottom.png")
+category7 = Category.create(name: "Bottoms" , gender_id: gender1.id, icon: "size-icons/bottom.svg")
 
-category8 = Category.create(name: "Activewear" , gender_id: gender1.id, icon: "size-icons/activewear.png")
+category8 = Category.create(name: "Activewear" , gender_id: gender1.id, icon: "size-icons/activewear.svg")
 
-category9 = Category.create(name: "Jeans", gender_id: gender1.id, icon: "size-icons/jeans.png")
+category9 = Category.create(name: "Jeans", gender_id: gender1.id, icon: "size-icons/jeans.svg")
 #
 size1=Size.create( gender_id: gender1.id,
 name: 'Standard',

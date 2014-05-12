@@ -9,24 +9,25 @@ class Listing < ActiveRecord::Base
 
 
   has_attached_file :photo,
-    :path => ":rails_root/assets/:class/:user_id/:attachment/:id/:filename",
-    :styles => { :thumbnail => "100x100>" },
-    :storage => :s3,
-    :s3_permissions => :private,
-    :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-    :bucket => ENV['S3_BUCKET_NAME'],
-    :convert_options => { :all => "-auto-orient" }
+    # :path => ":rails_root/assets/:class/:user_id/:attachment/:id/:filename",
+    :styles => { :large => "700x400#", :medium=>"490x368#", :thumbnail=>"75x75#" }
+  #   :storage => :s3,
+  #   :bucket => "#{ENV['S3_BUCKET_NAME']}",
+  #   :s3_credentials => Proc.new{|a| a.instance.s3_credentials }
+  #   # :convert_options => { :all => "-auto-orient" }
+  #
+  # # VALIDATIONS
+  validates_attachment :photo,
+  :presence => true,
+  :content_type => {
+    :content_type =>  /^image\/(png|gif|jpeg)/ },
+  :size => { :in => 0..100.kilobytes }
 
-  # VALIDATIONS
-  # validates_attachment :photo,
-  # :presence => true,
-  # :content_type => {
-  #   :content_type => ["image/jpeg","image/jpg", "image/gif", "image/png"] },
-  # :size => { :in => 0..10.kilobytes }
-
-  def s3_credentials
-    {:bucket => ENV['S3_BUCKET_NAME'], :access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']}
-  end
+  validates :brand_id, :user_id, presence: true
+  #
+  # def s3_credentials
+  #   {:bucket => "#{ENV['S3_BUCKET_NAME']}", :access_key_id =>  "#{ENV['AWS_ACCESS_KEY_ID']}", :secret_access_key =>  "#{ENV['AWS_SECRET_ACCESS_KEY']}" }
+  # end
 
   def self.copy_and_delete(paperclip_file_path, raw_source)
       s3 = AWS::S3.new #create new s3 object
