@@ -48,18 +48,26 @@ class ListingsController < ApplicationController
   def edit
     @listing = Listing.find(params[:id])
     @user = @listing.user
+    if @listing.has_been_sold?
+      redirect_to [@user,@listing], notice: "This item has been sold, you cannot perform this action."
+    else
+    end
   end
 
   def update
     @listing = Listing.find(params[:id])
     @user = @listing.user
-    respond_to do |format|
-      if @listing.update(listing_params)
-        format.html { redirect_to user_listing_path(@user, @listing), notice: 'Listing was successfully updated.' }
-        format.js {}
-      else
-        format.html { render :edit }
-        format.js {}
+    if @listing.has_been_sold?
+      redirect_to [@user,@listing], notice: "This item has been sold, you cannot perform this action."
+    else
+      respond_to do |format|
+        if @listing.update(listing_params)
+          format.html { redirect_to user_listing_path(@user, @listing), notice: 'Listing was successfully updated.' }
+          format.js {}
+        else
+          format.html { render :edit }
+          format.js {}
+        end
       end
     end
   end
@@ -67,10 +75,14 @@ class ListingsController < ApplicationController
   def destroy
     @listing = Listing.find(params[:id])
     @user = @listing.user
-    @listing.destroy
-    respond_to do |format|
-      format.html { redirect_to  user_listings_path(@user), notice: 'Listing was successfully destroyed.' }
-      format.js {}
+    if @listing.has_been_sold?
+      redirect_to [@user,@listing], notice: "This item has been sold, you cannot perform this action."
+    else
+      @listing.destroy
+      respond_to do |format|
+        format.html { redirect_to  user_listings_path(@user), notice: 'Listing was successfully destroyed.' }
+        format.js {}
+      end
     end
   end
 

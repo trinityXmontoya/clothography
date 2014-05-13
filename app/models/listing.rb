@@ -42,4 +42,8 @@ class Listing < ActiveRecord::Base
     self.update(status: "sold")
   end
 
+  def has_been_sold?
+    self.status == "sold"
+  end
+
 end
