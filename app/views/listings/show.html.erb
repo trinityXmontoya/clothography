@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'listing/listing_show' %>
+
 <p id="notice"><%= notice %></p>
 
   <% if current_user == @listing.user %>
@@ -16,17 +18,31 @@
   <% end %>
 
 
-  <%= form_for [@listing.user,@listing,@offer], multipart: true, url: {controller: 'offers', action: 'make_offer', listing_id: @listing.id} do |f| %>
-    <%= f.hidden_field :offerer_id, value: current_user.id %>
+  <%= form_for [@listing.user, @offer], url: {controller: 'offers', action: 'make_offer'} do |f| %>
     <%= f.hidden_field :listing_id, value: @listing.id %>
+    <%= f.hidden_field :offerer_id, value: current_user.id %>
     <%= f.number_field :amount %>
     <%= f.submit "Make offer" %>
   <% end %>
 
 
-<p>
+<div id="user-closet-info">
   <%= link_to @listing.user.username + "'s closet", user_closet_path(@listing.user)%>
-</p>
+  <%= image_tag @listing.user.profile_photo %>
+  <div id="message-user-button">
+    Message this user
+  </div>
+  <div id="message-user-popout">
+    <p>Hello</p>
+    <%= form_for [@listing.user,@message] do |f| %>
+      <%= f.hidden_field :receiver_id, value: @listing.user.id %>
+      <%= f.hidden_field :sender_id, valie: current_user.id %>
+      <%= f.text_field :content %>
+      <%= f.submit "Send Message" %>
+    <% end %>
+  </div>
+</div>
+
 
 <p>
   <strong>Brand:</strong>

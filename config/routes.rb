@@ -16,11 +16,10 @@ get '/listings' => 'listings#all_site_listings'
   resources :users do
 
       get '/closet' => 'listings#user_closet'
+      resources :listings
 
+      post '/make_offer' => 'offers#make_offer'
       resources :offers, only: [:index]
-      resources :listings do
-        post '/make_offer' => 'offers#make_offer'
-      end
 
       post '/add_to_cart' => 'purchases#add_to_cart', as: :add_to_cart
       patch '/add_to_cart' => 'purchases#add_to_cart'

@@ -20,6 +20,7 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @message = Message.new
     @purchase = Purchase.new
     @offer = Offer.new
     @listing = Listing.find(params[:id])

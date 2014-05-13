@@ -159,3 +159,25 @@
   height: 50px;
   float: left;
 }
+
+
+/*INDIVIDUAL PRODUCT DISPLAY*/
+#user-closet-info img{
+  width: 50px;
+  height: 50px
+}
+
+#message-user-button {
+  background-color: black;
+  color:pink;
+  display: inline-block;
+  font-size: 23px;
+}
+
+#message-user-popout {
+  display: none;
+}
+
+.message_box_display {
+  display: block !important;
+}
