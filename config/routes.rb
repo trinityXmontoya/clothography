@@ -27,6 +27,8 @@ get '/listings' => 'listings#all_site_listings'
 
   resources :searches, only: [:create]
 
+  resources :charges
+
 
 
 

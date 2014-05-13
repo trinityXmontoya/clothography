@@ -44,6 +44,8 @@ gem 'chosen-rails'
 gem 'pry-rails', :group => :development
 gem 'dotenv-rails', :groups => [:development, :test]
 
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

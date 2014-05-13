@@ -1,3 +1,5 @@
+<%= javascript_include_tag "checkout/checkout_cart.js" %>
+
 <h1>Checkout</h1>
 
 <div id="checkout-cart">
@@ -18,13 +20,27 @@
                 <td><%= purchase.listing.status %></td>
                 <td><%= purchase.listing.condition %></td>
               <% end %>
-              <%= button_to "Remove from cart", {action: 'destroy', id: purchase.id, controller: 'purchases'}, method: :delete%>
+              <%= button_to "Remove from cart", {action: 'destroy', id: purchase.id, controller: 'purchases'}, method: :delete %>
 
         </tr>
       </div>
           <% end %>
 </div>
 
-<div id="checkout">
 
+<div id="checkout-buy">
 </div>
+
+<!--
+<div id="stripe-checkout">
+  <form action="" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_5C3HNvIUA9Q3pgXhUW9lwgA6"
+    data-amount="2000"
+    data-name="Demo Site"
+    data-description="2 widgets ($20.00)"
+    data-image="/128x128.png">
+  </script>
+</form>
+</div> -->
