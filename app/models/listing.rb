@@ -38,4 +38,8 @@ class Listing < ActiveRecord::Base
     self.update(status: "available")
   end
 
+  def mark_as_sold
+    self.update(status: "sold")
+  end
+
 end

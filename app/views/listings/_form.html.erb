@@ -15,7 +15,7 @@
 
     <% if params[:action] == 'new' || params[:action] == 'create' %>
       <%= javascript_include_tag "listing/new_listing_form.js" %>
-      <%= render 'new_listing_top' , :f => f %>
+      <%= render 'new_listing_top' , f: f %>
     <% else %>
       <%= javascript_include_tag "listing/edit_listing_form"%>
         <%  if @listing.asset.photo1.exists? %>
@@ -35,7 +35,7 @@
 
   <div id="listing-form-product-info">
 
-  <%= render 'assets/upload_photos', :f => f %>
+  <%= render 'assets/upload_photos', f: f %>
 
 
     <div class="field">

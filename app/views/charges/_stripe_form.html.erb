@@ -1,12 +1,12 @@
-<%= form_tag charges_path do %>
+<%= form_for [purchase.seller, purchase], multipart: true, url: {controller: 'purchases', action: 'update', id: purchase.id} do |f| %>
   <article>
     <label class="amount">
-      <span>Amount: $5.00</span>
+      <span>Amount: <%=amount%></span>
+
     </label>
   </article>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-amount="500"></script>
+  </script>
 <% end %>

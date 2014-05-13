@@ -34,29 +34,51 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new
   end
 
-  def create
-    @purchase = Purchase.new(purchase_params)
-    @user = Purchase.seller
-    respond_to do |format|
-      if @purchase.save
-        PurchaseMailer.notify_user_of_sale(@purchase,@user).deliver
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
-        format.js {}
-      else
-        format.html { render :new }
-        format.js {}
-      end
-    end
-  end
+  # def create
+  #   @purchase = Purchase.new(purchase_params)
+  #   @user = Purchase.seller
+  #   respond_to do |format|
+  #     if @purchase.save
+  #       PurchaseMailer.notify_user_of_sale(@purchase,@user).deliver
+  #       format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
+  #       format.js {}
+  #     else
+  #       format.html { render :new }
+  #       format.js {}
+  #     end
+  #   end
+  # end
 
   def update
     @purchase = Purchase.find(params[:id])
+
+    customer = Stripe::Customer.create(
+      :email => params[:stripeEmail],
+      :card  => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      :customer    => customer.id,
+      :amount      => @purchase.listing.price * 100,
+      :description => "Clothography:#{@purchase.seller.username}:#{@purchase.listing.title}",
+      :currency    => 'usd',
+      :metadata => {
+        :customer_id    => @purchase.buyer.id,
+        :customer_username => @purchase.buyer.username,
+        :purchased_listing_id => @purchase.listing.id,
+        :seller_id => @purchase.seller.id,
+        :seller_username => @purchase.seller.username,
+      }
+    )
+
     respond_to do |format|
-      if @purchase.update(purchase_params)
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
+      if charge
+        @purchase.listing.mark_as_sold
+        @purchase.mark_as_completed
+        format.html { redirect_to user_cart_path(current_user), notice: 'Purchase was successfully updated.' }
         format.js {}
       else
-        format.html { render :edit }
+        format.html { redirect_to user_cart_path(current_user), notice: Stripe::CardError }
         format.js {}
       end
     end

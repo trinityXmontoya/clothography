@@ -10,6 +10,10 @@ class Purchase < ActiveRecord::Base
     self.update(status: "in cart")
   end
 
+  def mark_as_completed
+    self.update(status: "completed")
+  end
+
   def self.retrieve_user_cart_listings(user)
     Purchase.where(buyer_id: user.id).where(status: 'in cart')
   end
