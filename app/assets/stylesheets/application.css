@@ -167,17 +167,17 @@
   height: 50px
 }
 
-#message-user-button {
+#message-user-from-listing-button, #message-user-from-profile-button {
   background-color: black;
   color:pink;
   display: inline-block;
   font-size: 23px;
 }
 
-#message-user-popout {
+#message-user-from-listing-popout, #message-user-from-profile-popout, #message-user-from-closet-popout, #make-offer-display {
   display: none;
 }
 
-.message_box_display {
+.display-me {
   display: block !important;
 }
