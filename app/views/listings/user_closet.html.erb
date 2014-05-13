@@ -1,3 +1,19 @@
+<%= javascript_include_tag 'message/message_show' %>
+
+  <div id="message-user-from-closet-button">
+    Message this user
+  </div>
+  <div id="message-user-from-closet-popout">
+    <%= form_for [@user,@message] do |f| %>
+      <%= f.hidden_field :receiver_id, value: @user.id %>
+      <%= f.hidden_field :sender_id, value: current_user.id %>
+      <%= f.text_field :content %>
+      <%= f.submit "Send Message" %>
+    <% end %>
+  </div>
+
+
+
 <h1><%= @user.username %>'s Closet</h1>
 
   <h1>Available Listings</h1>

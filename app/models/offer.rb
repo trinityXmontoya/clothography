@@ -1,5 +1,5 @@
 class Offer < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :offerer, foreign_key: 'offerer_id', class_name: "User"
   belongs_to :listing
 
   before_create :mark_as_pending

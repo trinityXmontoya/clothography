@@ -1,6 +1,6 @@
-<%= javascript_include_tag 'listing/listing_show' %>
+<%= javascript_include_tag 'message/message_show' %>
+<%= javascript_include_tag 'listing/make_offer' %>
 
-<p id="notice"><%= notice %></p>
 
   <% if current_user == @listing.user %>
     <%= link_to 'Edit', edit_user_listing_path(@listing.user,@listing) %> |
@@ -18,25 +18,30 @@
   <% end %>
 
 
-  <%= form_for [@listing.user, @offer], url: {controller: 'offers', action: 'make_offer'} do |f| %>
-    <%= f.hidden_field :listing_id, value: @listing.id %>
-    <%= f.hidden_field :offerer_id, value: current_user.id %>
-    <%= f.number_field :amount %>
-    <%= f.submit "Make offer" %>
-  <% end %>
+  <div id="make-offer-button">
+    Make Offer
+  </div>
+
+  <div id="make-offer-display">
+    <%= form_for [@listing.user, @offer], url: {controller: 'offers', action: 'make_offer'} do |f| %>
+      <%= f.hidden_field :listing_id, value: @listing.id %>
+      <%= f.hidden_field :offerer_id, value: current_user.id %>
+      <%= f.number_field :amount %>
+      <%= f.submit "Submit" %>
+    <% end %>
+  </div>
 
 
 <div id="user-closet-info">
   <%= link_to @listing.user.username + "'s closet", user_closet_path(@listing.user)%>
   <%= image_tag @listing.user.profile_photo %>
-  <div id="message-user-button">
+  <div id="message-user-from-listing-button">
     Message this user
   </div>
-  <div id="message-user-popout">
-    <p>Hello</p>
+  <div id="message-user-from-listing-popout">
     <%= form_for [@listing.user,@message] do |f| %>
       <%= f.hidden_field :receiver_id, value: @listing.user.id %>
-      <%= f.hidden_field :sender_id, valie: current_user.id %>
+      <%= f.hidden_field :sender_id, value: current_user.id %>
       <%= f.text_field :content %>
       <%= f.submit "Send Message" %>
     <% end %>

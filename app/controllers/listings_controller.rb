@@ -17,6 +17,7 @@ class ListingsController < ApplicationController
     @user = User.find_by_username(params[:user_id])
     @listings = Listing.retrieve_user_available_listings(@user)
     @sales = Listing.retrieve_user_sales(@user)
+    @message = Message.new
   end
 
   def show
