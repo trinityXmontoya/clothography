@@ -21,6 +21,7 @@ class ListingsController < ApplicationController
 
   def show
     @purchase = Purchase.new
+    @offer = Offer.new
     @listing = Listing.find(params[:id])
   end
 
@@ -31,8 +32,6 @@ class ListingsController < ApplicationController
 
   def create
       @listing = Listing.new(listing_params)
-      @listing.calculate_discount
-      @listing.mark_as_available
       @listing.user = User.find_by_username(params[:user_id])
       respond_to do |format|
         if @listing.save

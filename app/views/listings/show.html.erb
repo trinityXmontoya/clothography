@@ -16,6 +16,14 @@
   <% end %>
 
 
+  <%= form_for [@listing.user,@listing,@offer], multipart: true, url: {controller: 'offers', action: 'make_offer', listing_id: @listing.id} do |f| %>
+    <%= f.hidden_field :offerer_id, value: current_user.id %>
+    <%= f.hidden_field :listing_id, value: @listing.id %>
+    <%= f.number_field :amount %>
+    <%= f.submit "Make offer" %>
+  <% end %>
+
+
 <p>
   <%= link_to @listing.user.username + "'s closet", user_closet_path(@listing.user)%>
 </p>
