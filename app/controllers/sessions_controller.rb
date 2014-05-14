@@ -17,9 +17,9 @@ class SessionsController < ApplicationController
     @user = User.find_or_create_from_auth_hash(auth_hash)
     session[:user_id] = @user.id
     if (@user.email == "")
-      redirect_to edit_user(@user), notice: "Welcome" + @user.username + ", please confirm your information to complete registration."
+      redirect_to edit_user_path(@user), notice: "Welcome " + @user.name + ", please confirm your information to complete registration."
     else
-      redirect_to root_path, notice: "Welcome" + @user.username
+      redirect_to root_path, notice: "Welcome " + @user.username
     end
   end
 

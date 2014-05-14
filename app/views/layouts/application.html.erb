@@ -9,21 +9,23 @@
 <body>
 
 <nav id='main-navbar'>
-  <a href=" <%= listings_path %> "><li class='main-navbar-item'>Buy</li></a>
-  <a href=" <%= new_user_listing_path(current_user) %> "><li class='main-navbar-item'>Sell</li></a>
-  <a href=" <%= user_path(current_user) %> "><li class='main-navbar-item'>Profile</li></a>
-  <a href=" <%= user_messages_path(current_user) %> "><li class='main-navbar-item'>Messages</li></a>
-  <a href=" <%= user_cart_path(current_user) %> "><li class='main-navbar-item'>Your Cart</li></a>
 
   <% unless current_user %>
-  <li class='main-navbar-item'><%= link_to "Twitter", '/auth/twitter' %></li>
-  <a href=" <%= login_path %> "><li class='main-navbar-item'>Login</li></a>
+    <li class='main-navbar-item'><%= link_to "Twitter", '/auth/twitter' %></li>
+    <a href=" <%= login_path %> "><li class='main-navbar-item'>Login</li></a>
+  <% else %>
+    <a href=" <%= listings_path %> "><li class='main-navbar-item'>Buy</li></a>
+    <a href=" <%= new_user_listing_path(current_user) %> "><li class='main-navbar-item'>Sell</li></a>
+    <a href=" <%= user_path(current_user) %> "><li class='main-navbar-item'>Profile</li></a>
+    <a href=" <%= user_messages_path(current_user) %> "><li class='main-navbar-item'>Messages</li></a>
+    <a href=" <%= user_cart_path(current_user) %> "><li class='main-navbar-item'>Your Cart</li></a>
+    <a href=" <%= logout_path %>"><li class='main-navbar-item'>Logout</li></a>
   <% end %>
 </nav>
 
-<%= content_for :header %>
-<p id="notice"><%= notice %></p>
-<%= yield %>
+  <%= content_for :header %>
+  <p id="notice"><%= notice %></p>
+  <%= yield %>
 
 </body>
 </html>

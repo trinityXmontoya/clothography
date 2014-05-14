@@ -19,14 +19,13 @@
                 <td><%= purchase.listing.price %></td>
                 <td><%= purchase.listing.status %></td>
                 <td><%= purchase.listing.condition %></td>
+              </tr>
+                <% end %>
                 <%= render '/charges/stripe_form', amount: purchase.listing.price, purchase: purchase  %>
-
-              <% end %>
               <%= button_to "Remove from cart", {action: 'destroy', id: purchase.id, controller: 'purchases'}, method: :delete %>
-
-        </tr>
-      </div>
+            </div>
           <% end %>
+
 </div>
 
 

@@ -26,13 +26,14 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_from_auth_hash(auth_hash)
-     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+     where(auth_hash.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth_hash.provider
       user.uid = auth_hash.uid
       user.oauth_token = auth_hash.credentials.token
       user.name = auth_hash.info.name
       user.profile_photo = auth_hash.info.image
       user.bg_photo = auth_hash.extra.profile_background_image_url
+      user.username = "Twitter-User-"+ auth_hash.uid
       user.save!
     end
   end

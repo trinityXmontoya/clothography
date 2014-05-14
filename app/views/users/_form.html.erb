@@ -24,10 +24,6 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
-  </div>
-  <div class="field">
     <%= f.label :profile_photo %><br>
     <%= f.text_field :profile_photo %>
   </div>
@@ -37,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :gender_id %><br>
-    <%= f.text_field :gender_id %>
+    <%= f.select :gender_id, options_from_collection_for_select(Gender.all, :id, :name)%>
   </div>
   <div class="actions">
     <%= f.submit %>
