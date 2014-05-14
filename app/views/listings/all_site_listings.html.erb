@@ -3,9 +3,25 @@
 
 
 <div id="search">
-  <%= render 'searches/search' %>
+  <%= search_form_for @query, url: search_listings_path,
+                          html: { method: :post } do |f| %>
+    <%= f.label :title_cont %>
+    <%= f.search_field :title_cont %>
+    <%= f.label :price_gteq, "Price between" %>
+    <%= f.number_field :price_gteq %>
+    <%= f.label :price_lteq, "and" %>
+    <%= f.number_field :price_lteq %>
+    <%= f.submit%>
+  <% end %>
+
 </div>
 
+<div id="search-restrictions">
+  <%= sort_link @query, :price, "Sorty by price" %>
+</div>
+
+
+<div id="search-results">
   <% @listings.each do |listing| %>
     <%= link_to user_listing_path(listing.user, listing) do %>
       <div class="listing">
@@ -17,3 +33,4 @@
       </div>
     <% end %>
   <% end %>
+</div>
