@@ -1,6 +1,7 @@
 <h1>Your inbox</h1>
 
 
+
 <h2>Sent Messages</h2>
   <% @sent_messages.each do |sent_message| %>
   To: <%= link_to sent_message.receiver.username, user_closet_path(sent_message.receiver) %>
