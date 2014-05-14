@@ -12,7 +12,8 @@ get '/login' => 'sessions#new'
 post '/login/:auth_token' => 'sessions#create'
 get '/logout' => 'sessions#destroy'
 
-get '/listings' => 'listings#all_site_listings'
+
+match '/listings' => 'listings#all_site_listings', via: [:get, :post], as: :search_listings
 
   resources :users do
 
@@ -31,8 +32,6 @@ get '/listings' => 'listings#all_site_listings'
 
       resources :messages
   end
-
-  resources :searches, only: [:create]
 
   resources :charges
 
