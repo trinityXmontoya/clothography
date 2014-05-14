@@ -6,7 +6,8 @@ class MessagesController < ApplicationController
     # # @sent_messages = @user.sent_messages.uniq(&:receiver_id)
     # @sent_messages= Message.group(:sender_id).group(:receiver_id).order(created_at: :asc)
     @received_messages = @user.received_messages.order(created_at: :asc)
-  end
+
+end
 
   def show
     message = Message.find(params[:id])

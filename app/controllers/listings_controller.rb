@@ -4,8 +4,12 @@ class ListingsController < ApplicationController
   before_action :authenticate, only: [:new, :create, :edit, :update, :destroy]
 
   def all_site_listings
-    @listings = Listing.all
-    @results = session[:search_results]
+    session[:search_results]=nil
+    unless session[:search_results]
+      @listings = Listing.all
+    else
+      @listings = session[:search_results]
+    end
   end
 
   def index
