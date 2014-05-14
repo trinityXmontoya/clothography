@@ -15,7 +15,7 @@ class Listing < ActiveRecord::Base
   validates :user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :price, :condition, presence: true
   validates :price, :original_price, numericality: { only_integer: true }
 
-  before_create :mark_as_available, :calculate_discount
+  after_create :mark_as_available, :calculate_discount
 
   def self.conditions
     return ["New with tags", "New without tags", "Like new", "Gently used"]
