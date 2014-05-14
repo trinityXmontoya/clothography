@@ -46,6 +46,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
+gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
