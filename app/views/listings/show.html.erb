@@ -39,12 +39,7 @@
     Message this user
   </div>
   <div id="message-user-from-listing-popout">
-    <%= form_for [@listing.user,@message] do |f| %>
-      <%= f.hidden_field :receiver_id, value: @listing.user.id %>
-      <%= f.hidden_field :sender_id, value: current_user.id %>
-      <%= f.text_field :content %>
-      <%= f.submit "Send Message" %>
-    <% end %>
+    <%= render 'messages/send_message_form', user: @listing.user, message: @message %>
   </div>
 </div>
 

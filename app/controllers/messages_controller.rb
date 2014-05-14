@@ -2,11 +2,19 @@ class MessagesController < ApplicationController
 
   def index
     @user = User.find_by(username: params[:user_id])
-    @sent_messages = @user.sent_messages
-    @received_messages = @user.received_messages
+    @sent_messages = @user.sent_messages.order(created_at: :asc)
+    # @sent_messages = @user.sent_messages.uniq(&:receiver_id)
+
+    @received_messages = @user.received_messages.order(created_at: :asc)
   end
 
   def show
+    message = Message.find(params[:id])
+    sender = message.sender
+    receiver = message.receiver
+    @user = receiver
+    @messages = Message.retrieve_all_correspondence(sender, receiver)
+    @message = Message.new
   end
 
   def new

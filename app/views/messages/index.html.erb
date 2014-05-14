@@ -4,13 +4,18 @@
 
 <h2>Sent Messages</h2>
   <% @sent_messages.each do |sent_message| %>
-  To: <%= link_to sent_message.receiver.username, user_closet_path(sent_message.receiver) %>
-  --- <%= sent_message.content %>
-  <br>
+    <%= link_to [current_user,sent_message] do %>
+      To: <%= sent_message.receiver.username%>
+      --- <%= sent_message.content %>
+    <% end %>
+    <br>
   <% end %>
 
 <h2>Received Messages</h2>
   <% @received_messages.each do |received_message| %>
-  From: <%= link_to received_message.sender.username, user_closet_path(received_message.sender) %>
-  --- <%= received_message.content %>
+    <%= link_to [current_user,received_message] do %>
+      From: <%= received_message.sender.username %>
+      --- <%= received_message.content %>
+    <% end %>
+    <br>
   <% end %>

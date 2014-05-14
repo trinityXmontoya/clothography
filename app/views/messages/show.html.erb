@@ -1,0 +1,12 @@
+
+Messages with <%= link_to @user.username, user_closet_path(@user) %>
+<br>
+  <% @messages.each do |message| %>
+    <%= message.created_at.strftime("%D\n%H:%M")%>
+    <br>
+    <%= message.sender.username %>
+    <%= message.content %>
+    <br>
+  <% end %>
+
+<%= render 'messages/send_message_form', user: @user, message: @message %>
