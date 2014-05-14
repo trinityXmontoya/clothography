@@ -1,3 +1,4 @@
+
 class Listing < ActiveRecord::Base
 
   belongs_to :user
@@ -5,6 +6,7 @@ class Listing < ActiveRecord::Base
   belongs_to :category
   belongs_to :size
   belongs_to :gender
+  belongs_to :color
   has_one :purchase
   has_one :asset, inverse_of: :listing
   accepts_nested_attributes_for :asset, allow_destroy: true
