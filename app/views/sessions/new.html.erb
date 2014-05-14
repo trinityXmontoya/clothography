@@ -1,0 +1,14 @@
+<script type="text/javascript" charset="utf-8">
+  $(document).ready( function(){
+    $("#login-username-selection").chosen({width: "300px"});
+  });
+</script>
+
+<div id="sign-up-form">
+
+  <#%= form_tag user_request_token_path do %>
+    <#%= label_tag :user_id %>
+    <#%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :username), id: 'login-username-selection' %>
+    <#%= submit_tag %>
+  <#% end %>
+</div>

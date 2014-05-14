@@ -8,12 +8,15 @@ get "/auth/:provider/callback" => "sessions#twitter_create"
 get '/auth/failure', :to => 'sessions#failure'
 
 get '/login' => 'sessions#new'
-post '/login/:username/:auth_token' => 'sessions#create'
+
+post '/login/:auth_token' => 'sessions#create'
 get '/logout' => 'sessions#destroy'
 
 get '/listings' => 'listings#all_site_listings'
 
   resources :users do
+
+      post '/send_login_link' => 'sessions#request_token', as: :request_token
 
       get '/closet' => 'listings#user_closet'
       resources :listings

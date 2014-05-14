@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
   has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id', table_name: 'messages'
   has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id', table_name: 'messages'
 
-  has_many :purchases, foreign_key: 'buyer_id'
+  has_many :purchases, foreign_key: 'buyer_id', dependent: :destroy
   has_many :sales, class_name: 'purchase', foreign_key: 'seller_id', table_name: 'purchases'
+
+  validates :username, :email, presence: true
 
   def to_param
     username
@@ -31,9 +33,9 @@ class User < ActiveRecord::Base
       user.uid = auth_hash.uid
       user.oauth_token = auth_hash.credentials.token
       user.name = auth_hash.info.name
+      user.username = user.username || "Twitter-User-#{auth_hash.uid}"
       user.profile_photo = auth_hash.info.image
       user.bg_photo = auth_hash.extra.profile_background_image_url
-      user.username = "Twitter-User-"+ auth_hash.uid
       user.save!
     end
   end
