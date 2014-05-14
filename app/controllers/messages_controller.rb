@@ -1,6 +1,9 @@
 class MessagesController < ApplicationController
 
   def index
+    @user = User.find_by(username: params[:user_id])
+    @sent_messages = @user.sent_messages
+    @received_messages = @user.received_messages
   end
 
   def show
