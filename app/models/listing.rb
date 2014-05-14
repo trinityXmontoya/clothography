@@ -32,7 +32,7 @@ class Listing < ActiveRecord::Base
 
   def calculate_discount
     if original_price && original_price > price
-      amount_discounted = (self.price / self.original_price)
+      amount_discounted = (price / original_price)*100
       self.update(discount: amount_discounted)
     end
   end
