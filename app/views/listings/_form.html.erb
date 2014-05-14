@@ -51,9 +51,6 @@
     </div>
 
 
-    <% @standard_sizes = Size.retrieve_standard_sizes %>
-    <% @jean_sizes = Size.retrieve_jean_sizes %>
-    <% @bottoms_sizes = Size.retrieve_bottom_sizes %>
 
     <%= f.hidden_field :size_id %>
     <div id="size-box">
@@ -83,7 +80,7 @@
       </div>
 
       <div id="shoe-sizes" >
-        <% @bottoms_sizes.each  do |size| %>
+        <% @shoe_sizes.each  do |size| %>
           <p class="size-select" data-id="<%= size.id %>">
             <%= size.label %>
           </p>
