@@ -58,10 +58,14 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find_by_username(params[:id])
     @user.destroy
+    session[@user.id] = nil
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+      # else
+      #   redirect_to users_url, notice: "You are not authorized to perform that action"
+      # end
   end
 
   private
