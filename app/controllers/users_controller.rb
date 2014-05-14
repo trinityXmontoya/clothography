@@ -9,9 +9,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_username(params[:id])
     @sales_count = Listing.retrieve_user_sales(@user).count
-
-
-@message = Message.new  end
+    @message = Message.new
+  end
 
   def new
     @user = User.new
