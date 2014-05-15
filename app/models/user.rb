@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
 
   before_create :set_dummy_email
 
-  belongs_to :gender
   has_many :listings, dependent: :destroy
   has_many :sizes, through: :size_users
 
@@ -34,8 +33,8 @@ class User < ActiveRecord::Base
       user.oauth_token = auth_hash.credentials.token
       user.name = auth_hash.info.name
       user.username = user.username || "Twitter-User-#{auth_hash.uid}"
-      user.profile_photo = auth_hash.info.image
-      user.bg_photo = auth_hash.extra.profile_background_image_url
+      user.profile_photo = user.profile_photo || auth_hash.info.image
+      user.bg_photo = user.bg_photo || auth_hash.extra.profile_background_image_url
       user.save!
     end
   end

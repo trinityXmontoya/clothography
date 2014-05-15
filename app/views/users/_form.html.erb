@@ -24,11 +24,22 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :profile_photo %><br>
+    <% if @user.profile_photo %>
+      Current Profile Photo:
+      <br>
+      <%= image_tag @user.profile_photo %>
+    <% end %>
+    <br>
     <%= f.text_field :profile_photo %>
   </div>
   <div class="field">
-    <%= f.label :bg_photo %><br>
+    <% if @user.bg_photo %>
+      Current Background Photo:
+      <br>
+      <%= image_tag @user.bg_photo %>
+    <% end %>
+    <br>
+    <%= f.label :background_photo %>:<br>
     <%= f.text_field :bg_photo %>
   </div>
   <div class="field">
