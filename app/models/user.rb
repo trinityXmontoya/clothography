@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
 
   validates :username, :email, presence: true
 
+  acts_as_tagger
+
   def to_param
     username
   end
