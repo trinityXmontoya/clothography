@@ -5,7 +5,11 @@ class ListingsController < ApplicationController
 
   def all_site_listings
     @query= Listing.search(params[:q])
-    @listings = @query.result(distinct:true)
+    @listings = @query.result(distinct:true).includes(:category,:size,:brand,:gender)
+    @standard_sizes = Size.standard_sizes
+    @jean_sizes = Size.jean_sizes
+    @bottoms_sizes = Size.bottom_sizes
+    @shoe_sizes = Size.shoe_sizes
   end
 
   def index
@@ -30,6 +34,10 @@ class ListingsController < ApplicationController
   def new
     @listing = Listing.new
     @listing.build_asset
+    @standard_sizes = Size.standard_sizes
+    @jean_sizes = Size.jean_sizes
+    @bottoms_sizes = Size.bottom_sizes
+    @shoe_sizes = Size.shoe_sizes
   end
 
   def create
@@ -52,6 +60,11 @@ class ListingsController < ApplicationController
     if @listing.has_been_sold?
       redirect_to [@user,@listing], notice: "This item has been sold, you cannot perform this action."
     else
+      @listing.build_asset
+      @standard_sizes = Size.standard_sizes
+      @jean_sizes = Size.jean_sizes
+      @bottoms_sizes = Size.bottom_sizes
+      @shoe_sizes = Size.shoe_sizes
     end
   end
 

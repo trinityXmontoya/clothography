@@ -1,0 +1,10 @@
+<%= search_form_for @query, url: search_listings_path,
+                        html: { method: :post } do |f| %>
+  <%= f.label :title_cont %>
+  <%= f.search_field :title_cont %>
+  <%= f.label :price_gteq, "Price between" %>
+  <%= f.number_field :price_gteq %>
+  <%= f.label :price_lteq, "and" %>
+  <%= f.number_field :price_lteq %>
+  <%= f.submit%>
+<% end %>

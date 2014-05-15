@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'listing/search_form.js' %>
 
 <h1>All Listings</h1>
 
@@ -5,20 +6,50 @@
 <div id="search">
   <%= search_form_for @query, url: search_listings_path,
                           html: { method: :post } do |f| %>
+
+
     <%= f.label :title_cont %>
-    <%= f.search_field :title_cont %>
+    <%= f.search_field :title_cont, class: 'search-field' %>
+
     <%= f.label :price_gteq, "Price between" %>
-    <%= f.number_field :price_gteq %>
+    <%= f.number_field :price_gteq, class: 'price-range-search search-field' %>
     <%= f.label :price_lteq, "and" %>
-    <%= f.number_field :price_lteq %>
+    <%= f.number_field :price_lteq, class: 'price-range-search search-field' %>
+
+    <p class="search-form-labels">Category</p>
+    <%= f.collection_select :category_id_eq, Category.all, :id, :name, prompt: "Select category", class: 'search-field', data: {placeholder:"no"} %>
+
+    <p class="search-form-labels">Size Type</p>
+    <%= f.select :size_name_eq, options_for_select([["Petite","Petite"],["Plus","Plus"]]), prompt: "Select Size",class: 'search-field' %>
+
+
+    <p class="search-form-labels">Size</p>
+
+    <%= f.collection_select :size_id_eq, @standard_sizes, :id, :label, {} , {multiple: true}%>
+
+    <p class="search-form-labels">Brand</p>
+    <%= f.collection_select :brand_id_eq, Brand.all, :id, :name, prompt: "Select a brand", class: 'search-field' %>
+
+    <%= f.label :condition %>
+    <%= f.select :condition_eq, options_for_select(Listing.conditions, :name), {}, {multiple: true, class: 'search-field'} %>
+
+    <p class="search-form-labels">Color</p>
+    <%= f.collection_select :color_id_eq, Color.all, :id, :name, {}, {multiple: true, class: 'search_field'} %>
+
     <%= f.submit%>
+
+    <%= f.submit "Reset", id: 'search-form-reset' %>
   <% end %>
 
+
+
 </div>
 
+
 <div id="search-restrictions">
-  <%= sort_link @query, :price, "Sorty by price" %>
+  <%= sort_link @query, :price, "Sort by price" %>
 </div>
+
 
 
 <div id="search-results">

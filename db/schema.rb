@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20140514235620) do
 
 
@@ -82,11 +81,8 @@ ActiveRecord::Schema.define(version: 20140514235620) do
     t.integer  "discount"
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
     t.integer  "color_id"
-=======
-    t.string   "color"
->>>>>>> 26402fcf7af1cc1ae12dd4f90730a5993c1d4958
+
   end
 
   add_index "listings", ["brand_id"], name: "index_listings_on_brand_id", using: :btree
