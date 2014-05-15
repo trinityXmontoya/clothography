@@ -17,4 +17,12 @@ class UserMailer < ActionMailer::Base
           subject: "Your item sold!")
   end
 
+  def send_purchase_receipt(user,purchase,purchase_listing_link)
+    @user = user
+    @purchase = purchase
+    @link = purchase_listing_link
+    mail(to: @user.email,
+         subject: "You receipt for item @purchase.listing.title")
+  end
+
 end

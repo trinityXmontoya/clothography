@@ -13,6 +13,7 @@ class Purchase < ActiveRecord::Base
 
   def mark_as_completed
     self.update(status: "completed")
+    self.buyer.send_receipt_of_purchase(self)
   end
 
   def self.retrieve_user_cart_listings(user)

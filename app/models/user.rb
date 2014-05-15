@@ -69,8 +69,13 @@ class User < ActiveRecord::Base
   end
 
   def notify_of_sale(listing)
-    link = "http://localhost:3000/users/#{self.id}/listings/#{listing.id}"
+    link = "http://localhost:3000/users/#{self.username}/listings/#{listing.id}"
     UserMailer.send_notification_of_sale(self,listing,link).deliver
+  end
+
+  def send_receipt_of_purchase(purchase)
+    link = "http://localhost:3000/users/#{purchase.seller.username}/listings/#{purchase.listing.id}"
+    UserMailer.send_purchase_receipt(self,purchase,link).deliver
   end
 
 end
