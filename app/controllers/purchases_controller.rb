@@ -22,7 +22,7 @@ class PurchasesController < ApplicationController
         format.js {}
       end
     else
-      redirect_to user_listing_path(seller,listing), notice: "Error saving to cart"
+      redirect_to user_listing_path(seller,listing), notice: "This item is already in someone's cart. Please check back within the next hour."
     end
   end
 
@@ -70,6 +70,8 @@ class PurchasesController < ApplicationController
         :seller_username => @purchase.seller.username,
       }
     )
+
+
 
     respond_to do |format|
       if charge

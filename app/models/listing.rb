@@ -44,6 +44,7 @@ class Listing < ActiveRecord::Base
 
   def mark_as_sold
     self.update(status: "sold")
+    user.notify_of_sale(self)
   end
 
   def has_been_sold?

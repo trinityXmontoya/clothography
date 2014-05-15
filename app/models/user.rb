@@ -68,5 +68,9 @@ class User < ActiveRecord::Base
     User.where("auth_token = ?", token).exists? ? generate_token : token
   end
 
+  def notify_of_sale(listing)
+    link = "http://localhost:3000/users/#{self.id}/listings/#{listing.id}"
+    UserMailer.send_notification_of_sale(self,listing,link).deliver
+  end
 
 end
