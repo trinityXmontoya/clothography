@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by(username: params[:user_id])
     if @user && @user.validate_token(params[:auth_token])
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Welcome" + @user.username
@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
   end
 
   def session_params
-    params.require(:session).permit(:username,:auth_token)
+    params.require(:session).permit(:user_id,:auth_token)
   end
 
   protected
