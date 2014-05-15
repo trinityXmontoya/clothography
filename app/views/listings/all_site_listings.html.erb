@@ -36,6 +36,7 @@
     <p class="search-form-labels">Color</p>
     <%= f.collection_select :color_id_eq, Color.all, :id, :name, {}, {multiple: true, class: 'search_field'} %>
 
+
     <%= f.submit%>
 
     <%= f.submit "Reset", id: 'search-form-reset' %>
@@ -48,6 +49,7 @@
 
 <div id="search-restrictions">
   <%= sort_link @query, :price, "Sort by price" %>
+  <%= sort_link @query, :updated_at, "Sort by most recent" %>
 </div>
 
 

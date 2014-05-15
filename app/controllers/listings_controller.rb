@@ -5,7 +5,7 @@ class ListingsController < ApplicationController
 
   def all_site_listings
     @query= Listing.search(params[:q])
-    
+
     if (params[:tag])
       @listings = Listing.tagged_with(params[:tag])
     else

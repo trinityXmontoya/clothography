@@ -33,4 +33,10 @@ $(document).ready( function(){
     placeholder_text_multiple: "Colors"
   });
 
+  $("#q_tag_id_eq").chosen({
+    width: "100px",
+    search_contains: true,
+    placeholder_text_multiple: "Tags"
+  })
+
 });
