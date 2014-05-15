@@ -1,8 +1,9 @@
 <%= javascript_include_tag 'message/message_show' %>
 <%= javascript_include_tag 'listing/user_closet' %>
 
+
   <% if current_user == @user %>
-    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= button_to 'Edit', edit_user_path(@user), method: :get %> |
     <%= button_to 'Delete Account', @user, method: :delete %>
   <% end %>
 
