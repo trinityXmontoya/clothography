@@ -9,7 +9,6 @@
       <th>Password</th>
       <th>Profile photo</th>
       <th>Bg photo</th>
-      <th>Gender</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,7 +22,6 @@
         <td><%= user.password %></td>
         <td><%= user.profile_photo %></td>
         <td><%= user.bg_photo %></td>
-        <td><%= user.gender %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

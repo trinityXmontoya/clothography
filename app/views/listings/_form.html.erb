@@ -92,7 +92,7 @@
 
     <div class="field">
       <%= f.label :description %><br>
-      <%= f.text_field :description %>
+      <%= f.text_field :description, maxlength: 500 %>
     </div>
 
     <%= f.hidden_field :condition %>
@@ -111,6 +111,11 @@
     <div class="field">
       <%= f.label :price %><br>
       <%= f.number_field :price %>
+    </div>
+
+    <div class="field">
+      <%= f.label :tags %>
+      <%= f.text_field :tags %>
     </div>
 
     <div class="actions">

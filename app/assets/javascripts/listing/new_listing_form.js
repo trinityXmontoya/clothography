@@ -67,4 +67,5 @@ $(document).ready( function() {
   })
 
   $("#listing_brand_id").chosen({width: "300px"});
+  
 });

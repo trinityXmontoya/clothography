@@ -42,10 +42,7 @@
     <%= f.label :background_photo %>:<br>
     <%= f.text_field :bg_photo %>
   </div>
-  <div class="field">
-    <%= f.label :gender_id %><br>
-    <%= f.select :gender_id, options_from_collection_for_select(Gender.all, :id, :name)%>
-  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
