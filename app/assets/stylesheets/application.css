@@ -72,7 +72,7 @@
   width: 200px;
 }
 
-/*USER PROFILE*/
+/*USER PROFILE + CLOSET */
 
 #user-info {
   display:inline-block;
@@ -88,6 +88,26 @@
 .user-profile-photo {
   width: 150px;
   border-radius: 30px;
+}
+
+.each-available-listing {
+  width: 300px;
+  display: inline-block;
+}
+.each-available-listing img {
+  width: 100px;
+}
+
+.hide-me {
+  display: none;
+}
+
+#sold-listings, #available-listings{
+  display: none;
+}
+
+.listing-header {
+  display: inline-block
 }
 
 /*PRODUCT SELECT*/
