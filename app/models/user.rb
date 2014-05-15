@@ -41,9 +41,10 @@ class User < ActiveRecord::Base
     end
   end
 
+
   def send_login_link
     self.reset_auth_token
-    link = "localhost:3000/login/" + self.username + "/" + self.auth_token
+    link = "http://localhost:3000/login/" + self.username + "/" + self.auth_token
     UserMailer.send_user_token(self,link).deliver
     self.update_attributes(login_link_sent: Time.now)
   end

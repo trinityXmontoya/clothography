@@ -13,7 +13,11 @@ describe Listing do
     it {should belong_to :category }
     it {should belong_to :size }
     it {should belong_to :gender }
-    it {should have_many(:tags).with_foreign_key('listing_id')}
+    it {should belong_to :color }
+    it {should have_one :purchase}
+    it {should have_one :asset}
+    it {should accept_nested_attributes_for :asset}
+    it {should have_many :offers}
     it {should have_attached_file :photo1 }
 
     it { should validate_presence_of :user_id }

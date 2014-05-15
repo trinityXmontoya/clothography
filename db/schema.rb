@@ -99,12 +99,12 @@ ActiveRecord::Schema.define(version: 20140515062854) do
   end
 
   create_table "offers", force: true do |t|
+    t.integer  "offerer_id"
     t.integer  "listing_id"
     t.string   "status"
+    t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "amount"
-    t.integer  "offerer_id"
   end
 
   add_index "offers", ["listing_id"], name: "index_offers_on_listing_id", using: :btree

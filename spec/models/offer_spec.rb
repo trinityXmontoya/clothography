@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Offer do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it {should belong_to :offerer}
+  it {should belong_to :listing}
+
+  it {should validate_presence_of :offerer}
+  it {should validate_presence_of :listing}
+  it {should validate_presence_of :amount}
 end

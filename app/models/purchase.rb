@@ -6,6 +6,7 @@ class Purchase < ActiveRecord::Base
 
   validates_uniqueness_of :listing_id
 
+  validates :seller, :buyer, :listing, presence: true
   def mark_as_in_cart
     self.update(status: "in cart")
   end
