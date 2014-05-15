@@ -9,7 +9,7 @@ get '/auth/failure', :to => 'sessions#failure'
 
 get '/login' => 'sessions#new'
 post '/login/:user_id/send_login_link' => 'sessions#request_token', as: :request_token
-get'/login/:user_id/:auth_token' => 'sessions#create'
+get '/login/:user_id/:auth_token' => 'sessions#create'
 get '/logout' => 'sessions#destroy'
 
 
