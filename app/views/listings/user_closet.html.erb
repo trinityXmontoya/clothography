@@ -1,84 +1,85 @@
 <%= javascript_include_tag 'message/message_show' %>
+<%= javascript_include_tag 'listing/user_closet' %>
 
-  <div id="message-user-from-closet-button">
-    Message this user
+
+  <% if current_user == @user %>
+    <%= button_to 'Edit', edit_user_path(@user), method: :get %> |
+    <%= button_to 'Delete Account', @user, method: :delete %>
+  <% end %>
+
+  <div id="user-info">
+    <h1><%= @user.username %>'s Closet</h1>
+    <%= image_tag @user.profile_photo %>
+    <%= image_tag @user.bg_photo %>
   </div>
-  <div id="message-user-from-closet-popout">
-    <%= render 'messages/send_message_form', user: @user, message: @message %>
-  </div>
 
+  <#% unless current_user == @user %>
+    <div id="message-user-from-closet-button">
+      Message this user
+    </div>
 
+    <div id="message-user-from-closet-popout">
+      <%= render 'messages/send_message_form', user: @user, message: @message %>
+    </div>
+  <#% end %>
 
-<h1><%= @user.username %>'s Closet</h1>
-
-  <h1>Available Listings</h1>
-  <div id="available-listings">
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Brand</th>
-          <th>Category</th>
-          <th>Original price</th>
-          <th>Price</th>
-          <th>Status</th>
-          <th>Condition</th>
-        </tr>
-      </thead>
     <br>
-    <% @listings.each do |listing| %>
-      <tbody>
-        <tr>
+    <div id="available-listings-header" class="listing-header"><h3>Available Listings(<%= @listings.count %>) | </h3></div>
+    <div id="sold-listings-header" class="listing-header"><h3>Sold Listings(<%= @sales.count %>)</h3></div>
+
+    <div id="listing-display-box">
+      <div id="available-listings">
+        <% @listings.each do |listing| %>
           <%= link_to [@user,listing] do %>
-            <td><%= listing.title %></td>
-            <td><%= listing.description %></td>
-            <td><%= listing.brand.name %></td>
-            <td><%= listing.category.name %></td>
-            <td><%= listing.original_price %></td>
-            <td><%= listing.price %></td>
-            <td><%= listing.status %></td>
-            <td><%= listing.condition %></td>
+            <div class="each-available-listing">
+              <%= listing.brand.name %>
+              <br>
+              <%= listing.category.name %>
+              <br>
+              <%= listing.title %>
+              <br>
+              <%= image_tag listing.asset.photo1 %>
+              <br>
+              <%= listing.condition %>
+              <br>
+              Original:<%= listing.original_price %>
+              <br>
+              $<%= listing.price %>
+              <br>
+              <%= listing.discount %>% OFF
+            </div>
           <% end %>
-        </tr>
-      <% end %>
-      </tbody>
-  </table>
-  </div>
+        <% end %>
+      </div>
+    </div>
 
 
-  <h1>Sold Listings</h1>
-  <div id="sold-listings">
-  <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Brand</th>
-          <th>Category</th>
-          <th>Sale price</th>
-          <th>Buyer</th>
-        </tr>
-      </thead>
-    <br>
-    <% @sales.each do |sold_listing| %>
-      <tbody>
-        <tr>
+
+    <div id="sold-listings">
+      <% unless @sales.exists? %>
+      Looks like <%= @user.username %> hasn't sold anything yet! Maybe help 'em out and <%= link_to "buy something", user_closet_path(@user) %> ;)"
+      <% else %>
+
+        <% @sales.each do |sold_listing| %>
           <%= link_to [@user,sold_listing] do %>
-            <td><%= sold_listing.title %></td>
-            <td><%= sold_listing.brand.name %></td>
-            <td><%= sold_listing.category.name %></td>
-            <td><%= sold_listing.price %></td>
-            <td><%= sold_listing.purchase.buyer.username %></td>
+            <div class="each-available-sold_listing">
+              <%= sold_listing.brand.name %>
+              <br>
+              <%= sold_listing.category.name %>
+              <br>
+              <%= sold_listing.title %>
+              <br>
+              <%= image_tag sold_listing.asset.photo1 %>
+              <br>
+              <%= sold_listing.condition %>
+              <br>
+              Original:<%= sold_listing.original_price %>
+              <br>
+              $<%= sold_listing.price %>
+              <br>
+              <%= sold_listing.discount %>% OFF
+            </div>
           <% end %>
-        </tr>
+        <% end %>
       <% end %>
-      </tbody>
-  </table>
-  </div>
-
-
-
-
-<br>
-
-<%= link_to 'New Listing', new_user_listing_path(@user) %>
+    </div>
