@@ -58,6 +58,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (3.2.1)
+      actionpack (>= 3, < 5)
+      activerecord (>= 3, < 5)
     arel (5.0.1.20140414130214)
     aws-sdk (1.40.0)
       json (~> 1.4)
@@ -226,6 +229,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on
   aws-sdk
   capybara
   chosen-rails

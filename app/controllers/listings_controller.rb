@@ -5,7 +5,12 @@ class ListingsController < ApplicationController
 
   def all_site_listings
     @query= Listing.search(params[:q])
-    @listings = @query.result(distinct:true).includes(:category,:size,:brand,:gender)
+    
+    if (params[:tag])
+      @listings = Listing.tagged_with(params[:tag])
+    else
+      @listings = @query.result(distinct:true).includes(:category,:size,:brand,:gender)
+    end
     @standard_sizes = Size.standard_sizes
     @jean_sizes = Size.jean_sizes
     @bottoms_sizes = Size.bottom_sizes
@@ -102,7 +107,7 @@ class ListingsController < ApplicationController
 
   private
     def listing_params
-      params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition, asset_attributes: [:id, :photo1, :photo2, :photo3])
+      params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition,:tag_list, asset_attributes: [:id, :photo1, :photo2, :photo3])
     end
 
 end

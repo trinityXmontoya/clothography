@@ -72,6 +72,13 @@
    <% end %>
 
 <p>
+  <strong>Tags:</strong>
+  <% @listing.tag_list.each do |tag| %>
+  <%= link_to tag, search_for_tag_path(tag)%>
+  <% end %>
+</p>
+
+<p>
   <strong>Size:</strong>
   <%= @listing.size.label %>
 </p>

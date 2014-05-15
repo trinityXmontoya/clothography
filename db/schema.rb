@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140515015917) do
-
+ActiveRecord::Schema.define(version: 20140515034034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,13 +89,6 @@ ActiveRecord::Schema.define(version: 20140515015917) do
   add_index "listings", ["size_id"], name: "index_listings_on_size_id", using: :btree
   add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
 
-  create_table "listings_tags", id: false, force: true do |t|
-    t.integer "tag_id",     null: false
-    t.integer "listing_id", null: false
-  end
-
-  add_index "listings_tags", ["listing_id", "tag_id"], name: "index_listings_tags_on_listing_id_and_tag_id", using: :btree
-
   create_table "messages", force: true do |t|
     t.integer  "receiver_id"
     t.integer  "sender_id"
@@ -144,11 +135,24 @@ ActiveRecord::Schema.define(version: 20140515015917) do
 
   add_index "sizes_users", ["user_id", "size_id"], name: "index_sizes_users_on_user_id_and_size_id", using: :btree
 
-  create_table "tags", force: true do |t|
-    t.string   "name"
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
     t.datetime "created_at"
-    t.datetime "updated_at"
   end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"

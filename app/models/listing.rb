@@ -11,7 +11,8 @@ class Listing < ActiveRecord::Base
   has_one :asset, inverse_of: :listing
   accepts_nested_attributes_for :asset, allow_destroy: true
   has_many :offers
-  
+  acts_as_taggable_on :tags
+
   validates :user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :price, :condition, presence: true
   validates :price, :original_price, numericality: { only_integer: true }
 

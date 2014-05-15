@@ -14,7 +14,7 @@ get '/logout' => 'sessions#destroy'
 
 
 match '/listings' => 'listings#all_site_listings', via: [:get, :post], as: :search_listings
-
+get '/listings/:tag' => 'listings#all_site_listings', as: :search_for_tag
   resources :users do
 
       post '/send_login_link' => 'sessions#request_token', as: :request_token

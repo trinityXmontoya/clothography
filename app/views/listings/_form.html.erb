@@ -51,7 +51,7 @@
     </div>
 
 
-
+  <% if params[:action] == 'new' || params[:action] == 'create' %>
     <%= f.hidden_field :size_id %>
     <div id="size-box">
       Sizes:
@@ -86,6 +86,7 @@
           </p>
         <% end %>
       </div>
+    <% end %>
 
 
     </div>
@@ -114,8 +115,8 @@
     </div>
 
     <div class="field">
-      <%= f.label :tags %>
-      <%= f.text_field :tags %>
+      <%= f.label :tag_list, "Tags (comma separated)" %>
+      <%= f.text_field :tag_list %>
     </div>
 
     <div class="actions">
