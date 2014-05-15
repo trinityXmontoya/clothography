@@ -49,6 +49,18 @@
   width: 400px;
 }
 
+#q_title_cont {
+  width: 400px;
+}
+
+.price-range-search {
+  width: 30px;
+}
+
+.search-form-labels {
+  display: inline;
+}
+
 .listing {
   display:inline-block;
   border: solid black 3px;
@@ -59,6 +71,7 @@
 .listing img {
   width: 200px;
 }
+
 /*USER PROFILE*/
 
 #user-info {
