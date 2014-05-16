@@ -1,3 +1,4 @@
+<div class="row">
 
 <%= form_for [current_user, @listing], :html => { :multipart => true } do |f| %>
 
@@ -43,6 +44,7 @@
       <%= f.text_field :title %>
     </div>
 
+<br>
       <div id="brands">
         <div class="field">
         <%= f.label :brand_id %><br>
@@ -50,10 +52,27 @@
       </div>
     </div>
 
+    <div class="field">
+      <%= f.label :original_price %><br>
+      <%= f.number_field :original_price, placeholder: "(optional)" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :price %><br>
+      <%= f.number_field :price %>
+    </div>
+
+<br>
+
+<div class="description-box">
+  <%= f.label :description %><br>
+  <%= f.text_field :description, maxlength: 500 %>
+</div>
+
 
   <% if params[:action] == 'new' || params[:action] == 'create' %>
     <%= f.hidden_field :size_id %>
-    <div id="size-box">
+    <div id="size-box" class="panel">
       Sizes:
       <div id="standard-sizes" >
         <% @standard_sizes.each  do |size| %>
@@ -92,36 +111,25 @@
 
     </div>
 
-    <div class="field">
-      <%= f.label :description %><br>
-      <%= f.text_field :description, maxlength: 500 %>
-    </div>
 
+
+    <%= f.label :condition %>
     <%= f.hidden_field :condition %>
     <% Listing.conditions.each do |condition| %>
-      <div data-name="<%=condition %>" class="condition-select" id="condition-<%= condition %>">
-      <%= condition %>
+      <div data-name="<%=condition %>" class="condition-select button" id="condition-<%= condition %>">
+      <%= condition %> 
       </div>
     <% end %>
 
-
-    <div class="field">
-      <%= f.label :original_price %><br>
-      <%= f.number_field :original_price, placeholder: "(optional)" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :price %><br>
-      <%= f.number_field :price %>
-    </div>
-
+  <br>
     <div class="field">
       <%= f.label :tag_list, "Tags (comma separated)" %>
       <%= f.text_field :tag_list %>
     </div>
-
+<br>
     <div class="actions">
       <%= f.submit %>
     </div>
   </div> <!-- end listing-form-product-info   -->
 <% end %>
+</div>

@@ -18,8 +18,10 @@
  */
 
 
- body { font-family: Helvetica;
-          }
+ body { font-family: 'Lato', "Helvetica",sans-serif;
+          background-color:#F0F0F5
+
+        }
 
 
  a {  }
@@ -35,14 +37,34 @@
   width: 50%;
   text-align: center;
   margin: 1rem auto;
+  font-size: 20px;
 
 }
+
+#login-splash-container{
+   background-image: url('https://s3.amazonaws.com/ooomf-com-files/iqlYdAAYQiaOCoKnT6jE_kabia.jpg');
+   height: 100%;
+   background-size: cover;
+   background-position-y: -192px;
+   margin: 10px auto;
+ }
+
+ #sign-up {
+   margin: 25px auto;
+   width: 500px;
+   background: rgba(238,238,238,0.7);
+   padding-top: 71px;
+margin: 0 auto;
+ }
 
 /*SIGN UP*/
 .sign-up-directions {
   margin: 0 auto;
   width: 500px;
-  text-align: center
+  text-align: center;
+  font-size: 21px;
+margin-bottom: 1.25rem;
+font-weight: bold;
 }
 
 #sign-up-form {
@@ -55,6 +77,11 @@
 }
 
 #bottom-directions {
+color: rgba(26, 23, 23, 0.55);
+font-size: 18px;
+line-height: 30px;
+padding: 10px 5px;
+background-color: rgba(248, 248, 248, 0.34);
 }
 
 select#login-username-selection {
@@ -230,9 +257,8 @@ a.chosen-single {
 
 .gender-select {
   display: inline-block;
-  width: 80px;
-  height: 20px;
-  padding: 25px
+  width: 150px;
+  padding: 30px
 }
 
 #womens-categories, #mens-categories {
@@ -254,28 +280,35 @@ a.chosen-single {
 .displayed-sizes {
   display: block !important;
 }
+#listing_asset_attributes_photo1, #listing_asset_attributes_photo2, #listing_asset_attributes_photo3 {
+  display: inline-block;
+  width: 300px
+}
 
 .category-select {
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-  margin: 10px;
-  padding: 15px;
+width: 106px;
+height: 121px;
+display: inline-block;
+padding: 15px;
 }
 .condition-select {
   display: inline-block;
   padding: 15px;
-  height: 20px;
+  height: 60px;
 }
 
 #size-box {
   width: 500px;
-  height: 250px;
   border: solid 1px black;
 }
 
 .size-select {
   display: inline-block;
+}
+
+#listing_description {
+  width: 600px;
+  height: 130px;
 }
 
 #brands {
@@ -286,12 +319,17 @@ a.chosen-single {
   width: 300px;
 }
 
-input#listing_description {
-  width: 100px;
-  height: 50px;
+#condition-options {
+  height: 100px;
 }
 
+.field, #brands {
+display: inline-block;
+}
 
+#listing_title {
+  width: 500px;
+}
 /*CHECKOUT CART*/
 .future-purchase {
   border: black solid 1px;
