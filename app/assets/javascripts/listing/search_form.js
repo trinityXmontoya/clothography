@@ -1,5 +1,10 @@
 $(document).ready( function(){
 
+    $("#see_more_options").on("click", function(){
+      $("#more_options").toggleClass('display-me')
+    });
+
+
    $("#search-form-reset").on("click", function(){
      $(".search-field").val('')
    });
@@ -7,6 +12,7 @@ $(document).ready( function(){
   $("#q_category_id_eq").chosen({
     width: "150px",
     search_contains: true,
+    inherit_select_classes: true
   });
 
   $("#q_brand_id_eq").chosen({

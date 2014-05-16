@@ -103,6 +103,9 @@ GEM
       dotenv (= 0.10.0)
     erubis (2.7.0)
     execjs (2.0.2)
+    foundation-rails (5.2.2.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     fssm (0.2.10)
     hashie (2.1.1)
     hike (1.2.3)
@@ -235,6 +238,7 @@ DEPENDENCIES
   chosen-rails
   coffee-rails (~> 4.0.0)
   dotenv-rails
+  foundation-rails
   jbuilder (~> 2.0)
   jquery-rails
   minitest

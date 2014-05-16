@@ -12,8 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require chosen-jquery
+//= require foundation
+//= require turbolinks
 //= require_tree ./global
 
 $(document).ready( function(){
@@ -51,3 +52,5 @@ $(document).ready( function(){
 //   });
 //
 // };
+
+$(function(){ $(document).foundation(); });

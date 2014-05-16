@@ -13,7 +13,7 @@
     <%= image_tag @user.bg_photo %>
   </div>
 
-  <#% unless current_user == @user %>
+  <% unless current_user == @user %>
     <div id="message-user-from-closet-button">
       Message this user
     </div>
@@ -21,32 +21,32 @@
     <div id="message-user-from-closet-popout">
       <%= render 'messages/send_message_form', user: @user, message: @message %>
     </div>
-  <#% end %>
+  <% end %>
+
+<div id="whole-closet">
+
 
     <br>
-    <div id="available-listings-header" class="listing-header"><h3>Available Listings(<%= @listings.count %>) | </h3></div>
-    <div id="sold-listings-header" class="listing-header"><h3>Sold Listings(<%= @sales.count %>)</h3></div>
-
+    <div id="available-listings-header" class="listing-header"><h4>Available Listings(<%= @listings.count %>) | </h4></div>
+    <div id="sold-listings-header" class="listing-header"><h4>Sold Listings(<%= @sales.count %>)</h4></div>
+    <br>
+    <br>
     <div id="listing-display-box">
       <div id="available-listings">
         <% @listings.each do |listing| %>
           <%= link_to [@user,listing] do %>
-            <div class="each-available-listing">
-              <%= listing.brand.name %>
-              <br>
-              <%= listing.category.name %>
-              <br>
-              <%= listing.title %>
-              <br>
-              <%= image_tag listing.asset.photo1 %>
-              <br>
-              <%= listing.condition %>
-              <br>
-              Original:<%= listing.original_price %>
-              <br>
-              $<%= listing.price %>
-              <br>
-              <%= listing.discount %>% OFF
+            <div class="listing ">
+                <div class="panel listing-basic-info">
+                  <h6><%= listing.brand.name %><h6>
+                  <h5><%= listing.title %><h5>
+                </div>
+                <%= image_tag listing.asset.photo1 %>
+                <div class="panel listing-price-info">
+                  <% if listing.original_price %>
+                  <strike>$<%= listing.original_price %></strike>
+                  <% end %>
+                  $<%= listing.price %>
+                </div>
             </div>
           <% end %>
         <% end %>
@@ -62,24 +62,23 @@
 
         <% @sales.each do |sold_listing| %>
           <%= link_to [@user,sold_listing] do %>
-            <div class="each-available-sold_listing">
-              <%= sold_listing.brand.name %>
-              <br>
-              <%= sold_listing.category.name %>
-              <br>
-              <%= sold_listing.title %>
-              <br>
-              <%= image_tag sold_listing.asset.photo1 %>
-              <br>
-              <%= sold_listing.condition %>
-              <br>
-              Original:<%= sold_listing.original_price %>
-              <br>
-              $<%= sold_listing.price %>
-              <br>
-              <%= sold_listing.discount %>% OFF
+            <div class="each-available-listing">
+              <div class="listing">
+                  <div class="panel listing-basic-info">
+                    <h6><%= sold_listing.brand.name %><h6>
+                    <h5><%= sold_listing.title %><h5>
+                  </div>
+                  <%= image_tag sold_listing.asset.photo1 %>
+                  <div class="panel listing-price-info">
+                    <% if sold_listing.original_price %>
+                    <strike>$<%= sold_listing.original_price %></strike>
+                    <% end %>
+                    $<%= sold_listing.price %>
+                  </div>
+              </div>
             </div>
           <% end %>
         <% end %>
       <% end %>
     </div>
+</div>

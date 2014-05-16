@@ -61,6 +61,7 @@
   <%= @listing.category.name %>
 </p>
 
+  <ul data-orbit>
   <%  if @listing.asset.photo1.exists? %>
     <%= image_tag @listing.asset.photo1 %>
   <% end %>
@@ -70,7 +71,7 @@
   <%  if @listing.asset.photo3.exists? %>
     <%= image_tag @listing.asset.photo3 %>
    <% end %>
-
+ </ul>
 <p>
   <strong>Tags:</strong>
   <% @listing.tag_list.each do |tag| %>

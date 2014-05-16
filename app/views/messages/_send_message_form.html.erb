@@ -1,6 +1,9 @@
 <%= form_for [user,message] do |f| %>
   <%= f.hidden_field :receiver_id, value: user.id %>
   <%= f.hidden_field :sender_id, value: current_user.id %>
-  <%= f.text_field :content %>
-  <%= f.submit "Send Message" %>
+  <div id="message-input-box">
+    <%= f.text_field :content %>
+    <%= f.submit "Send Message", id: 'message-input-submit', class: 'button' %>
+  </div>
+
 <% end %>

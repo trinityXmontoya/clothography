@@ -12,36 +12,34 @@
  *
 
  *= require_tree .
- *= require_self
  *= require chosen
+ *= require foundation_and_overrides
+ *= require_self
  */
 
 
- /*BODY*/
  body { font-family: Helvetica;
-         color:green }
+          }
 
 
- a { color:pink; }
+ a {  }
 
 /*LAYOUT*/
 .main-navbar-item {
   display: inline-block;
-  background-color: cornflowerblue;
-  color: white;
   padding: 15px;
   font-size: 23px;
 }
 
 #notice {
-  display: block;
+  width: 50%;
   text-align: center;
   margin: 1rem auto;
-  color: crimson
+
 }
 
 /*SIGN UP*/
-#sign-up-directions {
+.sign-up-directions {
   margin: 0 auto;
   width: 500px;
   text-align: center
@@ -56,54 +54,115 @@
   text-align: center;
 }
 
-#twitter-login-link {
-  color: cornflowerblue
+#bottom-directions {
+}
+
+select#login-username-selection {
+  font-size: 18px
 }
 /*LISTINGS SEARCH DISPLAY*/
 
 #search {
   margin: 10px 0;
   padding: 30px;
-  /*background-color: blue*/
 }
 
-#search-bar {
-  height: 30px;
-  width: 400px;
-}
-
-#q_title_cont {
-  width: 400px;
-}
 
 .price-range-search {
   width: 30px;
 }
-
-.search-form-labels {
-  display: inline;
+#orig-price-range {
+  display:none;
+}
+#price-range-slider {
+  width: 30%;
+  display: inline-block;
+  margin: 0 15px;
 }
 
+.search-field, #q_title_or_description_cont, #q_price_gteq, #q_price_lteq, #q_size_name_eq {
+  display: inline-block;
+}
+
+#q_size_name_eq {
+  width: 100px;
+}
+#q_title_or_description_cont {
+  width: 40%;
+  margin: 0 15px
+}
+.search-label {
+  display: inline-block;
+}
+
+.category-search-field {
+  height: 35px
+}
+
+#search-restrictions {
+  float: right;
+  margin: -25px 15px 35px 15px;
+  padding: 5px;
+}
+#search-results {
+  margin: 0 3%;
+}
+
+#search-and-reset {
+  margin: 0 0 0 780px;
+  display: inline-block;
+}
+#see_more_options {
+  margin: 11px 0;
+}
+
+#more_options {
+  display: none;
+}
 .listing {
   display:inline-block;
-  border: solid black 3px;
-  width: 230px;
-  height: 200px;
+  width: 250px;
+  margin-right: 15px;
 }
 
+.listing img {
+  text-align: center
+}
+
+.listing-basic-info {
+  margin: 0;
+  height: 60px;
+  padding: 6px 0 6px 6px
+}
+
+.listing-price-info {
+  margin: 0 0 23px 0;
+  height: 35px;
+  padding: 9px 0 0px 6px;
+}
+
+a.chosen-single {
+  height: 35px
+}
 .listing img {
   width: 200px;
 }
 
+#q_price_gteq, #q_price_lteq {
+  width: 50px;
+}
+
 /*USER PROFILE + CLOSET */
 
+#inbox-notification{
+  margin: -10px 0 15px 0;
+}
 #user-info {
   display:inline-block;
 }
 #user_closet {
   float: right;
   display: inline-block;
-  background-color: orange;
   height: 500px;
   width: 500px;
 }
@@ -117,14 +176,45 @@
   width: 300px;
   display: inline-block;
 }
-.each-available-listing img {
-  width: 100px;
+
+.message-panel {
+  width: 400px;
 }
 
+#all-messages{
+  margin: 20px 0 0 0;
+  height: 600px;
+  overflow: scroll
+}
+#message_content {
+  width: 400px;
+  margin: -60px 0 0 60px
+}
+
+.inbox-msg-show img {
+  width: 50px;
+}
+#message-input-box {
+  margin: -400px 0 0 360px
+}
+#message-input-submit{
+  margin: 10px 0 0 60px
+}
+.message-panel img {
+  width: 50px
+}
+#sent-messages, #received-messages {
+  display: inline-block;
+  margin: 10px 40px 0 0;
+  height: 600px;
+  overflow: scroll
+}
 .hide-me {
   display: none;
 }
-
+#msg-info{
+  display: inline;
+}
 #sold-listings, #available-listings{
   display: none;
 }
@@ -133,10 +223,12 @@
   display: inline-block
 }
 
+#whole-closet {
+  margin: 10px 75px;
+}
 /*LISTING UPLOAD*/
 
 .gender-select {
-  background-color: black;
   display: inline-block;
   width: 80px;
   height: 20px;
@@ -172,7 +264,6 @@
 }
 .condition-select {
   display: inline-block;
-  background-color: black;
   padding: 15px;
   height: 20px;
 }
@@ -225,7 +316,6 @@ input#listing_description {
 }
 
 .moveme {
-  background-color: orange;
   width: 50px;
   height: 50px;
   float: left;
@@ -239,8 +329,7 @@ input#listing_description {
 }
 
 #message-user-from-listing-button, #message-user-from-profile-button {
-  background-color: black;
-  color:pink;
+
   display: inline-block;
   font-size: 23px;
 }

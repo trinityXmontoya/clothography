@@ -17,7 +17,7 @@ end
     sender = message.sender
     receiver = message.receiver
     @user = sender
-    @messages = Message.retrieve_all_correspondence(sender, receiver)
+    @messages = Message.retrieve_all_correspondence(sender, receiver).reverse
     Message.mark_all_as_viewed(current_user,sender)
     @message = Message.new
   end

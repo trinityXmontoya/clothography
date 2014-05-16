@@ -48,6 +48,8 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
 
 gem 'acts-as-taggable-on'
+
+gem 'foundation-rails'
 # Use unicorn as the app server
 # gem 'unicorn'
 

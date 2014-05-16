@@ -8,41 +8,48 @@
                           html: { method: :post } do |f| %>
 
 
-    <%= f.label :title_cont %>
-    <%= f.search_field :title_cont, class: 'search-field' %>
+    <%= f.collection_select :category_id_eq, Category.all, :id, :name, prompt: "Category", class: 'search-field category-search-field', data: {placeholder:"no"} %>
 
-    <%= f.label :price_gteq, "Price between" %>
-    <%= f.number_field :price_gteq, class: 'price-range-search search-field' %>
-    <%= f.label :price_lteq, "and" %>
-    <%= f.number_field :price_lteq, class: 'price-range-search search-field' %>
+    <%= f.search_field :title_or_description_cont, class: 'search-field ' %>
 
-    <p class="search-form-labels">Category</p>
-    <%= f.collection_select :category_id_eq, Category.all, :id, :name, prompt: "Select category", class: 'search-field', data: {placeholder:"no"} %>
-
-    <p class="search-form-labels">Size Type</p>
-    <%= f.select :size_name_eq, options_for_select([["Petite","Petite"],["Plus","Plus"]]), prompt: "Select Size",class: 'search-field' %>
+<div id="orig-price-range">
+    <%= f.label :price_gteq, "$", class: "search-label" %>
+    <%= f.hidden_field :price_gteq, class: 'price-range-search search-field ' %>
+    <%= f.label :price_lteq, "-", class: "search-label" %>
+    <%= f.hidden_field :price_lteq, class: 'price-range-search search-field ' %>
+  </div>
 
 
-    <p class="search-form-labels">Size</p>
 
+<div class="range-slider" id="price-range-slider" data-slider data-options="start: <%= @listings.minimum("price") %> ; end: <%= @listings.maximum("price") %>;">
+  <span class="range-slider-handle"></span>
+  <span class="range-slider-active-segment"></span>
+  <input type="hidden">
+</div>
+
+<div id="see_more_options" class="small radius">More options</div>
+
+<div id="more_options">
+  <p class="search-label">Brand</p>
+  <%= f.collection_select :brand_id_eq, Brand.all, :id, :name, prompt: "Select a brand", class: 'search-field' %>
+
+    <p class="search-label">Size</p>
     <%= f.collection_select :size_id_eq, @standard_sizes, :id, :label, {} , {multiple: true}%>
 
-    <p class="search-form-labels">Brand</p>
-    <%= f.collection_select :brand_id_eq, Brand.all, :id, :name, prompt: "Select a brand", class: 'search-field' %>
 
-    <%= f.label :condition %>
+    <%= f.label :condition , class: "search-label"%>
     <%= f.select :condition_eq, options_for_select(Listing.conditions, :name), {}, {multiple: true, class: 'search-field'} %>
 
-    <p class="search-form-labels">Color</p>
+    <p class="search-label">Color</p>
     <%= f.collection_select :color_id_eq, Color.all, :id, :name, {}, {multiple: true, class: 'search_field'} %>
+</div>
 
+<div id="search-and-reset">
+  <%= f.submit%>
+  <%= f.submit "Reset", id: 'search-form-reset' %>
+</div>
 
-    <%= f.submit%>
-
-    <%= f.submit "Reset", id: 'search-form-reset' %>
-  <% end %>
-
-
+<% end %>
 
 </div>
 
@@ -54,16 +61,25 @@
 
 
 
-<div id="search-results">
-  <% @listings.each do |listing| %>
-    <%= link_to user_listing_path(listing.user, listing) do %>
-      <div class="listing">
-        <%= listing.title %>
-        <%= image_tag listing.asset.photo1 %>
-        Original:<%= listing.original_price %>
-        $<%= listing.price %>
-        <%= listing.discount %>% OFF
-      </div>
+<div id="search-results" class="large-11 columns">
+
+    <% @listings.each do |listing| %>
+      <%= link_to user_listing_path(listing.user, listing) do %>
+        <div class="listing ">
+            <div class="panel listing-basic-info">
+              <h6><%= listing.brand.name %><h6>
+              <h5><%= listing.title %><h5>
+            </div>
+            <%= image_tag listing.asset.photo1 %>
+            <div class="panel listing-price-info">
+              <% if listing.original_price %>
+              <strike>$<%= listing.original_price %></strike>
+              <% end %>
+              $<%= listing.price %>
+            </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+    </div>
+
 </div>

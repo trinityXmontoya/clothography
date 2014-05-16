@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Clothography</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title>Clothography</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+  </head>
+
+  <body>
 <nav id='main-navbar'>
 
   <% unless current_user %>
@@ -24,9 +28,12 @@
 
 
   <%= content_for :header %>
-  <p id="notice"><%= notice %></p>
+  <% if notice %>
+  <p id="notice", class=" alert-box alert round"><%= notice %></p>
+  <% end %>
   <%= yield %>
 
 
-</body>
+
+  </body>
 </html>
