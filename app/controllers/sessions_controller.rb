@@ -5,8 +5,12 @@ class SessionsController < ApplicationController
 
   def request_token
     @user = User.find_by(username: params[:user_id])
-    @user.send_login_link
-    redirect_to login_path, notice: "Your email was sent."
+    if @user
+      @user.send_login_link
+      redirect_to login_path, notice: "Your email was sent."
+    else
+      redirect_to login_path, notice: "Whoops! Looks like you didn't select a username. Try again."
+    end
   end
 
   def create

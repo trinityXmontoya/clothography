@@ -27,15 +27,38 @@
 /*LAYOUT*/
 .main-navbar-item {
   display: inline-block;
-  float: right;
   background-color: cornflowerblue;
   color: white;
   padding: 15px;
   font-size: 23px;
 }
 
-/**= require s3_direct_upload_progress_bars*/
+#notice {
+  display: block;
+  text-align: center;
+  margin: 1rem auto;
+  color: crimson
+}
 
+/*SIGN UP*/
+#sign-up-directions {
+  margin: 0 auto;
+  width: 500px;
+  text-align: center
+}
+
+#sign-up-form {
+  margin: 2rem auto;
+  width: 300px;
+}
+
+#sign-up-form input[type="submit"]{
+  text-align: center;
+}
+
+#twitter-login-link {
+  color: cornflowerblue
+}
 /*LISTINGS SEARCH DISPLAY*/
 
 #search {

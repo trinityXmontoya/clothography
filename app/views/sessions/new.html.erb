@@ -1,10 +1,17 @@
 <%= javascript_include_tag 'session/login' %>
 
-<div id="sign-up-form">
 
+
+<div id="sign-up-directions">
+  Ready to login? Just start typing your username below!
+  <br>
+  We'll send you an email with a special login link, click it and you're all set! No password to remember (even though we both know you  would've used '123456' anyway.).<br> (If this is too new age for you you're welcome to <%= link_to "Login with Twitter", '/auth/twitter', id: "twitter-login-link" %>)
+</div>
+
+<div id="sign-up-form">
   <%= form_tag request_token_path(user_id: 0), id:'login-form' do %>
-    <%= label_tag :username %>
     <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :username), id: 'login-username-selection', prompt: "" %>
-    <%= submit_tag %>
+    <br>
+    <%= submit_tag "Do it!" %>
   <% end %>
 </div>

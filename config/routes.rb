@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 
-root 'welcome#home'
+root 'sessions#new'
 
 get "/auth/:provider/callback" => "sessions#twitter_create"
 get '/auth/failure', :to => 'sessions#failure'
