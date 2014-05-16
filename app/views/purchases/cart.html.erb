@@ -1,3 +1,5 @@
+<div class="row">
+
 <%= javascript_include_tag "checkout/checkout_cart.js" %>
 
 <h1>Checkout</h1>
@@ -8,21 +10,26 @@
       <% @future_purchases.each do |purchase| %>
       <div class="future-purchase">
           <tr>
-              <td><%= link_to purchase.listing.user.username, purchase.listing.user %> </td>
               <%= link_to [purchase.listing.user,purchase.listing] do %>
-                <td><%= image_tag purchase.listing.asset.photo1 %></td>
-                <td><%= purchase.listing.title %></td>
-                <td><%= purchase.listing.description %></td>
-                <td><%= purchase.listing.brand.name %></td>
-                <td><%= purchase.listing.category.name %></td>
-                <td><%= purchase.listing.original_price %></td>
-                <td><%= purchase.listing.price %></td>
-                <td><%= purchase.listing.status %></td>
-                <td><%= purchase.listing.condition %></td>
+                <div class="listing ">
+                    <div class="panel listing-basic-info checkout-basic-info">
+                      <h6><%= purchase.listing.brand.name %><h6>
+                      <h5><%= purchase.listing.title %><h5>
+                        <%= link_to purchase.listing.user.username, purchase.listing.user, class:'cart-seller-info' %>
+                    </div>
+                    <%= image_tag purchase.listing.asset.photo1 %>
+                    <div class="panel listing-price-info checkout-info">
+                      <% if purchase.listing.original_price %>
+                      <strike>$<%= purchase.listing.original_price %></strike>
+                      <% end %>
+                      $<%= purchase.listing.price %>
+                      <%= button_to "Remove from cart", {action: 'destroy', id: purchase.id, controller: 'purchases'},id: "remove-from-cart", method: :delete %>
+                    </div>
+                </div>
+
               </tr>
                 <% end %>
                 <%= render '/charges/stripe_form', amount: purchase.listing.price, purchase: purchase  %>
-              <%= button_to "Remove from cart", {action: 'destroy', id: purchase.id, controller: 'purchases'}, method: :delete %>
             </div>
           <% end %>
 
@@ -30,4 +37,7 @@
 
 
 <div id="checkout-buy">
+  
+</div>
+
 </div>

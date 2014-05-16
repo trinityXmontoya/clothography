@@ -77,7 +77,7 @@
       <div id="standard-sizes" >
         <% @standard_sizes.each  do |size| %>
           <p class="size-select" data-id="<%= size.id %>">
-            <%= size.label %>
+            <%= size.label %> |
           </p>
         <% end %>
       </div>
@@ -86,7 +86,7 @@
       <div id="jean-sizes" >
         <% @jean_sizes.each  do |size| %>
           <p class="size-select" data-id="<%= size.id %>">
-            <%= size.label %>
+            <%= size.label %> |
           </p>
         <% end %>
       </div>
@@ -94,7 +94,7 @@
       <div id="bottom-sizes" >
         <% @bottoms_sizes.each  do |size| %>
           <p class="size-select" data-id="<%= size.id %>">
-            <%= size.label %>
+            <%= size.label %> |
           </p>
         <% end %>
       </div>
@@ -102,7 +102,7 @@
       <div id="shoe-sizes" >
         <% @shoe_sizes.each  do |size| %>
           <p class="size-select" data-id="<%= size.id %>">
-            <%= size.label %>
+            <%= size.label %> |
           </p>
         <% end %>
       </div>
@@ -117,7 +117,7 @@
     <%= f.hidden_field :condition %>
     <% Listing.conditions.each do |condition| %>
       <div data-name="<%=condition %>" class="condition-select button" id="condition-<%= condition %>">
-      <%= condition %> 
+      <%= condition %>
       </div>
     <% end %>
 

@@ -18,7 +18,7 @@ class PurchasesController < ApplicationController
     purchase.mark_as_in_cart
     if purchase.save
       respond_to do |format|
-        format.html {redirect_to user_listing_path(seller,listing), notice: "Hello"}
+        format.html {redirect_to user_listing_path(seller,listing), notice: "Succesfully added to cart"}
         format.js {}
       end
     else

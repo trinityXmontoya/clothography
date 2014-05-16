@@ -74,7 +74,9 @@ font-weight: bold;
 
 #sign-up-form input[type="submit"]{
   text-align: center;
+  background-color: rgb(82, 223, 74);
 }
+
 
 #bottom-directions {
 color: rgba(26, 23, 23, 0.55);
@@ -291,6 +293,25 @@ height: 121px;
 display: inline-block;
 padding: 15px;
 }
+
+.category-select.mens {
+  background-color: rgba(218, 115, 115, 1);
+}
+
+.category-select.womens {
+
+  background-color: rgb(176, 168, 223);
+}
+
+div#gender-1 {
+  background-color: rgba(76, 58, 181,.8);
+}
+
+div#gender-2 {
+  background-color: rgba(190,31,31,.8);
+}
+
+
 .condition-select {
   display: inline-block;
   padding: 15px;
@@ -332,17 +353,34 @@ display: inline-block;
 }
 /*CHECKOUT CART*/
 .future-purchase {
-  border: black solid 1px;
   width: 400px;
-  height: 150px
 }
-
+.cart-seller-info {
+  float:right;
+  margin: -11px 7px 0 0;
+}
 .future-purchase img {
   width: 100px;
 }
 
+.checkout-basic-info {
+  height: 80px;
+}
+
+.checkout-info {
+  height: 77px;
+  margin: 23px 0 0 0;
+  float: right;
+  padding: 11px 0 0 1px;
+  width: 145px;
+}
+#remove-from-cart {
+  margin: 10px 0 0 0;
+}
 #checkout-cart {
   display: inline-block;
+  height: 880px;
+  overflow: scroll;
 }
 
 #checkout-buy {
@@ -351,6 +389,7 @@ display: inline-block;
   border: solid 3px green;
   width: 500px;
   height: 800px;
+  padding: 10px;
 }
 
 .moveme {

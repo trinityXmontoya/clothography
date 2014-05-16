@@ -12,12 +12,12 @@
 
     <%= f.search_field :title_or_description_cont, class: 'search-field ' %>
 
-<div id="orig-price-range">
+<!-- <div id="orig-price-range">
     <%= f.label :price_gteq, "$", class: "search-label" %>
     <%= f.hidden_field :price_gteq, class: 'price-range-search search-field ' %>
     <%= f.label :price_lteq, "-", class: "search-label" %>
     <%= f.hidden_field :price_lteq, class: 'price-range-search search-field ' %>
-  </div>
+  </div> -->
 
 
 
@@ -26,6 +26,11 @@
   <span class="range-slider-active-segment"></span>
   <input type="hidden">
 </div>
+
+<%= f.label :price_gteq, "$", class: "search-label" %>
+<%= f.number_field :price_gteq, class: 'price-range-search search-field ' %>
+<%= f.label :price_lteq, "-", class: "search-label" %>
+<%= f.number_field :price_lteq, class: 'price-range-search search-field ' %>
 
 <div id="see_more_options" class="small radius">More options</div>
 

@@ -11,7 +11,7 @@
 <div id="womens-categories">
   <% categories = Category.where(gender_id: 1) %>
     <% categories.each do |category| %>
-        <div class="category-select button" id="<%= category.name %>-category" data-id="<%= category.id %> " >
+        <div class="category-select womens button" id="<%= category.name %>-category" data-id="<%= category.id %> " >
           <%= category.name %>
           <%= image_tag category.icon %>
         </div>
@@ -21,7 +21,7 @@
 <div id="mens-categories">
   <% categories = Category.where(gender_id: 2) %>
     <% categories.each do |category| %>
-        <div class="category-select button" id="<%= category.name %>-category" data-id="<%= category.id %> " >
+        <div class="category-select mens button" id="<%= category.name %>-category" data-id="<%= category.id %> " >
           <%= category.name %>
           <%= image_tag category.icon %>
         </div>
