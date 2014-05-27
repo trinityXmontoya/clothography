@@ -52,7 +52,7 @@ gem 'acts-as-taggable-on'
 gem 'foundation-rails'
 
 gem 'rails_12factor', group: :production
-ruby '2.0.0'
+ruby '2.1.0'
 # Use unicorn as the app server
 # gem 'unicorn'
 

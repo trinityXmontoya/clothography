@@ -11,7 +11,7 @@ get '/login' => 'sessions#new'
 post '/login/:user_id/send_login_link' => 'sessions#request_token', as: :request_token
 get '/login/:user_id/*auth_token' => 'sessions#create'
 get '/logout' => 'sessions#destroy'
-
+get '/sign_up' => 'users#new'
 
 match '/listings' => 'listings#all_site_listings', via: [:get, :post], as: :search_listings
 get '/listings/:tag' => 'listings#all_site_listings', as: :search_for_tag
