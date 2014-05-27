@@ -15,7 +15,6 @@
 //= require chosen-jquery
 //= require foundation
 //= require turbolinks
-//= require_tree ./global
 
 $(document).ready( function(){
 
