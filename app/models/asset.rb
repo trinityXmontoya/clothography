@@ -3,17 +3,17 @@ class Asset < ActiveRecord::Base
   belongs_to :listing, inverse_of: :asset
 
   has_attached_file :photo1,
-    path: "/users/:class/:username/:attachment/:id/:filename",
+    path: "/users/:class/:user/:attachment/:id/:filename",
     styles: { large: "700x400#", medium: "490x368#"},
     convert_options: { all: "-auto-orient" }
 
   has_attached_file :photo2,
-  path: "/users/:class/:username/:attachment/:id/:filename",
+  path: "/users/:class/:user/:attachment/:id/:filename",
   styles: { large: "700x400#", medium: "490x368#"},
   convert_options: { all: "-auto-orient" }
 
   has_attached_file :photo3,
-    path: "/users/:class/:username/:attachment/:id/:filename",
+    path: "/users/:class/:user/:attachment/:id/:filename",
     styles: { large: "700x400#", medium: "490x368#"},
     convert_options: { all: "-auto-orient" }
 

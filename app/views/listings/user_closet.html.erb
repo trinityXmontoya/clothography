@@ -12,17 +12,18 @@
   <div id="user-info">
     <h1><%= @user.username %>'s Closet</h1>
     <%= image_tag @user.profile_photo %>
-    <%= image_tag @user.bg_photo %>
   </div>
 
-  <% unless current_user == @user %>
-    <div id="message-user-from-closet-button">
-      Message this user
-    </div>
+  <% if current_user %>
+    <% unless current_user == @user %>
+      <div id="message-user-from-closet-button">
+        Message this user
+      </div>
 
-    <div id="message-user-from-closet-popout">
-      <%= render 'messages/send_message_form', user: @user, message: @message %>
-    </div>
+      <div id="message-user-from-closet-popout">
+        <%= render 'messages/send_message_form', user: @user, message: @message %>
+      </div>
+    <% end %>
   <% end %>
 
 <div id="whole-closet">
