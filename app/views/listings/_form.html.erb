@@ -5,7 +5,6 @@
   <% if @listing.errors.any? %>
     <div id="error_explanation">
       <h2>Please correct the following <%= pluralize(@listing.errors.count, "error") %>:</h2>
-
       <ul>
       <% @listing.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -16,9 +15,9 @@
 
     <% if params[:action] == 'new' || params[:action] == 'create' %>
       <%= javascript_include_tag "listing/new_listing_form.js" %>
-      <%= render 'new_listing_top' , f: f %>
+      <%= render 'new_listing_top' , f: f, womens_categories: @womens_categories, mens_categories: @mens_categories %>
     <% else %>
-      <%= javascript_include_tag "listing/edit_listing_form"%>
+      <%= javascript_include_tag "listing/edit_listing_form" %>
         <%  if @listing.asset.photo1.exists? %>
           <%= image_tag @listing.asset.photo1 %>
         <% end %>
@@ -31,7 +30,6 @@
       <h3>Current photos, replace?</h3>
     <% end %>
 
-  </div>
 
 
   <div id="listing-form-product-info">
@@ -76,7 +74,7 @@
       Sizes:
       <div id="standard-sizes" >
         <% @standard_sizes.each  do |size| %>
-          <p class="size-select" data-id="<%= size.id %>">
+          <p class="size-select" data-id="<%= size.name %>">
             <%= size.label %> |
           </p>
         <% end %>
@@ -85,7 +83,7 @@
 
       <div id="jean-sizes" >
         <% @jean_sizes.each  do |size| %>
-          <p class="size-select" data-id="<%= size.id %>">
+          <p class="size-select" data-id="<%= size.name %>">
             <%= size.label %> |
           </p>
         <% end %>
@@ -93,7 +91,7 @@
 
       <div id="bottom-sizes" >
         <% @bottoms_sizes.each  do |size| %>
-          <p class="size-select" data-id="<%= size.id %>">
+          <p class="size-select" data-id="<%= size.name %>">
             <%= size.label %> |
           </p>
         <% end %>
@@ -101,17 +99,13 @@
 
       <div id="shoe-sizes" >
         <% @shoe_sizes.each  do |size| %>
-          <p class="size-select" data-id="<%= size.id %>">
+          <p class="size-select" data-id="<%= size.name %>">
             <%= size.label %> |
           </p>
         <% end %>
       </div>
-    <% end %>
-
-
     </div>
-
-
+    <% end %>
 
     <%= f.label :condition %>
     <%= f.hidden_field :condition %>
