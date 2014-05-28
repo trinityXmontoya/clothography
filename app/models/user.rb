@@ -18,6 +18,27 @@ class User < ActiveRecord::Base
 
   validates :username, :email, presence: true
 
+  has_attached_file :profile_photo,
+    path: "/:class/:username/:attachment/:filename",
+    styles: { medium: "490x368#", thumbnail: '60x60'},
+    convert_options: { all: "-auto-orient" }
+
+  has_attached_file :bg_photo,
+    path: "/:class/:username/:attachment/:filename",
+    styles: { large: "700x400#"},
+    convert_options: { all: "-auto-orient" }
+
+  validates_attachment :profile_photo,
+  content_type: {
+    content_type:  /^image\/(png|jpeg)/ },
+  size: { in: 0..10000.kilobytes }
+
+  validates_attachment :bg_photo,
+  content_type: {
+    content_type:  /^image\/(png|jpeg)/ },
+  size: { in: 0..10000.kilobytes }
+
+
   acts_as_tagger
 
   def to_param

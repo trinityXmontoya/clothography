@@ -155,12 +155,18 @@ select#login-username-selection {
 }
 
 .listing img {
-  text-align: center
+  max-width: 249px;
+  max-height: 167px;
+  background-color: black;
+}
+
+.image_listing {
+  text-align: center;
+  background-color: black;
 }
 
 .listing-basic-info {
   margin: 0;
-  height: 60px;
   padding: 6px 0 6px 6px
 }
 
@@ -172,9 +178,6 @@ select#login-username-selection {
 
 a.chosen-single {
   height: 35px
-}
-.listing img {
-  width: 200px;
 }
 
 #q_price_gteq, #q_price_lteq {

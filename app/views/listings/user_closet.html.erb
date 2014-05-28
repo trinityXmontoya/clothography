@@ -12,17 +12,18 @@
   <div id="user-info">
     <h1><%= @user.username %>'s Closet</h1>
     <%= image_tag @user.profile_photo %>
-    <%= image_tag @user.bg_photo %>
   </div>
 
-  <% unless current_user == @user %>
-    <div id="message-user-from-closet-button">
-      Message this user
-    </div>
+  <% if current_user %>
+    <% unless current_user == @user %>
+      <div id="message-user-from-closet-button">
+        Message this user
+      </div>
 
-    <div id="message-user-from-closet-popout">
-      <%= render 'messages/send_message_form', user: @user, message: @message %>
-    </div>
+      <div id="message-user-from-closet-popout">
+        <%= render 'messages/send_message_form', user: @user, message: @message %>
+      </div>
+    <% end %>
   <% end %>
 
 <div id="whole-closet">
@@ -35,6 +36,11 @@
     <br>
     <div id="listing-display-box">
       <div id="available-listings">
+        <% unless @listings.exists? %>
+      <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> doesn't have anything listed right now! Check out <%= link_to "other listings", root_path %>"
+      </div>
+      <% else %>
+
         <% @listings.each do |listing| %>
           <%= link_to [@user,listing] do %>
             <div class="listing ">
@@ -42,7 +48,9 @@
                   <h6><%= listing.brand.name %><h6>
                   <h5><%= listing.title %><h5>
                 </div>
+              <div class="image_listing">
                 <%= image_tag listing.asset.photo1 %>
+                </div>
                 <div class="panel listing-price-info">
                   <% if listing.original_price %>
                   <strike>$<%= listing.original_price %></strike>
@@ -52,6 +60,7 @@
             </div>
           <% end %>
         <% end %>
+        <% end %>
       </div>
     </div>
 
@@ -59,7 +68,14 @@
 
     <div id="sold-listings">
       <% unless @sales.exists? %>
-      Looks like <%= @user.username %> hasn't sold anything yet! Maybe help 'em out and <%= link_to "buy something", user_closet_path(@user) %> ;)"
+
+        <% if @listings.exists? %>
+        <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Maybe help 'em out and <%= link_to "buy something", user_closet_path(@user) %> ;)"
+        </div>
+        <% else %>
+        <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Check out <%= link_to "other listings", root_path %> ;)"
+      </div>
+        <% end %>
       <% else %>
 
         <% @sales.each do |sold_listing| %>
@@ -70,7 +86,9 @@
                     <h6><%= sold_listing.brand.name %><h6>
                     <h5><%= sold_listing.title %><h5>
                   </div>
-                  <%= image_tag sold_listing.asset.photo1 %>
+                  <div class="image_listing">
+                <%= image_tag sold_listing.asset.photo1 %>
+                </div>
                   <div class="panel listing-price-info">
                     <% if sold_listing.original_price %>
                     <strike>$<%= sold_listing.original_price %></strike>

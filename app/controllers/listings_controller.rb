@@ -43,6 +43,8 @@ class ListingsController < ApplicationController
     @jean_sizes = Size.jean_sizes
     @bottoms_sizes = Size.bottom_sizes
     @shoe_sizes = Size.shoe_sizes
+    @womens_categories = Category.where(gender_id: 1)
+    @mens_categories = Category.where(gender_id: 2)
   end
 
   def create

@@ -1,5 +1,10 @@
 $(document).ready( function(){
-  console.log("ready to login baby?")
+  console.log("ready to login baby?");
+  usernameSelection();
+});
+
+function usernameSelection(){
+  // select user to send login link to
   $("#login-username-selection").chosen({
     placeholder_text_single: "Enter username"
   }).on("change", function(){
@@ -7,5 +12,4 @@ $(document).ready( function(){
       var newActionLink = "/login/"+ username + "/send_login_link"
       $("#login-form").attr("action", newActionLink)
   });
-
-});
+}

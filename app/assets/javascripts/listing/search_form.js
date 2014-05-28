@@ -1,13 +1,22 @@
 $(document).ready( function(){
+  seeMoreOptions();
+  formReset();
+  loadChosenJS();
+});
 
+function seeMoreOptions(){
     $("#see_more_options").on("click", function(){
       $("#more_options").toggleClass('display-me')
     });
+};
 
-
+function formReset(){
    $("#search-form-reset").on("click", function(){
      $(".search-field").val('')
    });
+};
+
+function loadChosenJS(){
 
   $("#q_category_id_eq").chosen({
     width: "150px",
@@ -45,4 +54,4 @@ $(document).ready( function(){
     placeholder_text_multiple: "Tags"
   })
 
-});
+};

@@ -2,4 +2,10 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', users_path %>
+<div id="bottom-directions" class="sign-up-directions">
+
+We'll send you an email with a special login link, click it and you're all set!
+<br>
+No password to remember (even though we both know you  would've used '12345' anyway).<br> If this is too new age for you you're welcome to <%= link_to "sign up with Twitter", '/auth/twitter', id: "twitter-login-link" %>
+<i class="fi-social-twitter"></i>
+</div>

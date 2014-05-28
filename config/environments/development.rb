@@ -11,7 +11,11 @@ Rails.application.configure do
   }
 
   Paperclip.interpolates :username do |attachment, style|
-    attachment.instance.listing.user.username
+        attachment.instance.username
+  end
+
+  Paperclip.interpolates :user do |attachment, style|
+        attachment.instance.listing.user.username
   end
 
   # Paperclip.options[:command_path] = "/usr/local/bin/convert"
