@@ -75,7 +75,9 @@
               <h6><%= listing.brand.name %><h6>
               <h5><%= listing.title %><h5>
             </div>
+            <div class='image_listing'>
             <%= image_tag listing.asset.photo1 %>
+            </div>
             <div class="panel listing-price-info">
               <% if listing.original_price %>
               <strike>$<%= listing.original_price %></strike>
