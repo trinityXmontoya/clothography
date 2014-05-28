@@ -16,7 +16,11 @@ end
     message = Message.find(params[:id])
     sender = message.sender
     receiver = message.receiver
-    @user = sender
+    if current_user == sender
+      @user = receiver
+    else
+      @user = sender
+    end
     @messages = Message.retrieve_all_correspondence(sender, receiver).reverse
     Message.mark_all_as_viewed(current_user,sender)
     @message = Message.new

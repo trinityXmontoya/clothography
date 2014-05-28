@@ -1,6 +1,5 @@
 <div class="row">
 
-<%= javascript_include_tag 'message/message_show' %>
 <%= javascript_include_tag 'listing/user_closet' %>
 
 
@@ -16,13 +15,10 @@
 
   <% if current_user %>
     <% unless current_user == @user %>
-      <div id="message-user-from-closet-button">
-        Message this user
-      </div>
-
-      <div id="message-user-from-closet-popout">
+    <a href="#" data-reveal-id="message_user_from_closet">Message this user</a>
+    <div id="message_user_from_closet" class="reveal-modal" data-reveal>
         <%= render 'messages/send_message_form', user: @user, message: @message %>
-      </div>
+    </div>
     <% end %>
   <% end %>
 

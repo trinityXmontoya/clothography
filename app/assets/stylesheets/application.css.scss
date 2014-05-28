@@ -26,6 +26,10 @@
 
  a {  }
 
+textarea {
+  resize: none;
+}
+
 /*LAYOUT*/
 .main-navbar-item {
   display: inline-block;
@@ -209,32 +213,50 @@ a.chosen-single {
   display: inline-block;
 }
 
+#message_user_from_closet, #message_user_from_listing{
+  width: 616px;
+  height: 430px;
+}
+
+textarea#message_content {
+  height: 207px;
+  max-height: 507px;
+}
+
+#message-input-submit {
+  float: right;
+}
+
+#message-input-box p {
+  font-size: 23px;
+  text-transform: uppercase;
+}
+
+.message-user-photo {
+  border-radius: 100%;
+  height: 50px;
+}
+
 .message-panel {
   width: 400px;
 }
 
 #all-messages{
-  margin: 20px 0 0 0;
-  height: 600px;
-  overflow: scroll
+  margin: 20px 0 20px 0;
+  max-height: 600px;
+  width: 500px;
+  overflow: scroll;
+  display: inline-block
 }
-#message_content {
-  width: 400px;
-  margin: -60px 0 0 60px
+
+#message_reply {
+  display: inline-block
 }
 
 .inbox-msg-show img {
   width: 50px;
 }
-#message-input-box {
-  margin: -400px 0 0 360px
-}
-#message-input-submit{
-  margin: 10px 0 0 60px
-}
-.message-panel img {
-  width: 50px
-}
+
 #sent-messages, #received-messages {
   display: inline-block;
   margin: 10px 40px 0 0;
@@ -406,16 +428,6 @@ display: inline-block;
 #user-closet-info img{
   width: 50px;
   height: 50px
-}
-
-#message-user-from-listing-button, #message-user-from-profile-button {
-
-  display: inline-block;
-  font-size: 23px;
-}
-
-#message-user-from-listing-popout, #message-user-from-profile-popout, #message-user-from-closet-popout, #make-offer-display {
-  display: none;
 }
 
 .display-me {

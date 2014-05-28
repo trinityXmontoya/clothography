@@ -22,7 +22,12 @@
     <a href=" <%= search_listings_path %> "><li class='main-navbar-item'>Buy</li></a>
     <a href=" <%= new_user_listing_path(current_user) %> "><li class='main-navbar-item'>Sell</li></a>
     <a href=" <%= user_closet_path(current_user) %> "><li class='main-navbar-item'>Your Closet</li></a>
-    <a href=" <%= user_messages_path(current_user) %> "><li class='main-navbar-item'>Messages</li></a>
+    <a href=" <%= user_messages_path(current_user) %> ">
+    <li class='main-navbar-item'>Messages
+    <% if unread_inbox_count > 0 %>
+    (<%= unread_inbox_count %>)
+    <% end %>
+    </li></a>
     <a href=" <%= user_cart_path(current_user) %> "><li class='main-navbar-item'>Your Cart</li></a>
     <a href=" <%= logout_path %>"><li class='main-navbar-item'>Logout</li></a>
   <% end %>
