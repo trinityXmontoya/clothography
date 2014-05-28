@@ -8,7 +8,7 @@
 <%= f.hidden_field :category_id %>
 <div id="womens-categories">
     <% womens_categories.each do |category| %>
-        <div class="category-select womens button" id="<%= category.name %>-category" data-name="<%= category.name %>" data-id="<% category.id %>" >
+        <div class="category-select womens button" id="<%= category.name %>-category" data-name="<%= category.name %>" data-id="<%= category.id %>" >
           <%= category.name %>
           <%= image_tag category.icon %>
         </div>

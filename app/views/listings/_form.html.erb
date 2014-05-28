@@ -1,5 +1,6 @@
-<div class="row">
+<%= javascript_include_tag "listing/global_listing_form.js" %>
 
+<div class="row">
 <%= form_for [current_user, @listing], :html => { :multipart => true } do |f| %>
 
   <% if @listing.errors.any? %>
@@ -64,7 +65,7 @@
 
 <div class="description-box">
   <%= f.label :description %><br>
-  <%= f.text_field :description, maxlength: 500 %>
+  <%= f.text_area :description, maxlength: 500 %>
 </div>
 
 
@@ -74,7 +75,7 @@
       Sizes:
       <div id="standard-sizes" >
         <% @standard_sizes.each  do |size| %>
-          <p class="size-select" data-id="<%= size.name %>">
+          <p class="size-select" data-id="<%= size.id %>">
             <%= size.label %> |
           </p>
         <% end %>
@@ -83,7 +84,7 @@
 
       <div id="jean-sizes" >
         <% @jean_sizes.each  do |size| %>
-          <p class="size-select" data-id="<%= size.name %>">
+          <p class="size-select" data-id="<%= size.id %>">
             <%= size.label %> |
           </p>
         <% end %>
@@ -91,7 +92,7 @@
 
       <div id="bottom-sizes" >
         <% @bottoms_sizes.each  do |size| %>
-          <p class="size-select" data-id="<%= size.name %>">
+          <p class="size-select" data-id="<%= size.id %>">
             <%= size.label %> |
           </p>
         <% end %>
@@ -99,7 +100,7 @@
 
       <div id="shoe-sizes" >
         <% @shoe_sizes.each  do |size| %>
-          <p class="size-select" data-id="<%= size.name %>">
+          <p class="size-select" data-id="<%= size.id %>">
             <%= size.label %> |
           </p>
         <% end %>

@@ -1,20 +1,15 @@
 class ListingsController < ApplicationController
 
-
   before_action :authenticate, only: [:new, :create, :edit, :update, :destroy]
+  before_action :init_form_instance_variables, only: [:all_site_listings, :new, :create, :update]
 
   def all_site_listings
     @query= Listing.search(params[:q])
-
     if (params[:tag])
       @listings = Listing.tagged_with(params[:tag])
     else
       @listings = @query.result(distinct:true).includes(:category,:size,:brand,:gender)
     end
-    @standard_sizes = Size.standard_sizes
-    @jean_sizes = Size.jean_sizes
-    @bottoms_sizes = Size.bottom_sizes
-    @shoe_sizes = Size.shoe_sizes
   end
 
   def index
@@ -39,12 +34,6 @@ class ListingsController < ApplicationController
   def new
     @listing = Listing.new
     @listing.build_asset
-    @standard_sizes = Size.standard_sizes
-    @jean_sizes = Size.jean_sizes
-    @bottoms_sizes = Size.bottom_sizes
-    @shoe_sizes = Size.shoe_sizes
-    @womens_categories = Category.where(gender_id: 1)
-    @mens_categories = Category.where(gender_id: 2)
   end
 
   def create
@@ -55,7 +44,8 @@ class ListingsController < ApplicationController
           format.html { redirect_to user_listing_path(@listing.user, @listing), notice: 'Listing was successfully created.' }
           format.js {}
         else
-          format.html { render :new }
+          @listing.build_asset
+          format.html { render :new}
           format.js {}
         end
       end
@@ -67,11 +57,8 @@ class ListingsController < ApplicationController
     if @listing.has_been_sold?
       redirect_to [@user,@listing], notice: "This item has been sold, you cannot perform this action."
     else
+      init_form_instance_variables
       @listing.build_asset
-      @standard_sizes = Size.standard_sizes
-      @jean_sizes = Size.jean_sizes
-      @bottoms_sizes = Size.bottom_sizes
-      @shoe_sizes = Size.shoe_sizes
     end
   end
 
@@ -86,6 +73,7 @@ class ListingsController < ApplicationController
           format.html { redirect_to user_listing_path(@user, @listing), notice: 'Listing was successfully updated.' }
           format.js {}
         else
+          @listing.build_asset
           format.html { render :edit }
           format.js {}
         end
@@ -112,4 +100,12 @@ class ListingsController < ApplicationController
       params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition,:tag_list, asset_attributes: [:id, :photo1, :photo2, :photo3])
     end
 
+    def init_form_instance_variables
+      @standard_sizes = Size.standard_sizes
+      @jean_sizes = Size.jean_sizes
+      @bottoms_sizes = Size.bottom_sizes
+      @shoe_sizes = Size.shoe_sizes
+      @womens_categories = Category.womens
+      @mens_categories = Category.mens
+    end
 end
