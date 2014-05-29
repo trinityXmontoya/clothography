@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-root 'sessions#new'
+root 'listings#all_site_listings'
 
 get '/faq' => 'welcome#faq', as: :faq
 get '/credit' => 'welcome#credit', as: :credit

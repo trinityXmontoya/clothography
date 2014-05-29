@@ -91,7 +91,7 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.find(params[:id])
     @purchase.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Purchase was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Item was successfully removed from cart.' }
       format.js {}
     end
   end
