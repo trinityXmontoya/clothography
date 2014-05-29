@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to search_listings_path, notice: "Welcome " + @user.username
     else
-      redirect_to login_path, notice: "Error logging in."
+      redirect_to login_path, notice: "Error logging in.\nPerhaps your login link expired!\nYou can resend yourself one below."
     end
   end
 

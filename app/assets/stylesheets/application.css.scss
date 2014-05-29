@@ -61,7 +61,26 @@ textarea {
 margin: 0 auto;
  }
 
+/*FAQ*/
+
+.joyride-tip-guide p {
+  font-size: 1rem
+}
+
+.joyride-panel img {
+  display: inline-block;
+}
+.joyride-photo-description {
+  font-size: 20px;
+  background-color: white;
+  padding: 15px;
+  opacity: .9;
+  display: inline-block;
+}
+
+
 /*SIGN UP*/
+
 .sign-up-directions {
   margin: 0 auto;
   width: 500px;
@@ -81,18 +100,27 @@ font-weight: bold;
   background-color: rgb(82, 223, 74);
 }
 
-
-#bottom-directions {
-color: rgba(26, 23, 23, 0.55);
-font-size: 18px;
-line-height: 30px;
-padding: 10px 5px;
-background-color: rgba(248, 248, 248, 0.34);
+div#sign_up_with_twitter {
+  display: inline-block;
+  background-color: palegreen;
+  text-align: center;
+  padding: 25px;
+  margin: 0 250px 0 0;
 }
+
+#user_email, #user_username, #create_user_submit {
+  width: 300px;
+}
+
 
 select#login-username-selection {
   font-size: 18px
 }
+
+#twitter-login-button {
+  float: right;
+}
+
 /*LISTINGS SEARCH DISPLAY*/
 
 #search {

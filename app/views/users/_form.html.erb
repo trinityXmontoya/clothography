@@ -1,8 +1,8 @@
-<%= form_for @user, :html => { :multipart => true } do |f| %>
+<div style="margin: 0 0 35px 0">
+  <%= form_for @user, :html => { :multipart => true } do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
+      <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
       <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -15,14 +15,17 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
+  <br>
   <div class="field">
     <%= f.label :username %><br>
     <%= f.text_field :username %>
   </div>
+  <br>
   <div class="field">
     <%= f.label :gender %><br>
     <%= f.select :gender_id, options_from_collection_for_select(Gender.all, :id, :name) %>
   </div>
+  <br>
   <div class="field">
     <% if current_user && @user.profile_photo %>
       Current Profile Photo:
@@ -33,6 +36,7 @@
     <%= f.label :profile_photo %>
     <%= f.file_field :profile_photo %>
   </div>
+  <br>
   <div class="field">
     <% if current_user && @user.bg_photo %>
       Current Background Photo:
@@ -45,6 +49,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Join us!", id: 'create_user_submit' %>
   </div>
 <% end %>
+</div>
