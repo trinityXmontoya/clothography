@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
 
   def send_login_link
     self.reset_auth_token
-    link = "http://localhost:3000/login/" + self.username + "/" + self.auth_token
+    link = "login/" + self.username + "/" + self.auth_token
     UserMailer.send_user_token(self,link).deliver
     self.update_attributes(login_link_sent: Time.now)
   end
@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   end
 
   def token_is_not_expired
-    ((self.login_link_sent - Time.now) / 1.hour).round < 48
+    ((Time.now-self.login_link_sent) /60) < 2
   end
 
   def generate_token
@@ -90,13 +90,11 @@ class User < ActiveRecord::Base
   end
 
   def notify_of_sale(listing)
-    link = "http://localhost:3000/users/#{self.username}/listings/#{listing.id}"
-    UserMailer.send_notification_of_sale(self,listing,link).deliver
+    UserMailer.send_notification_of_sale(self,listing).deliver
   end
 
   def send_receipt_of_purchase(purchase)
-    link = "http://localhost:3000/users/#{purchase.seller.username}/listings/#{purchase.listing.id}"
-    UserMailer.send_purchase_receipt(self,purchase,link).deliver
+    UserMailer.send_purchase_receipt(self,purchase).deliver
   end
 
 end

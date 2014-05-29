@@ -4,15 +4,14 @@ class UserMailer < ActionMailer::Base
 
   def send_user_token(user,login_link)
     @user = user
-    @link = login_link
+    @link = root_url + login_link
     mail(to: @user.email,
          subject: "Login")
   end
 
-  def send_notification_of_sale(user,listing,listing_link)
+  def send_notification_of_sale(user,listing)
     @user = user
     @listing = listing
-    @link = listing_link
     mail(to: @user.email,
           subject: "Your item sold!")
   end
@@ -20,9 +19,8 @@ class UserMailer < ActionMailer::Base
   def send_purchase_receipt(user,purchase,purchase_listing_link)
     @user = user
     @purchase = purchase
-    @link = purchase_listing_link
     mail(to: @user.email,
-         subject: "You receipt for item @purchase.listing.title")
+         subject: "You receipt for item #{@purchase.listing.title}")
   end
 
 end
