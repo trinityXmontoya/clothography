@@ -33,7 +33,7 @@
     <div id="listing-display-box">
       <div id="available-listings">
         <% unless @listings.exists? %>
-      <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> doesn't have anything listed right now! Check out <%= link_to "other listings", root_path %>"
+      <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> doesn't have anything listed right now! Check out <%= link_to "other listings", root_path %>.
       </div>
       <% else %>
 
