@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :sales, class_name: 'purchase', foreign_key: 'seller_id', table_name: 'purchases'
 
   validates :username, :email, presence: true
+  validates :username, :email, uniqueness: true
 
   has_attached_file :profile_photo,
     path: "/:class/:username/:attachment/:filename",
