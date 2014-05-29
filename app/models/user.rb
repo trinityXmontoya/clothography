@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  before_create :set_dummy_email
-
   has_many :listings, dependent: :destroy
   has_many :sizes, through: :size_users
 
@@ -45,10 +43,6 @@ class User < ActiveRecord::Base
     username
   end
 
-  def set_dummy_email
-    self.email ||= ""
-  end
-
   def self.find_or_create_from_auth_hash(auth_hash)
      where(auth_hash.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth_hash.provider
@@ -56,6 +50,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth_hash.credentials.token
       user.name = auth_hash.info.name
       user.username = user.username || "Twitter-User-#{auth_hash.uid}"
+      user.email = user.email || "Twitter-User-#{auth_hash.uid}@gmail.com"
       user.profile_photo = user.profile_photo || auth_hash.info.image
       user.bg_photo = user.bg_photo || auth_hash.extra.profile_background_image_url
       user.save!
