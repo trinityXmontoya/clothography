@@ -3,7 +3,7 @@ Rails.application.configure do
 
   config.assets.precompile += %w( checkout_mainfest.js listing_manifest.js)
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000/' }
+  config.action_mailer.default_url_options = { :host => 'http://clothography.herokuapp.com/' }
 
   config.paperclip_defaults = {
     :storage => :s3,

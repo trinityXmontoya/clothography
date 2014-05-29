@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         @user.send_login_link
-        format.html { redirect_to login_path, notice: '#{@user.username} you successfully created your account! Please login using the link we just sent you.' }
+        format.html { redirect_to login_path, notice: '@user.username you successfully created your account! Please login using the link we just sent you.' }
         format.js{}
       else
         format.html { render :new }
