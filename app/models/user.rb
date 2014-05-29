@@ -19,12 +19,14 @@ class User < ActiveRecord::Base
   has_attached_file :profile_photo,
     path: "/:class/:username/:attachment/:filename",
     styles: { medium: "490x368>", thumbnail: '60x60'},
-    convert_options: { all: "-auto-orient" }
+    convert_options: { all: "-auto-orient" },
+    :default_url => '/users/default_profile_photo.jpg'
 
   has_attached_file :bg_photo,
     path: "/:class/:username/:attachment/:filename",
     styles: { large: "700x400>"},
-    convert_options: { all: "-auto-orient" }
+    convert_options: { all: "-auto-orient" },
+    :default_url => '/users/default_bg_photo.jpg'
 
   validates_attachment :profile_photo,
   content_type: {
