@@ -8,7 +8,7 @@ get '/credit' => 'welcome#credit', as: :credit
 get '/sign_up' => 'users#new', as: :sign_up
 
 get '/auth/:provider/callback' => "sessions#twitter_create"
-get '/auth/failure', :to => 'sessions#failure'
+get '/auth/failure', :to => 'sessions#twitter_failure'
 get '/login' => 'sessions#new'
 post '/login/:user_id/send_login_link' => 'sessions#request_token', as: :request_token
 get '/login/:user_id/*auth_token' => 'sessions#create'
