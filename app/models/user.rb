@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth_hash.credentials.token
       user.name = auth_hash.info.name
       user.username = user.username || "Twitter-User-#{auth_hash.uid}"
-      user.email = user.email || "Twitter-User-#{auth_hash.uid}@gmail.com"
+      user.email = user.email || " "
       user.profile_photo = user.profile_photo || auth_hash.info.image
       user.bg_photo = user.bg_photo || auth_hash.extra.profile_background_image_url
       user.save!
