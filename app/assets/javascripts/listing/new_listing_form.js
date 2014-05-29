@@ -21,10 +21,10 @@ function genderSelection(){
   $(".displayed-category").removeClass('displayed-category');
   $(".displayed-sizes").removeClass('displayed-sizes');
   $("#listing-form-product-info").css("display", "none");
-  if ($(this).data("name")=="Women's"){
+  if ($(this).data("name")=="Female"){
     $("#womens-categories").toggleClass('displayed-category');
   }
-  else if ($(this).data("name")=="Men's"){
+  else if ($(this).data("name")=="Male"){
     $("#mens-categories").toggleClass('displayed-category');
   }
 
