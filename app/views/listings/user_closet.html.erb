@@ -10,7 +10,7 @@
 
   <div id="user-info">
     <h1><%= @user.username %>'s Closet</h1>
-    <%= image_tag @user.profile_photo %>
+    <%= image_tag @user.profile_photo, height: '200' %>
   </div>
 
   <% if current_user %>
@@ -69,7 +69,7 @@
         <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Maybe help 'em out and <%= link_to "buy something", user_closet_path(@user) %> ;)"
         </div>
         <% else %>
-        <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Check out <%= link_to "other listings", root_path %> ;)"
+        <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Check out <%= link_to "other listings", root_path %> ;)
       </div>
         <% end %>
       <% else %>

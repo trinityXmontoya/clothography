@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
 
+  before_action :make_sure_twitter_user_updates_info
+
   def index
     @user = User.find_by(username: params[:user_id])
     # @sent_messages = @user.sent_messages.order(created_at: :asc)

@@ -20,13 +20,13 @@ class User < ActiveRecord::Base
     path: "/:class/:username/:attachment/:filename",
     styles: { medium: "490x368>", thumbnail: '60x60'},
     convert_options: { all: "-auto-orient" },
-    :default_url => '/users/default_profile_photo.jpg'
+    :default_url => 'user_images/default_profile_photo.jpg'
 
   has_attached_file :bg_photo,
     path: "/:class/:username/:attachment/:filename",
     styles: { large: "700x400>"},
     convert_options: { all: "-auto-orient" },
-    :default_url => '/users/default_bg_photo.jpg'
+    :default_url => 'user_images/default_bg_photo.jpg'
 
   validates_attachment :profile_photo,
   content_type: {
@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth_hash.credentials.token
       user.name = auth_hash.info.name
       user.username = user.username || "Twitter-User-#{auth_hash.uid}"
-      user.email = user.email || " "
+      user.email = user.email || "Twitter-User-#{auth_hash.uid}@gmail.com"
       user.profile_photo = user.profile_photo || auth_hash.info.image
       user.bg_photo = user.bg_photo || auth_hash.extra.profile_background_image_url
       user.save!

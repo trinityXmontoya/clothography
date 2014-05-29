@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
 
   before_action :authenticate, only: [:new, :create, :edit, :update, :destroy]
+  before_action :make_sure_twitter_user_updates_info, only: [:user_closet,:new, :create, :edit, :update, :destroy]
   before_action :init_form_instance_variables, only: [:all_site_listings, :new, :create, :update]
 
   def all_site_listings

@@ -25,7 +25,7 @@ Category.create(name: "Pants", gender_id: 2, icon: 'size-icons/men-pants.svg')
 Category.create(name: "Jeans", gender_id: 2, icon: 'size-icons/mens-jeans.svg')
 Category.create(name: "Outerwear", gender_id: 2, icon: 'size-icons/mens-outwear.svg')
 
-category1 = Category.create(name: "Tops", gender_id: gender1.id, icon: "size-icons/tops.svg")
+category1 = Category.create(name: "Tops", gender_id: gender1.id, icon: "size-icons/tops.png")
 
 category3 = Category.create(name: "Dresses", gender_id: gender1.id, icon: "size-icons/dress.svg")
 
@@ -273,19 +273,19 @@ name: 'Standard-Jeans',
 label: " 36 (14, L) "
 )
 
-# Listing.create(
-#   user_id: user1.id ,
-#   brand_id: brand1.id ,
-#   category_id: category1.id ,
-#   size_id: size1.id,
-#   gender_id: gender1.id,
-#   title: "short shorts" ,
-#   description: "buy em" ,
-#   original_price: 80,
-#   price: 65,
-#   status: "unsold" ,
-#   condition: "New with Tags"
-# )
+Listing.create(
+  user_id: user1.id ,
+  brand_id: brand1.id ,
+  category_id: category1.id ,
+  size_id: size1.id,
+  gender_id: gender1.id,
+  title: "short shorts" ,
+  description: "buy em" ,
+  original_price: 80,
+  price: 65,
+  status: "unsold" ,
+  condition: "New with Tags"
+)
 #
 # Listing.create(
 #   user_id: user1.id ,

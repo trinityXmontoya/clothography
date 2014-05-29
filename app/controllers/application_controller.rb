@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user, :unread_inbox_count, :cart_count
+
   def current_user
     session[:user_id] ? User.find(session[:user_id]) : nil
   end
@@ -11,6 +12,12 @@ class ApplicationController < ActionController::Base
   def authenticate
     unless current_user
       redirect_to root_path, notice: "You must login to perform that action"
+    end
+  end
+
+  def make_sure_twitter_user_updates_info
+    if current_user.email.include? 'Twitter-User'
+      redirect_to edit_user_path(current_user), notice: "You must confirm your information to complete registration."
     end
   end
 

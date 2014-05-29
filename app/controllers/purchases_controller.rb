@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
-  before_action :authenticate, only: [:index, :show, :new, :edit, :update, :destroy]
+  before_action :authenticate
+  before_action :make_sure_twitter_user_updates_info
 
   def index
     @user = current_user

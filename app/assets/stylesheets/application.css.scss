@@ -37,6 +37,13 @@ textarea {
   background-color: black;
 }
 
+.container {
+  min-height:100%;
+  position:relative;
+  padding: 10px;
+  padding-bottom: 46px
+}
+
 #footer a {
   color: palegreen
 }
@@ -429,6 +436,11 @@ display: inline-block;
 #listing_title {
   width: 500px;
 }
+
+form#new_listing{
+  padding-bottom: 22px;
+}
+
 /*CHECKOUT CART*/
 .future-purchase {
   width: 400px;

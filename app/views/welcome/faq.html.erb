@@ -42,7 +42,12 @@
 <div class="row panel joyride-panel" id="stop6">
 <%= image_tag 'joyride/twitter.png' %>
 <div class='joyride-photo-description'>
-  If all of this is too new-age for you, you're welcome to <%= link_to "sign up with Twitter", '/auth/twitter', id: "twitter-login-link" %>
+  If all of this is too new-age for you, you're welcome to
+  <% unless current_user %>
+  <%= link_to "sign up with Twitter", '/auth/twitter', id: "twitter-login-link" %>
+  <% else %>
+  sign up with Twitter
+  <% end %>
 <i class="fi-social-twitter"></i>
 </div>
 </div>
