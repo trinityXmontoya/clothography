@@ -2,9 +2,9 @@
 <% Gender.all.each do |gender| %>
   <div class="gender-select button" id="gender-<%= gender.id %>" data-id="<%= gender.id %>" data-name="<%= gender.name %>">
   <% if gender.name == "Female" %>
-  "Women's"
-  <% elsif gender.name == "Make" %>
-  "Men's"
+  Women's
+  <% elsif gender.name == "Male" %>
+  Men's
   <% end %>
   </div>
 <% end %>
