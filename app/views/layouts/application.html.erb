@@ -14,7 +14,7 @@
 
   <body>
 <nav id='main-navbar'>
-
+  <a href=" <%= search_listings_path %> "><li class='main-navbar-item'>Shop</li></a>
   <% unless current_user %>
     <a href=" <%= login_path %> "><li class='main-navbar-item'>Login</li></a>
     <a href=" <%= sign_up_path %> "><li class='main-navbar-item'>Sign Up</li></a>
@@ -24,7 +24,6 @@
       <% end %>
     </li>
   <% else %>
-    <a href=" <%= search_listings_path %> "><li class='main-navbar-item'>Buy</li></a>
     <a href=" <%= new_user_listing_path(current_user) %> "><li class='main-navbar-item'>Sell</li></a>
     <a href=" <%= user_closet_path(current_user) %> "><li class='main-navbar-item'>Your Closet</li></a>
     <a href=" <%= user_messages_path(current_user) %> ">
