@@ -29,12 +29,21 @@ textarea {
   resize: none;
 }
 
+form.edit_listing {
+  margin-bottom: 60px
+}
+
+form.new_listing {
+  margin-bottom: 60px
+}
+
 #footer {
   width: 100%;
   padding: 15px;
   position:fixed;
   bottom:0;
   background-color: black;
+  display: none;
 }
 
 .container {
