@@ -14,28 +14,66 @@
 
   <body>
 <nav id='main-navbar'>
-  <a href=" <%= search_listings_path %> "><li class='main-navbar-item'>Shop</li></a>
+  <%= link_to search_listings_path do %>
+    <li class='main-navbar-item'>
+      Clothography
+      <%=image_tag 'font-icons/shop.svg'%>
+    </li>
+    <% end %>
   <% unless current_user %>
-    <a href=" <%= login_path %> "><li class='main-navbar-item'>Login</li></a>
-    <a href=" <%= sign_up_path %> "><li class='main-navbar-item'>Sign Up</li></a>
+    <a href=" <%= login_path %> ">
+      <li class='main-navbar-item'>
+        <%= image_tag 'font-icons/login.svg' %>
+      </li>
+    </a>
+    <a href=" <%= sign_up_path %> ">
+      <li class='main-navbar-item'>
+        <%= image_tag 'font-icons/sign_up.svg' %>
+      </li>
+    </a>
     <li class='main-navbar-item' id="twitter-login-button">
       <%= link_to 'auth/twitter' do %>
-        <img src="https://dev.twitter.com/sites/default/files/images_documentation/sign-in-with-twitter-link.png" alt="sign in/up with twitter">
+        <%= image_tag 'font-icons/twitter.svg' %>
       <% end %>
     </li>
   <% else %>
-    <a href=" <%= new_user_listing_path(current_user) %> "><li class='main-navbar-item'>Sell</li></a>
-    <a href=" <%= user_closet_path(current_user) %> "><li class='main-navbar-item'>Your Closet</li></a>
+    <a href=" <%= new_user_listing_path(current_user) %> ">
+      <li class='main-navbar-item'>
+        <%= image_tag 'font-icons/new_listing.svg' %>
+      </li>
+    </a>
+    <a href=" <%= user_closet_path(current_user) %> ">
+      <li class='main-navbar-item'>
+        <%= image_tag 'font-icons/hanger.svg' %>
+      </li>
+    </a>
     <a href=" <%= user_messages_path(current_user) %> ">
-    <li class='main-navbar-item'>Messages
-    <% if unread_inbox_count > 0 %>
-    (<%= unread_inbox_count %>)
-    <% end %>
-    </li></a>
-    <a href=" <%= user_cart_path(current_user) %> "><li class='main-navbar-item'>Your Cart</li></a>
-    <a href=" <%= logout_path %>"><li class='main-navbar-item'>Logout</li></a>
+      <li class='main-navbar-item'>
+        <%=image_tag 'font-icons/inbox.svg'%>
+          <% if unread_inbox_count > 0 %>
+            (<%= unread_inbox_count %>)
+          <% end %>
+      </li>
+    </a>
+    <a href=" <%= user_cart_path(current_user) %> ">
+      <li class='main-navbar-item'>
+        <%= image_tag 'font-icons/cart.svg' %>
+        <% if cart_count > 0 %>
+          (<%= cart_count %>)
+        <% end %>
+      </li>
+    </a>
+    <a href=" <%= logout_path %>">
+      <li class='main-navbar-item nav-logout'>
+        <%= image_tag 'font-icons/logout.svg' %>
+      </li>
+    </a>
   <% end %>
-    <a href="<%= faq_path%>"><li class="main-navbar-item">FAQ</li></a>
+    <a href="<%= faq_path%>">
+      <li class="main-navbar-item nav-faq">
+        <%= image_tag 'font-icons/faq.svg' %>
+      </li>
+    </a>
 </nav>
 
 
@@ -45,7 +83,10 @@
   <% end %>
   <%= yield %>
 
-
-
+<div id="footer">
+  <a href="http://www.trinitymontoya.com">Site by Trinity Montoya</a>
+   |
+  <%= link_to "Credits", credit_path %>
+</div>
   </body>
 </html>

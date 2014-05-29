@@ -97,4 +97,11 @@ class User < ActiveRecord::Base
     UserMailer.send_purchase_receipt(self,purchase).deliver
   end
 
+  def unread_messages
+    received_messages.where(viewed: false)
+  end
+
+  def items_in_cart
+    Purchase.where(buyer_id: self.id).where(status: 'in cart')
+  end
 end

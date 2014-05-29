@@ -19,8 +19,7 @@
 
 
  body { font-family: 'Lato', "Helvetica",sans-serif;
-          background-color:#F0F0F5
-
+          background-color:#F0F0F5;
         }
 
 
@@ -30,11 +29,44 @@ textarea {
   resize: none;
 }
 
+#footer {
+  width: 100%;
+  padding: 15px;
+  position:fixed;
+  bottom:0;
+  background-color: black;
+}
+
+#footer a {
+  color: palegreen
+}
+
 /*LAYOUT*/
+#main-navbar {
+  background-color: palegreen;
+}
+
+#main-navbar a {
+  color: black;
+}
+
 .main-navbar-item {
   display: inline-block;
   padding: 15px;
   font-size: 23px;
+}
+
+.main-navbar-item img {
+  width: 60px;
+}
+
+.nav-logout, .nav-faq {
+  float:right;
+}
+
+#twitter-login-button {
+  float: right;
+  list-style: none;
 }
 
 #notice {
@@ -115,10 +147,6 @@ div#sign_up_with_twitter {
 
 select#login-username-selection {
   font-size: 18px
-}
-
-#twitter-login-button {
-  float: right;
 }
 
 /*LISTINGS SEARCH DISPLAY*/

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 root 'sessions#new'
 
 get '/faq' => 'welcome#faq', as: :faq
+get '/credit' => 'welcome#credit', as: :credit
 
 get '/sign_up' => 'users#new', as: :sign_up
 
