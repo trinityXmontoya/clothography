@@ -59,7 +59,6 @@ class ListingsController < ApplicationController
       redirect_to [@user,@listing], notice: "This item has been sold, you cannot perform this action."
     else
       init_form_instance_variables
-      @listing.build_asset
     end
   end
 
@@ -98,7 +97,7 @@ class ListingsController < ApplicationController
 
   private
     def listing_params
-      params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition,:tag_list, asset_attributes: [:id, :photo1, :photo2, :photo3])
+      params.require(:listing).permit(:user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :original_price, :price, :condition,:tag_list, :asset, asset_attributes: [:id, :photo1, :photo2, :photo3])
     end
 
     def init_form_instance_variables
