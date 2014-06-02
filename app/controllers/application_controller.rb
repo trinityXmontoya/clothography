@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def make_sure_twitter_user_updates_info
-    if current_user.email.include? 'Twitter-User'
+    if current_user && current_user.email.include? 'Twitter-User'
       redirect_to edit_user_path(current_user), notice: "You must confirm your information to complete registration."
     end
   end

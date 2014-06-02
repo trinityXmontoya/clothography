@@ -78,6 +78,7 @@ class User < ActiveRecord::Base
     ((token == self.auth_token) && (self.token_is_not_expired)) ? true : false
   end
 
+  # TO DO, change to hour
   def token_is_not_expired
     ((Time.now-self.login_link_sent) /60) < 2
   end
