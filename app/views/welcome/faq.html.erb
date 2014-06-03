@@ -1,0 +1,83 @@
+<%= javascript_include_tag 'welcome/joyride' %>
+
+<br>
+<br>
+<div class="row"><h1>Clothography</h1></div>
+
+<div class="row panel joyride-panel" id="stop1">
+  <div class='joyride-photo-description'>Our login process at Clothography is a little different.</div>
+<%= image_tag 'joyride/login.png' %>
+</div>
+
+<div class="row panel joyride-panel" id="stop2">
+<%= image_tag 'joyride/signup.png', width: '720' %>
+<div class='joyride-photo-description'>
+  You can add a profile photo and background if you'd like to, but if not we'll give you the default ones.
+
+</div>
+</div>
+
+<div class="row panel joyride-panel" id="stop3">
+<%= image_tag 'joyride/email.png' %>
+<div class='joyride-photo-description'>
+  We keep track of exactly when you pressed that button and give you a max of two minutes to go to your email and click that link(This short time period is what allows it to be so safe!). If you decide to sign out, you'll need to login back using the same simple process.
+</div>
+</div>
+
+<div class="row panel joyride-panel" id="stop4">
+<%= image_tag 'joyride/safety.jpg', width: '400' %>
+<div class='joyride-photo-description'>
+  Which is kind of the point of doing this. It's *our* job to keep your info safe and unrealistic to expect you to create and *remember* a secure password on your own. (How often are you clicking 'forgot/reset my password' buttons on sites? Instead we handle all of that for you.)
+</div>
+</div>
+
+
+<div class="row panel joyride-panel" id="stop5">
+<%= image_tag 'joyride/stripe.png' %>
+<div class='joyride-photo-description'>
+   The only information our servers contain about you is your email, username, and gender.
+ </div>
+</div>
+
+<div class="row panel joyride-panel" id="stop6">
+<%= image_tag 'joyride/twitter.png' %>
+<div class='joyride-photo-description'>
+  If all of this is too new-age for you, you're welcome to
+  <% unless current_user %>
+  <%= link_to "sign up with Twitter", '/auth/twitter', id: "twitter-login-link" %>
+  <% else %>
+  sign up with Twitter
+  <% end %>
+<i class="fi-social-twitter"></i>
+</div>
+</div>
+
+
+
+<ol class="joyride-list" data-joyride>
+
+  <li data-id="stop1" data-text="How?" data-options="tip_location:top;tip_animation:fade">
+    <p class='joyride-description'>When you login, all you have to do is enter your username!</p>
+  </li>
+
+  <li data-id="stop2" data-text="Okay, but how does this passwordless magic work?" data-options="tip_location:top;tip_animation:fade">
+    <p class='joyride-description'>When you first sign up, all we require is your email, username, and gender. That's it. </p>
+  </li>
+
+  <li data-id="stop3" data-text="Wow!!" data-options="tip_location:top;tip_animation:fade">
+    <p class='joyride-description'>When you click to login, a completely unique, temporary, and secure login link is generated and emailed to you. Once you click it you're logged in forever! (Or until you logout)</p>
+  </li>
+
+  <li data-id="stop4" data-button="What about my credit card info?" data-options="tip_location:top;tip_animation:fade">
+    <p class='joyride-description'>We don't use passwords. At all. Which means no password for you to remember (even though we both know you would've used '12345' anyway).</p>
+  </li>
+
+  <li data-id="stop5" data-button= "this sounds too fancy for me" data-options="tip_location:top;tip_animation:fade">
+    <p class='joyride-description'><a href="https://stripe.com/help/security">Stripe</a> handles all of that for us!</p>
+  </li>
+
+   <li data-id="stop6" data-button= "That's okay!" data-options="tip_location:top;tip_animation:fade">
+  </li>
+
+</ol>
+

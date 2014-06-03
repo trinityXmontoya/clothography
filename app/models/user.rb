@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  before_create :set_dummy_email
-
   has_many :listings, dependent: :destroy
   has_many :sizes, through: :size_users
 
@@ -17,16 +15,19 @@ class User < ActiveRecord::Base
   has_many :sales, class_name: 'purchase', foreign_key: 'seller_id', table_name: 'purchases'
 
   validates :username, :email, presence: true
+  validates :username, :email, uniqueness: true
 
   has_attached_file :profile_photo,
     path: "/:class/:username/:attachment/:filename",
     styles: { medium: "490x368>", thumbnail: '60x60'},
-    convert_options: { all: "-auto-orient" }
+    convert_options: { all: "-auto-orient" },
+    :default_url => 'user_images/default_profile_photo.jpg'
 
   has_attached_file :bg_photo,
     path: "/:class/:username/:attachment/:filename",
     styles: { large: "700x400>"},
-    convert_options: { all: "-auto-orient" }
+    convert_options: { all: "-auto-orient" },
+    :default_url => 'user_images/default_bg_photo.jpg'
 
   validates_attachment :profile_photo,
   content_type: {
@@ -45,10 +46,6 @@ class User < ActiveRecord::Base
     username
   end
 
-  def set_dummy_email
-    self.email ||= ""
-  end
-
   def self.find_or_create_from_auth_hash(auth_hash)
      where(auth_hash.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth_hash.provider
@@ -56,6 +53,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth_hash.credentials.token
       user.name = auth_hash.info.name
       user.username = user.username || "Twitter-User-#{auth_hash.uid}"
+      user.email = user.email || "Twitter-User-#{auth_hash.uid}@gmail.com"
       user.profile_photo = user.profile_photo || auth_hash.info.image
       user.bg_photo = user.bg_photo || auth_hash.extra.profile_background_image_url
       user.save!
@@ -65,7 +63,7 @@ class User < ActiveRecord::Base
 
   def send_login_link
     self.reset_auth_token
-    link = "http://localhost:3000/login/" + self.username + "/" + self.auth_token
+    link = "login/" + self.username + "/" + self.auth_token
     UserMailer.send_user_token(self,link).deliver
     self.update_attributes(login_link_sent: Time.now)
   end
@@ -80,8 +78,9 @@ class User < ActiveRecord::Base
     ((token == self.auth_token) && (self.token_is_not_expired)) ? true : false
   end
 
+  # TO DO, change to hour
   def token_is_not_expired
-    ((self.login_link_sent - Time.now) / 1.hour).round < 48
+    ((Time.now-self.login_link_sent) /60) < 2
   end
 
   def generate_token
@@ -90,13 +89,18 @@ class User < ActiveRecord::Base
   end
 
   def notify_of_sale(listing)
-    link = "http://localhost:3000/users/#{self.username}/listings/#{listing.id}"
-    UserMailer.send_notification_of_sale(self,listing,link).deliver
+    UserMailer.send_notification_of_sale(self,listing).deliver
   end
 
   def send_receipt_of_purchase(purchase)
-    link = "http://localhost:3000/users/#{purchase.seller.username}/listings/#{purchase.listing.id}"
-    UserMailer.send_purchase_receipt(self,purchase,link).deliver
+    UserMailer.send_purchase_receipt(self,purchase).deliver
   end
 
+  def unread_messages
+    received_messages.where(viewed: false)
+  end
+
+  def items_in_cart
+    Purchase.where(buyer_id: self.id).where(status: 'in cart')
+  end
 end

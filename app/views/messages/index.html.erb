@@ -1,37 +1,38 @@
 <div class="row">
-
-
-<h1>Inbox</h1>
-
-<% unread_inbox_count > 0 ? type="success" : type="alert" %>
-<div id="inbox-notification" class="small button radius <%= type %>">You have <%= unread_inbox_count %> new messages.</div>
-
-<br>
-<div id="sent-messages">
-<h3>Sent Messages</h3>
-  <% @sent_messages.each do |sent_message| %>
-    <%= link_to [current_user,sent_message] do %>
-    <div class="panel inbox-msg-show">
-      <%= image_tag sent_message.receiver.profile_photo%>
-      <%= sent_message.receiver.username%>
-      --- <%= sent_message.content %>
-    </div>
-    <% end %>
-    <br>
-  <% end %>
+  <div class='large-6 columns'>
+  <h1>Inbox</h1>
+  <% unread_inbox_count > 0 ? type="success" : type="alert" %>
+  <div id="inbox-notification" class="small button radius <%= type %>">You have <%= unread_inbox_count %> new messages.</div>
+  </div>
 </div>
-
-<div id="received-messages">
-<h3>Received Messages</h3>
-  <% @received_messages.each do |received_message| %>
-    <%= link_to [current_user,received_message] do %>
-    <div class="panel inbox-msg-show">
-      <%= image_tag received_message.sender.profile_photo%>
-      <%= received_message.sender.username %>
-      --- <%= received_message.content %>
-    </div>
+<hr>
+<div class="row">
+  <div id="received-messages" class='large-5 columns'>
+  <h3>Received Messages</h3>
+    <% @received_messages.each do |received_message| %>
+      <%= link_to [current_user,received_message] do %>
+      <div class="panel inbox-msg-show">
+        <%= image_tag received_message.sender.profile_photo%>
+        <%= received_message.sender.username %>
+        --- <%= received_message.content %>
+      </div>
+      <% end %>
+      <br>
     <% end %>
-    <br>
-  <% end %>
-</div>
+  </div>
+
+  <div id="sent-messages" class='large-5 columns'>
+  <h3>Sent Messages</h3>
+    <% @sent_messages.each do |sent_message| %>
+      <%= link_to [current_user,sent_message] do %>
+      <div class="panel inbox-msg-show">
+        <%= image_tag sent_message.receiver.profile_photo%>
+        <%= sent_message.receiver.username%>
+        --- <%= sent_message.content %>
+      </div>
+      <% end %>
+      <br>
+    <% end %>
+  </div>
+
 </div>

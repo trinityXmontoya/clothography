@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="100.0px" height="100px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<g id="Layer_2">
+	<g>
+		<path fill="#000000" d="M362.437,240H273v-89.535c0-6.463-1.584-9.696-8.051-9.702l-19.229,0.003    c-6.468,0.003-9.288,3.434-9.288,9.9L236.671,237h-86.053c-6.464,0-9.653,3.037-9.658,9.502l0.025,21.426    c0.001,6.469,3.256,11.072,9.724,11.072H237v79.472c0,6.463,3.156,9.061,9.623,9.064l20.013-0.32    c6.471-0.003,9.683-1.925,9.683-8.392L276.301,279h86.139c6.463,0,9.696-4.705,9.702-11.17l-0.005-19.091    C372.136,242.271,368.901,240,362.437,240z"/>
+		<rect x="36" y="352" fill="#000000" width="10" height="20"/>
+		<rect x="36" y="312" fill="#000000" width="10" height="20"/>
+		<rect x="36" y="432" fill="#000000" width="10" height="20"/>
+		<rect x="36" y="392" fill="#000000" width="10" height="20"/>
+		<rect x="112" y="466" fill="#000000" width="20" height="10"/>
+		<path fill="#000000" d="M36,466.019v6V476h9.757c3.233,0,6.243,0,6.243,0v-10H36V466.019z"/>
+		<rect x="36" y="272" fill="#000000" width="10" height="20"/>
+		<rect x="98" y="34" fill="#000000" width="20" height="10"/>
+		<rect x="58" y="34" fill="#000000" width="20" height="10"/>
+		<rect x="72" y="466" fill="#000000" width="20" height="10"/>
+		<rect x="258" y="34" fill="#000000" width="20" height="10"/>
+		<rect x="178" y="34" fill="#000000" width="20" height="10"/>
+		<rect x="218" y="34" fill="#000000" width="20" height="10"/>
+		<rect x="138" y="34" fill="#000000" width="20" height="10"/>
+		<rect x="298" y="34" fill="#000000" width="20" height="10"/>
+		<rect x="338" y="34" fill="#000000" width="20" height="10"/>
+		<rect x="36" y="72" fill="#000000" width="10" height="20"/>
+		<rect x="36" y="192" fill="#000000" width="10" height="20"/>
+		<rect x="36" y="152" fill="#000000" width="10" height="20"/>
+		<rect x="36" y="112" fill="#000000" width="10" height="20"/>
+		<rect x="36" y="232" fill="#000000" width="10" height="20"/>
+		<path fill="#000000" d="M46,34H36v10.019C36,48.162,36,52,36,52h10V34z"/>
+		<rect x="468" y="302" fill="#000000" width="10" height="20"/>
+		<rect x="468" y="262" fill="#000000" width="10" height="20"/>
+		<rect x="468" y="222" fill="#000000" width="10" height="20"/>
+		<rect x="468" y="382" fill="#000000" width="10" height="20"/>
+		<rect x="468" y="342" fill="#000000" width="10" height="20"/>
+		<rect x="152" y="466" fill="#000000" width="20" height="10"/>
+		<rect x="468" y="102" fill="#000000" width="10" height="20"/>
+		<rect x="458" y="34" fill="#000000" width="20" height="10"/>
+		<rect x="468" y="62" fill="#000000" width="10" height="20"/>
+		<rect x="468" y="422" fill="#000000" width="10" height="20"/>
+		<rect x="468" y="142" fill="#000000" width="10" height="20"/>
+		<rect x="468" y="182" fill="#000000" width="10" height="20"/>
+		<rect x="312" y="466" fill="#000000" width="20" height="10"/>
+		<rect x="272" y="466" fill="#000000" width="20" height="10"/>
+		<rect x="232" y="466" fill="#000000" width="20" height="10"/>
+		<rect x="192" y="466" fill="#000000" width="20" height="10"/>
+		<rect x="352" y="466" fill="#000000" width="20" height="10"/>
+		<rect x="392" y="466" fill="#000000" width="20" height="10"/>
+		<rect x="378" y="34" fill="#000000" width="20" height="10"/>
+		<rect x="432" y="466" fill="#000000" width="20" height="10"/>
+		<rect x="418" y="34" fill="#000000" width="20" height="10"/>
+		<polygon fill="#000000" points="468,476 471.757,476 478,476 478,462 468,462   "/>
+	</g>
+</g>
+<g id="Layer_3">
+</g>
+</svg>

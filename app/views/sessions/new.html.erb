@@ -1,33 +1,18 @@
-
-
-  <%= javascript_include_tag 'session/login' %>
+<%= javascript_include_tag 'session/login' %>
 
 <div id="login-splash-container">
+  <div id="sign-up">
+    <div class="sign-up-directions callout radius">
+      Ready to login? Just start typing your username below!
+    </div>
 
-
-
-<div id="sign-up">
-
-
-  <div class="sign-up-directions callout radius">
-
-    Ready to login? Just start typing your username below!
-
+    <div id="sign-up-form">
+      <%= form_tag request_token_path(user_id: 0), id:'login-form' do %>
+        <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :username), id: 'login-username-selection', prompt: "" %>
+        <br>
+        <%= submit_tag "Do it!", class: "button expand" %>
+      <% end %>
+    </div>
+    <br>
   </div>
-
-  <div id="sign-up-form">
-    <%= form_tag request_token_path(user_id: 0), id:'login-form' do %>
-      <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :username), id: 'login-username-selection', prompt: "" %>
-      <br>
-      <%= submit_tag "Do it!", class: "button expand" %>
-    <% end %>
-  </div>
-  <br>
-
-  <div id="bottom-directions" class="sign-up-directions">
-<%= link_to "login with Twitter", '/auth/twitter', id: "twitter-login-link" %>
-  <i class="fi-social-twitter"></i>
-  </div>
-</div>
-
 </div>

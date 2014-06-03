@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
-  before_action :authenticate, only: [:index, :show, :new, :edit, :update, :destroy]
+  before_action :authenticate
+  before_action :make_sure_twitter_user_updates_info
 
   def index
     @user = current_user
@@ -90,7 +91,7 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.find(params[:id])
     @purchase.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Purchase was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Item was successfully removed from cart.' }
       format.js {}
     end
   end

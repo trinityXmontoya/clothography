@@ -1,23 +1,19 @@
-<br>
-<br>
 <div class="row">
-
-Messages with <h3 id="msg-info"><%= link_to @user.username, user_closet_path(@user) %></h3>
-<br>
-<div id="all-messages">
-
-
+  <div id="all-messages" class='large-4 columns'>
+  Messages with <h3 id="msg-info"><%= link_to @user.username, user_closet_path(@user) %></h3>
+  <hr>
   <% @messages.each do |message| %>
-  <div class="panel message-panel">
-    <%= message.created_at.strftime("%D\n%H:%M")%>
-    <br>
-    <%= image_tag message.sender.profile_photo %>
-    <%= link_to message.sender.username, user_closet_path(message.sender) %>
-    <%= message.content %>
-    <br>
-  </div>
+    <div class="panel message-panel">
+      <%= message.created_at.strftime("%D\n%H:%M")%>
+      <br>
+      <%= image_tag message.sender.profile_photo %>
+      <%= link_to message.sender.username, user_closet_path(message.sender) %>
+      <%= message.content %>
+      <br>
+    </div>
   <% end %>
-</div>
-<%= render 'messages/send_message_form', user: @user, message: @message %>
-
+  </div>
+  <div id='message_reply' class='large-6 columns'>
+  <%= render 'messages/send_message_form', user: @user, message: @message %>
+  </div>
 </div>

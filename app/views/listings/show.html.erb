@@ -1,4 +1,3 @@
-<%= javascript_include_tag 'message/message_show' %>
 <%= javascript_include_tag 'listing/make_offer' %>
 
 
@@ -35,12 +34,15 @@
 <div id="user-closet-info">
   <%= link_to @listing.user.username + "'s closet", user_closet_path(@listing.user)%>
   <%= image_tag @listing.user.profile_photo %>
-  <div id="message-user-from-listing-button">
-    Message this user
-  </div>
-  <div id="message-user-from-listing-popout">
-    <%= render 'messages/send_message_form', user: @listing.user, message: @message %>
-  </div>
+
+  <% if current_user %>
+    <% unless current_user == @user %>
+    <a href="#" data-reveal-id="message_user_from_listing">Message this user</a>
+    <div id="message_user_from_listing" class="reveal-modal" data-reveal>
+        <%= render 'messages/send_message_form', user: @listing.user, message: @message %>
+    </div>
+    <% end %>
+  <% end %>
 </div>
 
 

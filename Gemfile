@@ -53,8 +53,7 @@ gem 'foundation-rails'
 
 gem 'rails_12factor', group: :production
 ruby '2.1.0'
-# Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

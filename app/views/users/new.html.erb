@@ -1,11 +1,18 @@
-<h1>New user</h1>
-
-<%= render 'form' %>
-
-<div id="bottom-directions" class="sign-up-directions">
-
-We'll send you an email with a special login link, click it and you're all set!
-<br>
-No password to remember (even though we both know you  would've used '12345' anyway).<br> If this is too new age for you you're welcome to <%= link_to "sign up with Twitter", '/auth/twitter', id: "twitter-login-link" %>
-<i class="fi-social-twitter"></i>
+<div class="row">
+  <h1>Join Clothography!</h1>
 </div>
+
+<div class="row">
+  <div class="panel large-9 columns button success">
+If you're new here and unfamiliar with our passwordless login process, <%= link_to "check it out." , faq_path %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-4 columns">
+    <%= render 'form'%>
+  </div>
+</div>
+
+
+

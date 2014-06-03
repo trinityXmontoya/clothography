@@ -1,8 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-
   config.assets.precompile += %w( checkout_mainfest.js listing_manifest.js)
+
+  config.action_mailer.default_url_options = { :host => 'http://clothography.herokuapp.com/' }
 
   config.paperclip_defaults = {
     :storage => :s3,

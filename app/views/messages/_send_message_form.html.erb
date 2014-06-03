@@ -2,8 +2,12 @@
   <%= f.hidden_field :receiver_id, value: user.id %>
   <%= f.hidden_field :sender_id, value: current_user.id %>
   <div id="message-input-box">
-    <%= f.text_field :content %>
+    <p>
+    <%= image_tag user.profile_photo, class: 'message-user-photo' %>
+    Message <%= user.username %>
+    </p>
+    <hr>
+    <%= f.text_area :content %>
     <%= f.submit "Send Message", id: 'message-input-submit', class: 'button' %>
   </div>
-
 <% end %>

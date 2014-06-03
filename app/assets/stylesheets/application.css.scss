@@ -19,18 +19,70 @@
 
 
  body { font-family: 'Lato', "Helvetica",sans-serif;
-          background-color:#F0F0F5
-
+          background-color:#F0F0F5;
         }
 
 
  a {  }
 
+textarea {
+  resize: none;
+}
+
+form.edit_listing {
+  margin-bottom: 60px
+}
+
+form.new_listing {
+  margin-bottom: 60px
+}
+
+#footer {
+  width: 100%;
+  padding: 15px;
+  position:fixed;
+  bottom:0;
+  background-color: black;
+  display: none;
+}
+
+.container {
+  min-height:100%;
+  position:relative;
+  padding: 10px;
+  padding-bottom: 46px
+}
+
+#footer a {
+  color: palegreen
+}
+
 /*LAYOUT*/
+#main-navbar {
+  background-color: palegreen;
+}
+
+#main-navbar a {
+  color: black;
+}
+
 .main-navbar-item {
   display: inline-block;
   padding: 15px;
   font-size: 23px;
+}
+
+.main-navbar-item img {
+  width: 60px;
+}
+
+.nav-logout, .nav-faq {
+  float:right;
+}
+
+#twitter-login-button {
+  float: right;
+  list-style: none;
 }
 
 #notice {
@@ -38,7 +90,6 @@
   text-align: center;
   margin: 1rem auto;
   font-size: 20px;
-
 }
 
 #login-splash-container{
@@ -46,18 +97,35 @@
    height: 100%;
    background-size: cover;
    background-position-y: -192px;
-   margin: 10px auto;
  }
 
  #sign-up {
-   margin: 25px auto;
    width: 500px;
    background: rgba(238,238,238,0.7);
    padding-top: 71px;
-margin: 0 auto;
+  margin: 40px auto;
  }
 
+/*FAQ*/
+
+.joyride-tip-guide p {
+  font-size: 1rem
+}
+
+.joyride-panel img {
+  display: inline-block;
+}
+.joyride-photo-description {
+  font-size: 20px;
+  background-color: white;
+  padding: 15px;
+  opacity: .9;
+  display: inline-block;
+}
+
+
 /*SIGN UP*/
+
 .sign-up-directions {
   margin: 0 auto;
   width: 500px;
@@ -77,18 +145,23 @@ font-weight: bold;
   background-color: rgb(82, 223, 74);
 }
 
-
-#bottom-directions {
-color: rgba(26, 23, 23, 0.55);
-font-size: 18px;
-line-height: 30px;
-padding: 10px 5px;
-background-color: rgba(248, 248, 248, 0.34);
+div#sign_up_with_twitter {
+  display: inline-block;
+  background-color: palegreen;
+  text-align: center;
+  padding: 25px;
+  margin: 0 250px 0 0;
 }
+
+#user_email, #user_username, #create_user_submit {
+  width: 300px;
+}
+
 
 select#login-username-selection {
   font-size: 18px
 }
+
 /*LISTINGS SEARCH DISPLAY*/
 
 #search {
@@ -209,32 +282,50 @@ a.chosen-single {
   display: inline-block;
 }
 
+#message_user_from_closet, #message_user_from_listing{
+  width: 616px;
+  height: 430px;
+}
+
+textarea#message_content {
+  height: 207px;
+  max-height: 507px;
+}
+
+#message-input-submit {
+  float: right;
+}
+
+#message-input-box p {
+  font-size: 23px;
+  text-transform: uppercase;
+}
+
+.message-user-photo {
+  border-radius: 100%;
+  height: 50px;
+}
+
 .message-panel {
   width: 400px;
 }
 
 #all-messages{
-  margin: 20px 0 0 0;
-  height: 600px;
-  overflow: scroll
+  margin: 20px 0 20px 0;
+  max-height: 600px;
+  width: 500px;
+  overflow: scroll;
+  display: inline-block
 }
-#message_content {
-  width: 400px;
-  margin: -60px 0 0 60px
+
+#message_reply {
+  display: inline-block
 }
 
 .inbox-msg-show img {
   width: 50px;
 }
-#message-input-box {
-  margin: -400px 0 0 360px
-}
-#message-input-submit{
-  margin: 10px 0 0 60px
-}
-.message-panel img {
-  width: 50px
-}
+
 #sent-messages, #received-messages {
   display: inline-block;
   margin: 10px 40px 0 0;
@@ -354,6 +445,11 @@ display: inline-block;
 #listing_title {
   width: 500px;
 }
+
+form#new_listing{
+  padding-bottom: 22px;
+}
+
 /*CHECKOUT CART*/
 .future-purchase {
   width: 400px;
@@ -406,16 +502,6 @@ display: inline-block;
 #user-closet-info img{
   width: 50px;
   height: 50px
-}
-
-#message-user-from-listing-button, #message-user-from-profile-button {
-
-  display: inline-block;
-  font-size: 23px;
-}
-
-#message-user-from-listing-popout, #message-user-from-profile-popout, #message-user-from-closet-popout, #make-offer-display {
-  display: none;
 }
 
 .display-me {

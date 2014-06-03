@@ -1,6 +1,5 @@
 <div class="row">
 
-<%= javascript_include_tag 'message/message_show' %>
 <%= javascript_include_tag 'listing/user_closet' %>
 
 
@@ -11,18 +10,15 @@
 
   <div id="user-info">
     <h1><%= @user.username %>'s Closet</h1>
-    <%= image_tag @user.profile_photo %>
+    <%= image_tag @user.profile_photo, height: '200' %>
   </div>
 
   <% if current_user %>
     <% unless current_user == @user %>
-      <div id="message-user-from-closet-button">
-        Message this user
-      </div>
-
-      <div id="message-user-from-closet-popout">
+    <a href="#" data-reveal-id="message_user_from_closet">Message this user</a>
+    <div id="message_user_from_closet" class="reveal-modal" data-reveal>
         <%= render 'messages/send_message_form', user: @user, message: @message %>
-      </div>
+    </div>
     <% end %>
   <% end %>
 
@@ -37,7 +33,7 @@
     <div id="listing-display-box">
       <div id="available-listings">
         <% unless @listings.exists? %>
-      <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> doesn't have anything listed right now! Check out <%= link_to "other listings", root_path %>"
+      <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> doesn't have anything listed right now! Check out <%= link_to "other listings", root_path %>.
       </div>
       <% else %>
 
@@ -73,7 +69,7 @@
         <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Maybe help 'em out and <%= link_to "buy something", user_closet_path(@user) %> ;)"
         </div>
         <% else %>
-        <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Check out <%= link_to "other listings", root_path %> ;)"
+        <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Check out <%= link_to "other listings", root_path %> ;)
       </div>
         <% end %>
       <% else %>

@@ -19,15 +19,15 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to search_listings_path, notice: "Welcome " + @user.username
     else
-      redirect_to login_path, notice: "Error logging in."
+      redirect_to login_path, notice: "Error logging in.\nPerhaps your login link expired!\nYou can resend yourself one below."
     end
   end
 
   def twitter_create
     @user = User.find_or_create_from_auth_hash(auth_hash)
     session[:user_id] = @user.id
-    if (@user.email == "")
-      redirect_to edit_user_path(@user), notice: "Welcome " + @user.name + ", please confirm your information to complete registration."
+    if (@user.email.include? "Twitter-User-")
+      redirect_to edit_user_path(@user), notice: "Welcome, please confirm your information to complete registration."
     else
       redirect_to search_listings_path, notice: "Welcome " + @user.username
     end
