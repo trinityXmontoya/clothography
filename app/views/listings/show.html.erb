@@ -1,4 +1,5 @@
 <%= javascript_include_tag 'listing/make_offer' %>
+<%= javascript_include_tag 'listing/slideshow' %>
 
 
   <% if current_user == @listing.user %>
@@ -63,17 +64,30 @@
   <%= @listing.category.name %>
 </p>
 
-  <ul data-orbit>
-  <%  if @listing.asset.photo1.exists? %>
-    <%= image_tag @listing.asset.photo1 %>
-  <% end %>
-  <%  if @listing.asset.photo2.exists? %>
-    <%= image_tag @listing.asset.photo2 %>
-  <% end %>
-  <%  if @listing.asset.photo3.exists? %>
-    <%= image_tag @listing.asset.photo3 %>
-   <% end %>
- </ul>
+
+  <div id="previous-slide" class='slideshow-arrow' data-direction='prev'><b><</b></div>
+  <div id='listing-photo-carousel'>
+    <% if @listing.asset.photo1.exists? %>
+      <div class='listing_photo display-me' data-id='1' >
+      <%= image_tag @listing.asset.photo1 %>
+      </div>
+    <% end %>
+    <% if @listing.asset.photo2.exists? %>
+      <div class='listing_photo' data-id='2'>
+      <%= image_tag @listing.asset.photo2 %>
+      </div>
+    <% end %>
+    <% if @listing.asset.photo3.exists? %>
+      <div class='listing_photo' data-id='3'>
+      <%= image_tag @listing.asset.photo3 %>
+      </div>
+     <% end %>
+  </div><!-- end listing-photo-carousel -->
+  <div id="next-slide" class='slideshow-arrow' data-direction='next'><b>></b></div>
+  <div id="listing-photo-slideshow-number-display">
+   Photo 1
+  </div>
+
 <p>
   <strong>Tags:</strong>
   <% @listing.tag_list.each do |tag| %>

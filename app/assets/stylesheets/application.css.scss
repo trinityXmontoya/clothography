@@ -507,3 +507,22 @@ form#new_listing{
 .display-me {
   display: block !important;
 }
+
+.listing_photo {
+  display: none;
+}
+
+#listing-photo-slideshow-number-display{
+  background-color:black;
+  color: pink;
+  padding: 25px;
+  display: inline-block;
+}
+
+#listing-photo-carousel {
+  display: inline-block
+}
+
+.slideshow-arrow {
+  display: inline-block;
+}
