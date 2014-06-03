@@ -1,4 +1,6 @@
-<%= form_for @user, :html => { :multipart => true } do |f| %>
+
+<div style="margin: 0 0 35px 0">
+  <%= form_for @user, :html => { :multipart => true } do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -10,6 +12,12 @@
       </ul>
     </div>
   <% end %>
+
+  <% if @user.email %>
+    <% if @user.email.include? "Twitter-User-" %>
+    <%= javascript_include_tag "user/edit_twitter_user_form.js" %>
+    <% end %>
+   <% end %>
 
   <div class="field">
     <%= f.label :email %><br>
