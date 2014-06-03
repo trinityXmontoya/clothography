@@ -20,12 +20,15 @@
     <% else %>
       <%= javascript_include_tag "listing/edit_listing_form" %>
         <%  if @listing.asset.photo1.exists? %>
+          <p>Photo 1</p>
           <%= image_tag @listing.asset.photo1 %>
         <% end %>
         <%  if @listing.asset.photo2.exists? %>
+          <p>Photo 2</p>
           <%= image_tag @listing.asset.photo2 %>
         <% end %>
         <%  if @listing.asset.photo3.exists? %>
+          <p>Photo 3</p>
           <%= image_tag @listing.asset.photo3 %>
          <% end %>
       <h3>Current photos, replace?</h3>
@@ -35,7 +38,7 @@
 
   <div id="listing-form-product-info">
 
-  <%= render 'assets/upload_photos', f: f %>
+  <%= render 'assets/upload_photos', f: f, listing: @listing %>
 
 
     <div class="field">

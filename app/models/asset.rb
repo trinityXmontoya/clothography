@@ -1,6 +1,6 @@
 class Asset < ActiveRecord::Base
 
-  belongs_to :listing, inverse_of: :asset
+  belongs_to :listing
 
   has_attached_file :photo1,
     path: "/users/:class/:user/:attachment/:id/:filename",
@@ -36,6 +36,5 @@ class Asset < ActiveRecord::Base
     validates :photo1, presence: true, unless: :photo2
     validates :photo2, presence: true, unless: :photo3
     validates :photo3, presence: true, unless: :photo1
-    validates :listing_id, presence: true
 
 end

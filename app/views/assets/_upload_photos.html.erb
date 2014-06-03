@@ -3,8 +3,12 @@
   <h3 class="button">The first photo will be your display photo</h3>
     <br>
     <%= f.fields_for :asset do |asset_photo| %>
+      <%= asset_photo.label :photo1 %>
       <%= asset_photo.file_field :photo1, class: "upload-field" %>
+      <%= asset_photo.label :photo2 %>
       <%= asset_photo.file_field :photo2, class: "upload-field" %>
+      <%= asset_photo.label :photo3 %>
       <%= asset_photo.file_field :photo3, class: "upload-field" %>
+      <%= asset_photo.hidden_field :listing_id, value: listing.id %>
     <% end %>
 </div>

@@ -8,7 +8,7 @@ class Listing < ActiveRecord::Base
   belongs_to :gender
   belongs_to :color
   has_one :purchase
-  has_one :asset, inverse_of: :listing
+  has_one :asset
   accepts_nested_attributes_for :asset, allow_destroy: true
   has_many :offers
   acts_as_taggable_on :tags
