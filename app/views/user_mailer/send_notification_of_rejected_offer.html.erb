@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  Your offer of $<%= @offer.amount %> for <%= link_to @listing.title.capitalize, user_listing_url(@listing.user,@listing) %> has been rejected. Feel free to make a new offer on the listing.
+</body>
+</html>

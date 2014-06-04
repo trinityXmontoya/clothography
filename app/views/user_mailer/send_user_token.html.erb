@@ -5,7 +5,7 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-  Hey <%= @user.username %>, here's your login link: <%= link_to "Login", @link %>
+  Hey <%= @user.username.capitalize %>, here's your login link: <%= link_to "Login", @link %>
   Requested on <%= @user.auth_token_created_at %>. If not used it will expire in 2 minutes for safety reasons. Read more about our login-process <%= link_to 'here', faq_url %>.
 </body>
 </html>

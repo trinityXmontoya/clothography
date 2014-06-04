@@ -10,15 +10,15 @@
 
     <% if @listing.has_been_sold %>
       <div class="button alert">SOLD!</div>
-    <% else %>
-      <% unless current_user == @user %>
+    <% elsif @listing.is_reserved %>
+      <div class="button alert">RESERVED!</div>
+    <% elsif current_user != @user %>
         <%= form_for [@listing.user, @purchase], url: {controller: 'purchases', action: 'add_to_cart'} do |f| %>
           <%= f.hidden_field :listing_id, value: @listing.id %>
           <%= f.hidden_field :seller_id, value: @listing.user.id %>
           <%= f.hidden_field :buyer_id, value: current_user.id %>
           <%= f.submit "Add to cart" %>
         <% end %>
-      <% end %>
     <% end %>
 
     <div id="user-closet-info">
@@ -111,7 +111,7 @@
 
     <p>
     <strong>Price:</strong>
-    <%= @listing.price %>
+    <%= @listing.price_before_offer %>
     </p>
 
     <p>
@@ -121,14 +121,16 @@
   </div>
 
   <div id="listing_offers_display" class='large-4 columns'>
-    <% unless current_user == @listing.user %>
-      <div>
-        <% if Offer.exists_between(@listing,current_user) %>
-          <p>You have already made an offer on this listing. <%= @listing.user.username %> has Xhrs left to accept before it will automatically expire, at which point you can make a new offer.</p>
-        <% else %>
-          <%= render 'offers/make_offer', offer: @new_offer, listing: @listing %>
-        <% end %>
-      </div>
+    <% if @listing.is_reserved %>
+        <p>This listing is reserved and no offers are currently being accepted.</p>
+    <% elsif current_user != @listing.user %>
+      <% if Offer.exists_between(@listing,current_user) %>
+          <div>
+            <p>You have already made an offer on this listing. <%= @listing.user.username %> has Xhrs left to accept before it will automatically expire, at which point you can make a new offer.</p>
+          </div>
+      <% else %>
+        <%= render 'offers/make_offer', offer: @new_offer, listing: @listing %>
+      <% end %>
     <% else %>
       <p>Pending Offers:</p>
       <table>
@@ -143,7 +145,9 @@
             <td><%= offer.offerer.username %></td>
             <td>$ <%= offer.amount %></td>
             <td>
-              <%= button_to "Accept", user_listing_offer_path(offer.offerer,offer.listing,offer), method: :put %>
+              <%= form_for offer, url: {controller: 'offers', action: 'accept_offer', listing_id: offer.listing.id, offer_id: offer.id} do |f| %>
+                <%= f.submit "Accept" %>
+              <% end %>
               <%= button_to "Reject", user_listing_offer_path(offer.offerer,offer.listing,offer),method: :delete %>
             </td>
           </tr>

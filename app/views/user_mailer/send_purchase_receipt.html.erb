@@ -5,6 +5,6 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-  Hey <%= @user.username %>, your purchase of <%= link_to @purchase.listing.title, user_listing_url(@purchase.seller, @purchase.listing) %> has been confirmed! When the buyer ships out (within the next 3 days, you will receive another email with the shipping information). Thanks for shopping with <a href='http://clothography.herokuapp.com'>Clothography</a>!
+  Hey <%= @user.username.capitalize %>, your purchase of <%= link_to @purchase.listing.title.capitalize, user_listing_url(@purchase.seller, @purchase.listing) %> has been confirmed! When the buyer ships out (within the next 3 days, you will receive another email with the shipping information). Thanks for shopping with <a href='http://clothography.herokuapp.com'>Clothography</a>!
 </body>
 </html>

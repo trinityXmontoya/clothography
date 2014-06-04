@@ -23,6 +23,15 @@ class Purchase < ActiveRecord::Base
     Time.now-self.created_at < 0 ? true : false
   end
 
+  def self.add_item_to_cart(buyer,listing)
+    Purchase.create(
+      seller: listing.user,
+      buyer: buyer,
+      listing: listing,
+      status: 'reserved'
+      )
+  end
+
 end
 
 # Purchase.where(status: 'in cart')

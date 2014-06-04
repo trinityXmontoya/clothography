@@ -9,6 +9,13 @@ class Offer < ActiveRecord::Base
     update(status: 'pending')
   end
 
+  def accept
+    mark_as_accepted
+    self.listing.set_offer_price(self.amount)
+    self.listing.mark_as_reserved
+    self.offerer.notify_of_accepted_offer(self)
+  end
+
   def mark_as_accepted
     update(status: 'accepted')
   end

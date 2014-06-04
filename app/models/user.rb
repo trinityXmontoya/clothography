@@ -42,10 +42,20 @@ class User < ActiveRecord::Base
 
   acts_as_tagger
 
+  # Set :user_id param to username for more readable url
   def to_param
     username
   end
 
+  def unread_messages
+    received_messages.where(viewed: false)
+  end
+
+  def items_in_cart
+    Purchase.where(buyer_id: self.id).where(status: 'in cart')
+  end
+
+  # LOGIN
   def self.find_or_create_from_auth_hash(auth_hash)
      where(auth_hash.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth_hash.provider
@@ -88,6 +98,7 @@ class User < ActiveRecord::Base
     User.where("auth_token = ?", token).exists? ? generate_token : token
   end
 
+  # USER MAILER
   def notify_of_sale(listing)
     UserMailer.send_notification_of_sale(self,listing).deliver
   end
@@ -101,13 +112,11 @@ class User < ActiveRecord::Base
   end
 
   def notify_of_accepted_offer(offer)
+    UserMailer.send_notification_of_accepted_offer(self,offer).deliver
   end
 
-  def unread_messages
-    received_messages.where(viewed: false)
+  def notify_of_rejected_offer(offer)
+    UserMailer.send_notification_of_rejected_offer(self,offer).deliver
   end
 
-  def items_in_cart
-    Purchase.where(buyer_id: self.id).where(status: 'in cart')
-  end
 end

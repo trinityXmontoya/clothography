@@ -16,7 +16,7 @@ class Listing < ActiveRecord::Base
   validates :user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :price, :condition, presence: true
   validates :price, :original_price, numericality: { only_integer: true }
 
-  after_create :mark_as_available, :calculate_discount
+  after_create :mark_as_available, :calculate_discount, :set_price_before_offer
 
   def self.conditions
     return ["New with tags", "New without tags", "Like new", "Gently used"]
@@ -38,6 +38,15 @@ class Listing < ActiveRecord::Base
     end
   end
 
+  def set_price_before_offer
+    self.update(price_before_offer: self.price)
+  end
+
+  def set_offer_price(amount)
+    set_price_before_offer
+    self.update(price: amount)
+  end
+
   def mark_as_available
     self.update(status: "available")
   end
@@ -47,8 +56,16 @@ class Listing < ActiveRecord::Base
     self.user.notify_of_sale(self)
   end
 
+  def mark_as_reserved
+    self.update(status: "reserved")
+  end
+
   def has_been_sold
     self.status == "sold"
+  end
+
+  def is_reserved
+    self.status == 'reserved'
   end
 
   def self.available_listings

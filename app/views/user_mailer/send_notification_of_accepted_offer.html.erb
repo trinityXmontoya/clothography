@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  Hey <%= @user.username.capitalize %>, <%= @listing.user.username.capitalize %> has accepted your offer of $<%= @offer.amount %> for <%= link_to @listing.title.capitalize, user_listing_url(@listing.user,@listing) %>. <%= link_to "Checkout now!", user_cart_url(@user) %>
+</body>
+</html>

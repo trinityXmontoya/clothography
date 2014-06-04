@@ -35,7 +35,7 @@ class ListingsController < ApplicationController
     @message = Message.new
     @purchase = Purchase.new
     @new_offer = Offer.new
-    @offers = @listing.offers
+    @offers = @listing.offers.where(status: 'pending')
   end
 
   def new

@@ -4,10 +4,10 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-  <h1>Hey <%= @user.name %>!</h1>
+  <h1>Hey <%= @user.name.capitalize %>!</h1>
   <p>
     Your item <%  @listings.each do |listing| %>
-      <%= listing.title %>
+      <%= listing.title.capitalize %>
       <%= listing.price %>
       <% end %>
      Congrats!

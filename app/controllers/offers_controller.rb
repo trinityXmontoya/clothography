@@ -12,29 +12,29 @@ class OffersController < ApplicationController
       end
   end
 
-  def update
-    @offer = Offer.find(params[:id])
-    @offer.mark_as_accepted
-    @offer.offerer.notify_of_accepted_offer
-    listing.delete_all_other_offers
+  def accept_offer
+    offer = Offer.find(params[:offer_id])
+    offer.accept
+    Purchase.add_item_to_cart(offer.offerer, offer.listing)
     respond_to do |format|
-      format.html { redirect_to offer.listing, notice: 'Item was successfully removed from cart.' }
+      format.html { redirect_to user_listing_path(offer.listing.user,offer.listing), notice: "You have accepted an offer of $#{offer.amount} for this listing. #{offer.offerer} has been notified and has 24 hours to respond."}
       format.js {}
     end
   end
 
   def destroy
-    @offer = Offer.find(params[:id])
-    listing= offer.listing
-    @offer.destroy
+    offer = Offer.find(params[:id])
+    listing = offer.listing
+    offer.offerer.notify_of_rejected_offer(offer)
+    offer.destroy
     respond_to do |format|
-      format.html { redirect_to listing, notice: 'Item was successfully removed from cart.' }
+      format.html { redirect_to user_listing_path(listing.user,listing), notice: 'Offer successfully rejected.' }
       format.js {}
     end
   end
 
   private
   def offer_params
-    params.require(:offer).permit(:offerer_id, :amount)
+    params.require(:offer).permit(:id,:offerer_id, :amount)
   end
 end

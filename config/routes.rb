@@ -22,7 +22,10 @@ get '/listings/:tag' => 'listings#all_site_listings', as: :search_for_tag
       get '/closet' => 'listings#user_closet'
       resources :listings do
         post '/make_offer' => 'offers#make_offer'
-        resources :offers, only: [:index, :update, :destroy]
+        resources :offers, only: [:index, :destroy] do
+           post '/accept_offer' => 'offers#accept_offer'
+           patch '/accept_offer' => 'offers#accept_offer'
+         end
       end
 
       post '/add_to_cart' => 'purchases#add_to_cart', as: :add_to_cart
