@@ -13,11 +13,16 @@ class Purchase < ActiveRecord::Base
 
   def mark_as_completed
     self.update(status: "completed")
-    self.buyer.send_receipt_of_purchase(self)
   end
 
   def self.retrieve_user_cart_listings(user)
     Purchase.where(buyer_id: user.id).where(status: 'in cart')
   end
 
+  def time_in_cart_ran_out?
+    Time.now-self.created_at < 0 ? true : false
+  end
+
 end
+
+# Purchase.where(status: 'in cart')

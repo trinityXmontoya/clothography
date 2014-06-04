@@ -1,11 +1,11 @@
-<h1>Listing purchases</h1>
+<h1>Your purchases</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Listing</th>
       <th>Seller</th>
       <th>Buyer</th>
-      <th>Listings</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,17 +13,16 @@
   <tbody>
     <% @purchases.each do |purchase| %>
       <tr>
-        <td><%= purchase.seller_id %></td>
-        <td><%= purchase.buyer_id %></td>
-        <td><%= purchase.listings %></td>
-        <td><%= link_to 'Show', purchase %></td>
-        <td><%= link_to 'Edit', edit_purchase_path(purchase) %></td>
-        <td><%= link_to 'Destroy', purchase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <%= image_tag purchase.listing.asset.photo1, width: '100' %>
+        <%= purchase.listing.title %>
+        </td>
+        <td><%= purchase.seller.username %></td>
+        <td><%= purchase.buyer.username %></td>
+        <td><%= link_to 'Show', user_listing_path(purchase.listing.user, purchase.listing) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Purchase', new_purchase_path %>

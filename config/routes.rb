@@ -30,7 +30,9 @@ get '/listings/:tag' => 'listings#all_site_listings', as: :search_for_tag
       post '/add_to_cart' => 'purchases#add_to_cart', as: :add_to_cart
       patch '/add_to_cart' => 'purchases#add_to_cart'
       get '/cart' => 'purchases#cart'
-      resources :purchases
+      resources :purchases, only: [:index, :new, :show, :destroy]
+      get '/checkout' => 'purchases#checkout'
+      patch '/checkout' => 'purchases#checkout'
 
       resources :messages
   end

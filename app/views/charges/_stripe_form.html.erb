@@ -1,4 +1,4 @@
-<%= form_for [purchase.seller, purchase], multipart: true, url: {controller: 'purchases', action: 'update', id: purchase.id} do |f| %>
+<%= form_for [purchase.seller, purchase], multipart: true, url: {controller: 'purchases', action: 'checkout', id: purchase.id} do |f| %>
   <article>
     <label class="amount">
       <span>Amount: <%=amount%></span>

@@ -11,7 +11,6 @@ class Listing < ActiveRecord::Base
   has_one :asset
   accepts_nested_attributes_for :asset, allow_destroy: true
   has_many :offers
-  accepts_nested_attributes_for :offers
   acts_as_taggable_on :tags
 
   validates :user_id, :brand_id, :category_id, :size_id, :gender_id, :title, :description, :price, :condition, presence: true
@@ -45,11 +44,15 @@ class Listing < ActiveRecord::Base
 
   def mark_as_sold
     self.update(status: "sold")
-    user.notify_of_sale(self)
+    self.user.notify_of_sale(self)
   end
 
-  def has_been_sold?
+  def has_been_sold
     self.status == "sold"
+  end
+
+  def self.available_listings
+    where(status: "available")
   end
 
 end

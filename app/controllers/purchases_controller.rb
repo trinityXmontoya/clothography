@@ -19,11 +19,11 @@ class PurchasesController < ApplicationController
     purchase.mark_as_in_cart
     if purchase.save
       respond_to do |format|
-        format.html {redirect_to user_listing_path(seller,listing), notice: "Succesfully added to cart"}
+        format.html {redirect_to user_listing_path(seller,listing), notice: "#{listing.title} succesfully added to cart. You have 20 minutes to checkout."}
         format.js {}
       end
     else
-      redirect_to user_listing_path(seller,listing), notice: "This item is already in someone's cart. Please check back within the next hour."
+      redirect_to user_listing_path(seller,listing), notice: "This item is already in someone's cart. Please check back within the next 20 minutes."
     end
   end
 
@@ -35,24 +35,10 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new
   end
 
-  # def create
-  #   @purchase = Purchase.new(purchase_params)
-  #   @user = Purchase.seller
-  #   respond_to do |format|
-  #     if @purchase.save
-  #       PurchaseMailer.notify_user_of_sale(@purchase,@user).deliver
-  #       format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
-  #       format.js {}
-  #     else
-  #       format.html { render :new }
-  #       format.js {}
-  #     end
-  #   end
-  # end
-
-  def update
+  def checkout
     @purchase = Purchase.find(params[:id])
 
+    begin
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :card  => params[:stripeToken]
@@ -72,19 +58,17 @@ class PurchasesController < ApplicationController
       }
     )
 
+    rescue Stripe::CardError => e
+       redirect_to user_cart_path(current_user), notice: e.message
+       return
+    end
 
-
-    respond_to do |format|
-      if charge
-        @purchase.listing.mark_as_sold
-        @purchase.mark_as_completed
-        format.html { redirect_to user_cart_path(current_user), notice: 'Purchase was successfully updated.' }
-        format.js {}
-      else
-        format.html { redirect_to user_cart_path(current_user), notice: Stripe::CardError }
+      @purchase.listing.mark_as_sold
+      @purchase.mark_as_completed
+      respond_to do |format|
+        format.html {redirect_to user_purchases_path(current_user), notice: 'Purchase was successfully updated.'}
         format.js {}
       end
-    end
   end
 
   def destroy
