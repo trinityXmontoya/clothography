@@ -498,7 +498,7 @@ form#new_listing{
 }
 
 
-/*INDIVIDUAL PRODUCT LIATING DISPLAY*/
+/*INDIVIDUAL PRODUCT LISTING DISPLAY*/
 #user-closet-info img{
   width: 50px;
   height: 50px
@@ -528,5 +528,13 @@ form#new_listing{
 }
 
 #make-offer-display {
-width: 100px;
+display: none;
+}
+
+#listing_main_info_display {
+  display: inline-block
+}
+
+#listing_offers_display {
+  display: inline-block
 }

@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  skip_before_action :authenticate
+
   def new
   end
 
@@ -42,6 +44,7 @@ class SessionsController < ApplicationController
     redirect_to root_path, notice: "Logged out"
   end
 
+  private
   def session_params
     params.require(:session).permit(:user_id,:auth_token)
   end

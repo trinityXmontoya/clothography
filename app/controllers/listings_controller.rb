@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
 
-  before_action :authenticate, only: [:new, :create, :edit, :update, :destroy]
+  skip_before_action :authenticate, only: [:all_site_listings, :user_closet, :show]
+
   before_action :make_sure_twitter_user_updates_info, only: [:user_closet,:new, :create, :edit, :update, :destroy]
   before_action :init_form_instance_variables, only: [:all_site_listings, :new, :create, :update]
 
@@ -10,6 +11,10 @@ class ListingsController < ApplicationController
       @listings = Listing.tagged_with(params[:tag])
     else
       @listings = @query.result(distinct:true).includes(:category,:size,:brand,:gender)
+    end
+    if @listings.empty?
+      flash[:notice] = "No results for that! Check out some of our other listings:"
+      @listings = Listing.available_listings
     end
   end
 
@@ -29,7 +34,8 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     @message = Message.new
     @purchase = Purchase.new
-    @offer = Offer.new
+    @new_offer = Offer.new
+    @offers = @listing.offers
   end
 
   def new
@@ -55,7 +61,7 @@ class ListingsController < ApplicationController
   def edit
     @listing = Listing.find(params[:id])
     @user = @listing.user
-    if @listing.has_been_sold?
+    if @listing.has_been_sold
       redirect_to [@user,@listing], notice: "This item has been sold, you cannot perform this action."
     else
       init_form_instance_variables
@@ -65,7 +71,7 @@ class ListingsController < ApplicationController
   def update
     @listing = Listing.find(params[:id])
     @user = @listing.user
-    if @listing.has_been_sold?
+    if @listing.has_been_sold
       redirect_to [@user,@listing], notice: "This item has been sold, you cannot perform this action."
     else
       respond_to do |format|
@@ -84,7 +90,7 @@ class ListingsController < ApplicationController
   def destroy
     @listing = Listing.find(params[:id])
     @user = @listing.user
-    if @listing.has_been_sold?
+    if @listing.has_been_sold
       redirect_to [@user,@listing], notice: "This item has been sold, you cannot perform this action."
     else
       @listing.destroy

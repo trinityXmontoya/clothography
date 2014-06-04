@@ -1,135 +1,155 @@
-<%= javascript_include_tag 'listing/make_offer' %>
 <%= javascript_include_tag 'listing/slideshow' %>
 
+  <div id="listing_main_info_display" class="large-4 columns">
+    <% if current_user == @listing.user %>
+      <%= link_to 'Edit', edit_user_listing_path(@listing.user,@listing) %> |
+      <%= button_to 'Delete', [@listing.user,@listing], method: :delete %>
+    <% end %>
 
-  <% if current_user == @listing.user %>
-    <%= link_to 'Edit', edit_user_listing_path(@listing.user,@listing) %> |
-    <%= button_to 'Delete', [@listing.user,@listing], method: :delete %>
-  <% end %>
+    <%#= button_to "Add to cart", user_listing_add_to_cart_path(@listing.user, @listing), remote: true %>
 
-  <%#= button_to "Add to cart", user_listing_add_to_cart_path(@listing.user, @listing), remote: true %>
-
-
-  <%= form_for [@listing.user, @purchase], multipart: true, url: {controller: 'purchases', action: 'add_to_cart'} do |f| %>
-    <%= f.hidden_field :listing_id, value: @listing.id %>
-    <%= f.hidden_field :seller_id, value: @listing.user.id %>
-    <%= f.hidden_field :buyer_id, value: current_user.id %>
-    <%= f.submit "Add to cart" %>
-  <% end %>
-
-  <% unless current_user == @user %>
-    <div id="make-offer-button">
-      Make Offer
-    </div>
-    <div id="make-offer-display">
-      <%= form_for @offer, multipart: true, url: {controller: 'offers', action: 'make_offer', listing_id: @listing.id} do |f| %>
-        <%= f.hidden_field :offerer_id, value: current_user.id %>
-        <%= f.number_field :amount %>
-        <%= f.submit "Submit" %>
+    <% if @listing.has_been_sold %>
+      <div class="button alert">SOLD!</div>
+    <% else %>
+      <% unless current_user == @user %>
+        <%= form_for [@listing.user, @purchase], url: {controller: 'purchases', action: 'add_to_cart'} do |f| %>
+          <%= f.hidden_field :listing_id, value: @listing.id %>
+          <%= f.hidden_field :seller_id, value: @listing.user.id %>
+          <%= f.hidden_field :buyer_id, value: current_user.id %>
+          <%= f.submit "Add to cart" %>
+        <% end %>
       <% end %>
+    <% end %>
+
+    <div id="user-closet-info">
+    <%= link_to @listing.user.username + "'s closet", user_closet_path(@listing.user)%>
+    <%= image_tag @listing.user.profile_photo %>
+
+    <% if current_user %>
+      <% unless current_user == @user %>
+      <a href="#" data-reveal-id="message_user_from_listing">Message this user</a>
+      <div id="message_user_from_listing" class="reveal-modal" data-reveal>
+          <%= render 'messages/send_message_form', user: @listing.user, message: @message %>
+      </div>
+      <% end %>
+    <% end %>
     </div>
-  <% end %>
 
 
-<div id="user-closet-info">
-  <%= link_to @listing.user.username + "'s closet", user_closet_path(@listing.user)%>
-  <%= image_tag @listing.user.profile_photo %>
+    <p>
+    <strong>Brand:</strong>
+    <%= @listing.brand.name %>
+    </p>
 
-  <% if current_user %>
-    <% unless current_user == @user %>
-    <a href="#" data-reveal-id="message_user_from_listing">Message this user</a>
-    <div id="message_user_from_listing" class="reveal-modal" data-reveal>
-        <%= render 'messages/send_message_form', user: @listing.user, message: @message %>
+    <% if @listing.discount %>
+    <p>
+      <strong>Discount:</strong>
+      <%= @listing.discount %>
+    </p>
+    <% end %>
+
+    <p>
+    <strong>Category:</strong>
+    <%= @listing.category.name %>
+    </p>
+
+
+    <div id="previous-slide" class='slideshow-arrow' data-direction='prev'><b><</b></div>
+    <div id='listing-photo-carousel'>
+      <% if @listing.asset.photo1.exists? %>
+        <div class='listing_photo display-me' data-id='1' >
+        <%= image_tag @listing.asset.photo1 %>
+        </div>
+      <% end %>
+      <% if @listing.asset.photo2.exists? %>
+        <div class='listing_photo' data-id='2'>
+        <%= image_tag @listing.asset.photo2 %>
+        </div>
+      <% end %>
+      <% if @listing.asset.photo3.exists? %>
+        <div class='listing_photo' data-id='3'>
+        <%= image_tag @listing.asset.photo3 %>
+        </div>
+       <% end %>
+    </div><!-- end listing-photo-carousel -->
+    <div id="next-slide" class='slideshow-arrow' data-direction='next'><b>></b></div>
+    <div id="listing-photo-slideshow-number-display">
+     Photo 1
     </div>
+
+    <p>
+    <strong>Tags:</strong>
+    <% @listing.tag_list.each do |tag| %>
+    <%= link_to tag, search_for_tag_path(tag)%>
     <% end %>
-  <% end %>
-</div>
+    </p>
 
+    <p>
+    <strong>Size:</strong>
+    <%= @listing.size.label %>
+    </p>
 
-<p>
-  <strong>Brand:</strong>
-  <%= @listing.brand.name %>
-</p>
+    <p>
+    <strong>Gender:</strong>
+    <%= @listing.gender.name %>
+    </p>
 
-  <% if @listing.discount %>
-  <p>
-    <strong>Discount:</strong>
-    <%= @listing.discount %>
-  </p>
-  <% end %>
+    <p>
+    <strong>Title:</strong>
+    <%= @listing.title %>
+    </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @listing.category.name %>
-</p>
+    <p>
+    <strong>Description:</strong>
+    <%= @listing.description %>
+    </p>
 
+    <p>
+    <strong>Original price:</strong>
+    <%= @listing.original_price %>
+    </p>
 
-  <div id="previous-slide" class='slideshow-arrow' data-direction='prev'><b><</b></div>
-  <div id='listing-photo-carousel'>
-    <% if @listing.asset.photo1.exists? %>
-      <div class='listing_photo display-me' data-id='1' >
-      <%= image_tag @listing.asset.photo1 %>
-      </div>
-    <% end %>
-    <% if @listing.asset.photo2.exists? %>
-      <div class='listing_photo' data-id='2'>
-      <%= image_tag @listing.asset.photo2 %>
-      </div>
-    <% end %>
-    <% if @listing.asset.photo3.exists? %>
-      <div class='listing_photo' data-id='3'>
-      <%= image_tag @listing.asset.photo3 %>
-      </div>
-     <% end %>
-  </div><!-- end listing-photo-carousel -->
-  <div id="next-slide" class='slideshow-arrow' data-direction='next'><b>></b></div>
-  <div id="listing-photo-slideshow-number-display">
-   Photo 1
+    <p>
+    <strong>Price:</strong>
+    <%= @listing.price %>
+    </p>
+
+    <p>
+    <strong>Condition:</strong>
+    <%= @listing.condition %>
+    </p>
   </div>
 
-<p>
-  <strong>Tags:</strong>
-  <% @listing.tag_list.each do |tag| %>
-  <%= link_to tag, search_for_tag_path(tag)%>
-  <% end %>
-</p>
+  <div id="listing_offers_display" class='large-4 columns'>
+    <% unless current_user == @listing.user %>
+      <div>
+        <% if Offer.exists_between(@listing,current_user) %>
+          <p>You have already made an offer on this listing. <%= @listing.user.username %> has Xhrs left to accept before it will automatically expire, at which point you can make a new offer.</p>
+        <% else %>
+          <%= render 'offers/make_offer', offer: @new_offer, listing: @listing %>
+        <% end %>
+      </div>
+    <% else %>
+      <p>Pending Offers:</p>
+      <table>
+        <thead>
+          <th>User</th>
+          <th>Amount</th>
+          <th colspan='3'></th>
+        </thead>
+        <tbody>
+          <% @offers.each do |offer| %>
+          <tr>
+            <td><%= offer.offerer.username %></td>
+            <td>$ <%= offer.amount %></td>
+            <td>
+              <%= button_to "Accept", user_listing_offer_path(offer.offerer,offer.listing,offer), method: :put %>
+              <%= button_to "Reject", user_listing_offer_path(offer.offerer,offer.listing,offer),method: :delete %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Size:</strong>
-  <%= @listing.size.label %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @listing.gender.name %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @listing.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @listing.description %>
-</p>
-
-<p>
-  <strong>Original price:</strong>
-  <%= @listing.original_price %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @listing.price %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @listing.status %>
-</p>
-
-<p>
-  <strong>Condition:</strong>
-  <%= @listing.condition %>
-</p>

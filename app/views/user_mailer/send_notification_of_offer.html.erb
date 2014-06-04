@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  Hey <%= @user.username %>, <%= @offerer.username %> has offered $<%= @offer.amount %> for your listing <%= link_to @offer.listing.title, user_listing_url(@user,@offer.listing) %>. Accept or reject it here!
+</body>
+</html>

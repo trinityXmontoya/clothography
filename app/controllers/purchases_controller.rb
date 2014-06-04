@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :authenticate
+
   before_action :make_sure_twitter_user_updates_info
 
   def index
