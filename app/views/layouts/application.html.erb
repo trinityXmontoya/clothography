@@ -47,6 +47,12 @@
         <%= image_tag 'font-icons/hanger.svg' %>
       </li>
     </a>
+    <a href=" <%= user_listings_path(current_user) %> ">
+      <li class='main-navbar-item'>
+        <!-- <#%= image_tag 'font-icons/hanger.svg' %> -->
+        Manage Your Closet
+      </li>
+    </a>
     <a href=" <%= user_messages_path(current_user) %> ">
       <li class='main-navbar-item'>
         <%=image_tag 'font-icons/inbox.svg'%>

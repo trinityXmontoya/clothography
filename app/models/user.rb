@@ -96,6 +96,12 @@ class User < ActiveRecord::Base
     UserMailer.send_purchase_receipt(self,purchase).deliver
   end
 
+  def notify_of_pending_offer(offer)
+    UserMailer.send_notification_of_offer(self,offer).deliver
+  end
+
+  def notify_of_accepted_offer(offer)
+
   def unread_messages
     received_messages.where(viewed: false)
   end

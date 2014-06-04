@@ -6,7 +6,19 @@ class Offer < ActiveRecord::Base
 
   validates :offerer_id, :listing_id, :amount, presence: true
   def mark_as_pending
-    self.update(status: 'pending')
+    update(status: 'pending')
+  end
+
+  def mark_as_accepted
+    update(status: 'accepted')
+  end
+
+  def self.num_of_pending_offers(listing)
+    where(listing_id: listing.id).where(status: 'pending').count
+  end
+
+  def self.exists_between(listing,user)
+    where(listing_id: listing.id).where(offerer_id: user.id).exists?
   end
 
 end

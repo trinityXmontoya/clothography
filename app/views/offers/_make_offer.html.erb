@@ -1,0 +1,13 @@
+<%= javascript_include_tag 'listing/make_offer' %>
+
+<div id='make-offer-button'>Make Offer</div>
+
+<div id='make-offer-display'>
+  <p>Note: Once made, an offer cannot be edited. If the user accepts the offer than it will be automatically added to your cart with the new price. You will have a limited amount of time to checkout before the item will be removed from your cart and the new price will be available to everyone.</p>
+  <%= form_for offer, url: {controller: 'offers', action: 'make_offer', listing_id: listing.id} do |f| %>
+    <%= f.hidden_field :offerer_id, value: current_user.id %>
+    <%= f.label :amount %>
+    <%= f.number_field :amount %>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>

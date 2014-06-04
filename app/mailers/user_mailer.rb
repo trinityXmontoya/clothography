@@ -23,4 +23,12 @@ class UserMailer < ActionMailer::Base
          subject: "You receipt for item #{@purchase.listing.title}")
   end
 
+  def send_notification_of_offer(user,offer)
+    @user = user
+    @offer = offer
+    @offerer = offer.offerer
+    mail(to: @user.email,
+         subject: "#{@offerer.username} has offered $#{@offer.amount} for your listing #{@offer.listing.title}")
+  end
+
 end
