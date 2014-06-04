@@ -4,7 +4,7 @@ class Offer < ActiveRecord::Base
 
   before_create :mark_as_pending
 
-  validates :offerer, :listing, :amount, presence: true
+  validates :offerer_id, :listing_id, :amount, presence: true
   def mark_as_pending
     self.update(status: 'pending')
   end

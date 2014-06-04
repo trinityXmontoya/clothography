@@ -20,10 +20,12 @@ get '/listings/:tag' => 'listings#all_site_listings', as: :search_for_tag
   resources :users do
 
       get '/closet' => 'listings#user_closet'
-      resources :listings
+      resources :listings do
+        post '/make_offer' => 'offers#make_offer'
+        resources :offers, only: [:index]
+      end
 
-      post '/make_offer' => 'offers#make_offer'
-      resources :offers, only: [:index]
+      get '/current_offers' => 'offers#all_user_offers'
 
       post '/add_to_cart' => 'purchases#add_to_cart', as: :add_to_cart
       patch '/add_to_cart' => 'purchases#add_to_cart'

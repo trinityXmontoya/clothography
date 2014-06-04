@@ -17,19 +17,18 @@
     <%= f.submit "Add to cart" %>
   <% end %>
 
-
-  <div id="make-offer-button">
-    Make Offer
-  </div>
-
-  <div id="make-offer-display">
-    <%= form_for [@listing.user, @offer], url: {controller: 'offers', action: 'make_offer'} do |f| %>
-      <%= f.hidden_field :listing_id, value: @listing.id %>
-      <%= f.hidden_field :offerer_id, value: current_user.id %>
-      <%= f.number_field :amount %>
-      <%= f.submit "Submit" %>
-    <% end %>
-  </div>
+  <% unless current_user == @user %>
+    <div id="make-offer-button">
+      Make Offer
+    </div>
+    <div id="make-offer-display">
+      <%= form_for @offer, multipart: true, url: {controller: 'offers', action: 'make_offer', listing_id: @listing.id} do |f| %>
+        <%= f.hidden_field :offerer_id, value: current_user.id %>
+        <%= f.number_field :amount %>
+        <%= f.submit "Submit" %>
+      <% end %>
+    </div>
+  <% end %>
 
 
 <div id="user-closet-info">
