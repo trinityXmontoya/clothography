@@ -23,79 +23,100 @@
   <% end %>
 
 <div id="whole-closet">
-
-
-    <br>
-    <div id="available-listings-header" class="listing-header"><h4>Available Listings(<%= @listings.count %>) | </h4></div>
-    <div id="sold-listings-header" class="listing-header"><h4>Sold Listings(<%= @sales.count %>)</h4></div>
-    <br>
-    <br>
-    <div id="listing-display-box">
-      <div id="available-listings">
-        <% unless @listings.exists? %>
+  <div id="available-listings-header" class="listing-header"><h4>Available Listings(<%= @listings.count %>) | </h4></div>
+  <div id="reserved-listings-header" class="listing-header"><h4>Reserved Listings(<%= @reserved_listings.count %>) | </h4></div>
+  <div id="sold-listings-header" class="listing-header"><h4>Sold Listings(<%= @sales.count %>)</h4></div>
+  <br>
+  <br>
+  <div id="listing-display-box">
+    <div id="available-listings" class="closet-listings">
+    <% unless @listings.exists? %>
       <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> doesn't have anything listed right now! Check out <%= link_to "other listings", root_path %>.
       </div>
-      <% else %>
-
-        <% @listings.each do |listing| %>
-          <%= link_to [@user,listing] do %>
-            <div class="listing ">
-                <div class="panel listing-basic-info">
-                  <h6><%= listing.brand.name %><h6>
-                  <h5><%= listing.title %><h5>
-                </div>
-              <div class="image_listing">
-                <%= image_tag listing.asset.photo1 %>
-                </div>
-                <div class="panel listing-price-info">
-                  <% if listing.original_price %>
-                  <strike>$<%= listing.original_price %></strike>
-                  <% end %>
-                  $<%= listing.price %>
-                </div>
+    <% else %>
+      <% @listings.each do |listing| %>
+        <%= link_to [@user,listing] do %>
+          <div class="listing">
+            <div class="panel listing-basic-info">
+              <h6><%= listing.brand.name %><h6>
+              <h5><%= listing.title %><h5>
             </div>
-          <% end %>
-        <% end %>
-        <% end %>
-      </div>
-    </div>
-
-
-
-    <div id="sold-listings">
-      <% unless @sales.exists? %>
-
-        <% if @listings.exists? %>
-        <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Maybe help 'em out and <%= link_to "buy something", user_closet_path(@user) %> ;)"
-        </div>
-        <% else %>
-        <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Check out <%= link_to "other listings", root_path %> ;)
-      </div>
-        <% end %>
-      <% else %>
-
-        <% @sales.each do |sold_listing| %>
-          <%= link_to [@user,sold_listing] do %>
-            <div class="each-available-listing">
-              <div class="listing">
-                  <div class="panel listing-basic-info">
-                    <h6><%= sold_listing.brand.name %><h6>
-                    <h5><%= sold_listing.title %><h5>
-                  </div>
-                  <div class="image_listing">
-                <%= image_tag sold_listing.asset.photo1 %>
-                </div>
-                  <div class="panel listing-price-info">
-                    <% if sold_listing.original_price %>
-                    <strike>$<%= sold_listing.original_price %></strike>
-                    <% end %>
-                    $<%= sold_listing.price %>
-                  </div>
-              </div>
+            <div class="image_listing">
+              <%= image_tag listing.asset.photo1 %>
             </div>
-          <% end %>
+            <div class="panel listing-price-info">
+              <% if listing.original_price %>
+                <strike>$<%= listing.original_price %></strike>
+              <% end %>
+                $<%= listing.price %>
+            </div>
+          </div>
         <% end %>
       <% end %>
+    <% end %>
+    </div> <!-- end available listings-->
+  </div> <!-- end listing-display-box-->
+
+  <div id="reserved-listings" class="closet-listings">
+  <% unless @reserved_listings.exists? %>
+    <div class="button disabled alert">
+      No reserved listings.
     </div>
-</div>
-</div>
+  <% else %>
+    <% @reserved_listings.each do |listing| %>
+      <%= link_to [@user,listing] do %>
+        <div class="listing ">
+          <div class="panel listing-basic-info">
+            <h6><%= listing.brand.name %><h6>
+            <h5><%= listing.title %><h5>
+          </div>
+          <div class="image_listing">
+            <%= image_tag listing.asset.photo1 %>
+          </div>
+          <div class="panel listing-price-info">
+            <% if listing.original_price %>
+              <strike>$<%= listing.original_price %></strike>
+            <% end %>
+            $<%= listing.price %> RESERVED
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  </div><!-- end reserved listings-->
+
+  <div id="sold-listings" class="closet-listings">
+  <% unless @sales.exists? %>
+    <% if @listings.exists? %>
+      <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Maybe help 'em out and <%= link_to "buy something", user_closet_path(@user) %> ;)"
+      </div>
+    <% else %>
+      <div class="button disabled alert">Looks like <strong><%= @user.username %></strong> hasn't sold anything yet! Check out <%= link_to "other listings", root_path %> ;)
+      </div>
+    <% end %>
+  <% else %>
+      <% @sales.each do |sold_listing| %>
+        <%= link_to [@user,sold_listing] do %>
+          <div class="each-available-listing">
+            <div class="listing">
+              <div class="panel listing-basic-info">
+                <h6><%= sold_listing.brand.name %><h6>
+                <h5><%= sold_listing.title %><h5>
+              </div>
+              <div class="image_listing">
+                <%= image_tag sold_listing.asset.photo1 %>
+              </div>
+              <div class="panel listing-price-info">
+                <% if sold_listing.original_price %>
+                  <strike>$<%= sold_listing.original_price %></strike>
+                <% end %>
+                $<%= sold_listing.price %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+  <% end %>
+  </div><!-- end sold listings-->
+</div> <!-- end whole closet-->
+</div><!-- end .row -->

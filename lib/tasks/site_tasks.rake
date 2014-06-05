@@ -1,6 +1,6 @@
-namespace :check => :environment do
+namespace :check do
 
-  task :listing_reservation_status do
+  task :listing_reservation_status => :environment do
     desc "restore listings with expired reservations"
     listings = Listing.where(status: 'reserved')
     listings.each do |listing|
@@ -10,7 +10,7 @@ namespace :check => :environment do
     end
   end
 
-  task :offer_status do
+  task :offer_status => :environment do
     desc "delete expired offers"
     offers = Offer.where(status: 'pending')
     Offer.destroy_expired(offers)
