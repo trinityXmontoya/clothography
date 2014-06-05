@@ -31,6 +31,10 @@ class Listing < ActiveRecord::Base
     where(user_id: user.id).where(status: "available")
   end
 
+  def self.retrieve_user_reserved_listings(user)
+    where(user_id: user.id).where(status: "reserved")
+  end
+
   def calculate_discount
     if original_price && original_price > price
       amount_discounted = (price / original_price)*100
