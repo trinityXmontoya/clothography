@@ -5,6 +5,7 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-  Hey <%= @user.username.capitalize %>, <%= @offerer.username.capitalize %> has offered $<%= @offer.amount %> for your listing <%= link_to @offer.listing.title.capitalize, user_listing_url(@user,@offer.listing) %>. Accept or reject it here!
+  Hey <%= @user.username.capitalize %>
+  Offer $<%= @offer.amount %> for <%= link_to @listing.title.capitalize, user_listing_url(@user,@listing) %> has expired. The original price of $<%= @listing.price_before_offer %> has been restored. Feel free to review your listing <% if Offer.num_of_pending_offers(@listing) > 0 %> and accept any other offers <% end %>!
 </body>
 </html>

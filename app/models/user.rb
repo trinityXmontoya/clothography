@@ -119,4 +119,8 @@ class User < ActiveRecord::Base
     UserMailer.send_notification_of_rejected_offer(self,offer).deliver
   end
 
+  def notify_of_expired_offer(offer)
+    UserMailer.send_notification_of_expired_offer(self,offer).deliver
+  end
+
 end

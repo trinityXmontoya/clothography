@@ -120,40 +120,42 @@
     </p>
   </div>
 
-  <div id="listing_offers_display" class='large-4 columns'>
-    <% if @listing.is_reserved %>
-        <p>This listing is reserved and no offers are currently being accepted.</p>
-    <% elsif current_user != @listing.user %>
-      <% if Offer.exists_between(@listing,current_user) %>
-          <div>
-            <p>You have already made an offer on this listing. <%= @listing.user.username %> has Xhrs left to accept before it will automatically expire, at which point you can make a new offer.</p>
-          </div>
+  <% unless @listing.has_been_sold %>
+    <div id="listing_offers_display" class='large-4 columns'>
+      <% if @listing.is_reserved %>
+          <p>This listing is currently reserved and no offers are currently being accepted.</p>
+      <% elsif current_user != @listing.user %>
+        <% if Offer.exists_between(@listing,current_user) %>
+            <div>
+              <p>You have already made an offer on this listing. <%= @listing.user.username %> has Xhrs left to accept before it will automatically expire, at which point you can make a new offer.</p>
+            </div>
+        <% else %>
+          <%= render 'offers/make_offer', offer: @new_offer, listing: @listing %>
+        <% end %>
       <% else %>
-        <%= render 'offers/make_offer', offer: @new_offer, listing: @listing %>
-      <% end %>
-    <% else %>
-      <p>Pending Offers:</p>
-      <table>
-        <thead>
-          <th>User</th>
-          <th>Amount</th>
-          <th colspan='3'></th>
-        </thead>
-        <tbody>
-          <% @offers.each do |offer| %>
-          <tr>
-            <td><%= offer.offerer.username %></td>
-            <td>$ <%= offer.amount %></td>
-            <td>
-              <%= form_for offer, url: {controller: 'offers', action: 'accept_offer', listing_id: offer.listing.id, offer_id: offer.id} do |f| %>
-                <%= f.submit "Accept" %>
-              <% end %>
-              <%= button_to "Reject", user_listing_offer_path(offer.offerer,offer.listing,offer),method: :delete %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
-  </div>
+        <p>Pending Offers:</p>
+        <table>
+          <thead>
+            <th>User</th>
+            <th>Amount</th>
+            <th colspan='3'></th>
+          </thead>
+          <tbody>
+            <% @offers.each do |offer| %>
+            <tr>
+              <td><%= offer.offerer.username %></td>
+              <td>$ <%= offer.amount %></td>
+              <td>
+                <%= form_for offer, url: {controller: 'offers', action: 'accept_offer', listing_id: offer.listing.id, offer_id: offer.id} do |f| %>
+                  <%= f.submit "Accept" %>
+                <% end %>
+                <%= button_to "Reject", user_listing_offer_path(offer.offerer,offer.listing,offer),method: :delete %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %><!-- end 'if listing is not reserved and current_user != user' conditional -->
+    </div>
+  <% end %><!-- end 'unless listing.has_been_sold' conditional -->
 

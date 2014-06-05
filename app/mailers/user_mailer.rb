@@ -47,4 +47,12 @@ class UserMailer < ActionMailer::Base
       subject: "Your offer of $#{@offer.amount} for #{@listing.title.capitalize} has been rejected.")
   end
 
+  def send_notification_of_expired_offer(user,offer)
+    @user=user
+    @offer = offer
+    @listing = offer.listing
+    mail(to: @user.email,
+      subject: "Offer of $#{@offer.amount} for #{@listing.title.capitalize} has expired.")
+  end
+
 end

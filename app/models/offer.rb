@@ -28,4 +28,18 @@ class Offer < ActiveRecord::Base
     where(listing_id: listing.id).where(offerer_id: user.id).exists?
   end
 
+  def is_expired
+    ((Time.now - self.updated_at)/1.hour).round > 36
+  end
+
+  def self.has_expired_on_reserved(listing)
+    time_since_offer_accepted = where(listing_id: listing.id).where(status: 'accepted').updated_at
+    ((Time.now - time_since_offer_accepted) / 1.hour).round > 36
+  end
+
+  def self.destroy_expired(offers)
+    offers.each do |offer|
+      offer.destroy if offer.is_expired
+    end
+  end
 end

@@ -47,6 +47,10 @@ class Listing < ActiveRecord::Base
     self.update(price: amount)
   end
 
+  def restore_price_before_offer
+    self.update(price: price_before_offer)
+  end
+
   def mark_as_available
     self.update(status: "available")
   end
@@ -72,4 +76,21 @@ class Listing < ActiveRecord::Base
     where(status: "available")
   end
 
+  def retrieve_offers
+    offers.where(status: 'pending')
+  end
+
+  def retrieve_accepted_offer
+    offers.where(status: 'accepted')
+  end
+
+  def restore
+    accepted_now_expired_offer = retrieve_accepted_offer
+    user.notify_of_expired_offer(accepted_now_expired_offer)
+    restore_price_before_offer
+    mark_as_available
+    accepted_now_expired_offer.destroy
+    offers = retrieve_offers
+    Offer.destroy_expired(offers)
+  end
 end
