@@ -59,9 +59,14 @@
       <%= f.number_field :original_price, placeholder: "(optional)" %>
     </div>
 
+
     <div class="field">
       <%= f.label :price %><br>
+      <% if @listing.is_reserved %>
+      <p>You cannot edit the price of a reserved listing.</p>
+      <% else %>
       <%= f.number_field :price %>
+      <% end %>
     </div>
 
 <br>
