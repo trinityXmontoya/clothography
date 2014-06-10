@@ -1,6 +1,7 @@
 <%= javascript_include_tag 'listing/slideshow' %>
 
   <div id="listing_main_info_display" class="large-4 columns">
+  <% if current_user %>
     <% if current_user == @listing.user %>
       <%= link_to 'Edit', edit_user_listing_path(@listing.user,@listing) %> |
       <%= button_to 'Delete', [@listing.user,@listing], method: :delete %>
@@ -159,3 +160,4 @@
     </div>
   <% end %><!-- end 'unless listing.has_been_sold' conditional -->
 
+<% end %>
