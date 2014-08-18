@@ -8,11 +8,13 @@ My final project for my [General Assembly WDI Course](https://generalassemb.ly/e
 
 ## INSTALLATION
 
-1. Run `bundle`
-2. Run `touch .env` from your terminal or create a .env file.
-3. Add `.env` to your `.gitignore` file
+1. `git clone git@github.com:trinityXmontoya/clothography.git`
+2. `cd clothography`
+3. Run `bundle`
+4. Run `touch .env` from your terminal or create a .env file.
+5. Add `.env` to your `.gitignore` file
   This app requires a `.env` file to store your API keys. The `dotenv-rails gem` will load the variables from your `.env` file into the app when it is first loaded.
-4. You will need access tokens from [AWS S3](http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key), [TWITTER](https://apps.twitter.com/app/new), and [STRIPE](https://dashboard.stripe.com/account/apikeys).
+6. You will need access tokens from [AWS S3](http://blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/Where-s-my-secret-access-key), [TWITTER](https://apps.twitter.com/app/new), and [STRIPE](https://dashboard.stripe.com/account/apikeys).
   You will also need to declare a variable for your port of choice, email configuration, and the rack environment
 
   Your `.env` file should look as follows:
@@ -34,6 +36,6 @@ My final project for my [General Assembly WDI Course](https://generalassemb.ly/e
   RACK_ENV=XXXX
   PORT=XXXX
   ```
-5. run `rails s`
+7. run `rails s`
 
-The app will now be running at http://localhost:X/, where X is the PORT number you specified in the `.env` file.
+The app will now be running at http://localhost:X, where X is the PORT number you specified in the `.env` file.
