@@ -34,3 +34,6 @@ My final project for my [General Assembly WDI Course](https://generalassemb.ly/e
   RACK_ENV=XXXX
   PORT=XXXX
   ```
+5. run `rails s`
+
+The app will now be running at http://localhost:X/, where X is the PORT number you specified in the `.env` file.
