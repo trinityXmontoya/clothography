@@ -5,6 +5,10 @@ class Offer < ActiveRecord::Base
   after_create :mark_as_pending
 
   validates :offerer_id, :listing_id, :amount, presence: true
+
+  scope :pending, -> (listing){where(listing_id: listing.id, status: pending)}
+  scope :existing, -> (listing,user){where(listing_id: listing.id, offerer_id: user.id)}
+
   def mark_as_pending
     update(status: 'pending')
   end
@@ -20,12 +24,12 @@ class Offer < ActiveRecord::Base
     update(status: 'accepted')
   end
 
-  def self.num_of_pending_offers(listing)
-    where(listing_id: listing.id).where(status: 'pending').count
+  def self.num_of_pending(listing)
+    pending(listing).count
   end
 
   def self.exists_between(listing,user)
-    where(listing_id: listing.id).where(offerer_id: user.id).exists?
+    existing(listing,user).exists?
   end
 
   def is_expired

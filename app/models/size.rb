@@ -4,20 +4,9 @@ class Size < ActiveRecord::Base
 
   has_many :users, through: :size_users
 
-  def self.standard_sizes
-    where(name: "Standard")+where(name: "Petite")+where(name: "Plus")
-  end
-
-  def self.jean_sizes
-    where(name: "Standard-Jeans")+where(name: "Petite")+where(name: "Plus")
-  end
-
-  def self.bottom_sizes
-    where(name:"Standard-Bottoms")+where(name: "Petite")+where(name: "Plus")
-  end
-
-  def self.shoe_sizes
-    where(name: "Shoe")
-  end
+  scope :standard, -> { where(name: "Standard", name: "Petite", name: "Plus")}
+  scope :jeans, -> { where(name: "Standard-Jeans", name: "Petite", name: "Plus")}
+  scope :bottoms, -> { where(name: "Standard-Bottoms", name: "Petite", name: "Plus")}
+  scope :shoes, -> { where(name: "Shoe")}
 
 end

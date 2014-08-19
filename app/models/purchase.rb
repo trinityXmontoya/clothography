@@ -4,6 +4,8 @@ class Purchase < ActiveRecord::Base
   belongs_to :buyer, foreign_key: 'buyer_id', class_name: "User"
   belongs_to :listing
 
+  scope :user_cart_listings, -> (user){ where(buyer_id: user.id, status: 'in cart') }
+
   validates_uniqueness_of :listing_id
 
   validates :seller, :buyer, :listing, presence: true
@@ -13,10 +15,6 @@ class Purchase < ActiveRecord::Base
 
   def mark_as_completed
     self.update(status: "completed")
-  end
-
-  def self.retrieve_user_cart_listings(user)
-    Purchase.where(buyer_id: user.id).where(status: 'in cart')
   end
 
   def time_in_cart_ran_out?
@@ -33,5 +31,3 @@ class Purchase < ActiveRecord::Base
   end
 
 end
-
-# Purchase.where(status: 'in cart')

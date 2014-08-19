@@ -18,22 +18,19 @@ class Listing < ActiveRecord::Base
 
   after_create :mark_as_available, :calculate_discount, :set_price_before_offer
 
+  scope :sold, -> (user) {where(user_id: user.id, status: "sold")}
+  scope :availables, -> (user) {where(user_id: user.id, status: "available")}
+  scope :reserved, -> (user) {where(user_id: user.id, status: "reserved")}
+
+  scope :available, -> {where(status: "available")}
+
+  scope :offers, -> {joins(:offers).where(status: 'pending')}
+  scope :accepted_offers, -> {joins(:offers).where(status: 'accepted')}
+
   def self.conditions
     return ["New with tags", "New without tags", "Like new", "Gently used"]
   end
   validates :condition, inclusion: { in: self.conditions}
-
-  def self.retrieve_user_sales(user)
-    where(user_id: user.id).where(status: "sold")
-  end
-
-  def self.retrieve_user_available_listings(user)
-    where(user_id: user.id).where(status: "available")
-  end
-
-  def self.retrieve_user_reserved_listings(user)
-    where(user_id: user.id).where(status: "reserved")
-  end
 
   def calculate_discount
     if original_price && original_price > price
@@ -76,20 +73,8 @@ class Listing < ActiveRecord::Base
     self.status == 'reserved'
   end
 
-  def self.available_listings
-    where(status: "available")
-  end
-
-  def retrieve_offers
-    offers.where(status: 'pending')
-  end
-
-  def retrieve_accepted_offer
-    offers.where(status: 'accepted')
-  end
-
   def restore
-    accepted_now_expired_offer = retrieve_accepted_offer
+    accepted_now_expired_offer = accepted_offers
     user.notify_of_expired_offer(accepted_now_expired_offer)
     restore_price_before_offer
     mark_as_available
